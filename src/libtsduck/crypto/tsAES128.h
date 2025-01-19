@@ -38,7 +38,7 @@ namespace ts {
 
 #if defined(TS_WINDOWS)
         virtual void getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& ignore_iv) const override;
-#else
+#elif !defined(TS_NO_OPENSSL)
         virtual const EVP_CIPHER* getAlgorithm() const override;
 #endif
     };
@@ -58,7 +58,7 @@ namespace ts {
         ECB(const BlockCipherProperties& props);
 #if defined(TS_WINDOWS)
         virtual void getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& ignore_iv) const override;
-#else
+#elif !defined(TS_NO_OPENSSL)
         virtual const EVP_CIPHER* getAlgorithm() const override;
 #endif
     };
@@ -76,7 +76,7 @@ namespace ts {
         CBC(const BlockCipherProperties& props);
 #if defined(TS_WINDOWS)
         virtual void getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& ignore_iv) const override;
-#else
+#elif !defined(TS_NO_OPENSSL)
         virtual const EVP_CIPHER* getAlgorithm() const override;
 #endif
     };

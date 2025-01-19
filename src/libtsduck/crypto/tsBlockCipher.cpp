@@ -38,7 +38,7 @@ ts::BlockCipher::~BlockCipher()
         _hkey = nullptr;
     }
     _algo = nullptr;
-#else
+#elif !defined(TS_NO_OPENSSL)
     if (_encrypt != nullptr) {
         EVP_CIPHER_CTX_free(_encrypt);
         _encrypt = nullptr;
@@ -105,7 +105,7 @@ void ts::BlockCipher::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bo
     ignore_iv = false;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 const EVP_CIPHER* ts::BlockCipher::getAlgorithm() const
 {
@@ -317,6 +317,8 @@ bool ts::BlockCipher::setKeyImpl()
     }
     return true;
 
+#elif defined(TS_NO_OPENSSL)
+    return false;
 #else
 
     // Get a reference to algorithm EVP the first time.
@@ -373,6 +375,8 @@ bool ts::BlockCipher::encryptImpl(const void* plain, size_t plain_length, void* 
     }
     return true;
 
+#elif defined(TS_NO_OPENSSL)
+    return false;
 #else
 
     // Problem with OpenSSL: there is no way to limit the amount of written data during encryption or decryption.
@@ -460,6 +464,8 @@ bool ts::BlockCipher::decryptImpl(const void* cipher, size_t cipher_length, void
     }
     return true;
 
+#elif defined(TS_NO_OPENSSL)
+    return false;
 #else
 
     // See comment in encryptImpl().

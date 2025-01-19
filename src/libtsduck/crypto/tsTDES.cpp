@@ -40,7 +40,7 @@ void ts::TDES::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& ign
     ignore_iv = true;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("DES-EDE3-ECB"), Algo);
 const EVP_CIPHER* ts::TDES::getAlgorithm() const
@@ -78,7 +78,7 @@ void ts::ECB<ts::TDES>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, 
     ignore_iv = true;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 const EVP_CIPHER* ts::ECB<ts::TDES>::getAlgorithm() const
 {
@@ -115,7 +115,7 @@ void ts::CBC<ts::TDES>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, 
     ignore_iv = false;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("DES-EDE3-CBC"), AlgoCBC);
 const EVP_CIPHER* ts::CBC<ts::TDES>::getAlgorithm() const

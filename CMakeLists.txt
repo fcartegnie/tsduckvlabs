@@ -32,6 +32,7 @@ option(NOCURL "")
 option(NOSRT "")
 option(NORIST "")
 option(NODEPRECATE "")
+option(NOOPENSSL "")
 
 option(BUILD_TESTING "Build tests" OFF)
 
@@ -457,13 +458,14 @@ else()
     list(APPEND LIBTSDUCK_LINK_LIBRARIES SRT)
 endif()
 
-if(NOT WIN32)
-    if(BUILD_SHARED_LIBS)
-        find_package(OpenSSL REQUIRED)
-    else()
-        # avoid linking problems between static and dynamic libraries for now
-        list(APPEND LIBTSDUCK_CXXFLAGS_INCLUDES TS_NO_OPENSSL=1)
-    endif()
+set(OpenSSL_FOUND 0)
+if(NOT NOOPENSSL AND BUILD_SHARED_LIBS) # avoid linking problems between static and dynamic libraries for now
+    find_package(OpenSSL QUIET)
+endif()
+if(NOT OpenSSL_FOUND)
+    list(APPEND LIBTSDUCK_CXXFLAGS_INCLUDES TS_NO_OPENSSL=1)
+else()
+    list(APPEND LIBTSDUCK_LINK_LIBRARIES OpenSSL::Crypto)
 endif()
 
 if(NOT NODTAPI)

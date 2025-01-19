@@ -46,7 +46,7 @@ ts::FetchBCryptAlgorithm::~FetchBCryptAlgorithm()
     }
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 //----------------------------------------------------------------------------
 // OpenSSL crypto library support (Unix systems only).

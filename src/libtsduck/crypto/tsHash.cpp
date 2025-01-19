@@ -31,7 +31,7 @@ ts::Hash::~Hash()
         _hash = nullptr;
     }
     _algo = nullptr;
-#else
+#elif !defined(TS_NO_OPENSSL)
     if (_context != nullptr) {
         EVP_MD_CTX_free(_context);
         _context = nullptr;
@@ -53,7 +53,7 @@ void ts::Hash::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length) const
     length = 0;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 const EVP_MD_CTX* ts::Hash::referenceContext() const
 {
@@ -93,6 +93,8 @@ bool ts::Hash::init()
     }
     return true;
 
+#elif defined(TS_NO_OPENSSL)
+    return false;
 #else
 
     // Create the hash context the first time.
@@ -126,8 +128,9 @@ bool ts::Hash::add(const void* data, size_t size)
 
     return _hash != nullptr && ::BCryptHashData(_hash, ::PUCHAR(data), ::ULONG(size), 0) >= 0;
 
+#elif defined(TS_NO_OPENSSL)
+    return false;
 #else
-
     const bool ok = _context != nullptr && EVP_DigestUpdate(_context, data, size);
     PrintCryptographicLibraryErrors();
     return ok;
@@ -162,6 +165,8 @@ bool ts::Hash::getHash(void* hash, size_t bufsize, size_t* retsize)
     _hash = nullptr;
     return true;
 
+#elif defined(TS_NO_OPENSSL)
+    return false;
 #else
 
     const bool ok = _context != nullptr && EVP_DigestFinal_ex(_context, reinterpret_cast<unsigned char*>(hash), nullptr);

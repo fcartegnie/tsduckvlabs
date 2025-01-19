@@ -21,7 +21,7 @@
     #if defined(TS_MSC)
         #pragma comment(lib, "bcrypt.lib")
     #endif
-#else
+#elif !defined(TS_NO_OPENSSL)
     #include "tsBeforeStandardHeaders.h"
     #include <openssl/opensslv.h>
     #include <openssl/evp.h>
