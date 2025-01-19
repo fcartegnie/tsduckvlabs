@@ -10,6 +10,10 @@
 #include "tsSingleton.h"
 #include "tsInitCryptoLibrary.h"
 
+ts::SHA1::~SHA1()
+{
+}
+
 #if defined(TS_WINDOWS)
 
 TS_STATIC_INSTANCE(ts::FetchBCryptAlgorithm, (BCRYPT_SHA1_ALGORITHM), Fetch);
@@ -19,7 +23,7 @@ void ts::SHA1::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length) const
     Fetch::Instance().getAlgorithm(algo, length);
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchHashAlgorithm, ("SHA1"), Preset);
 

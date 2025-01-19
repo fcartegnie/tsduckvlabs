@@ -10,6 +10,10 @@
 #include "tsSingleton.h"
 #include "tsInitCryptoLibrary.h"
 
+ts::SHA512::~SHA512()
+{
+}
+
 #if defined(TS_WINDOWS)
 
 TS_STATIC_INSTANCE(ts::FetchBCryptAlgorithm, (BCRYPT_SHA512_ALGORITHM), Fetch);
@@ -19,7 +23,7 @@ void ts::SHA512::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length) const
     Fetch::Instance().getAlgorithm(algo, length);
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchHashAlgorithm, ("SHA512"), Preset);
 

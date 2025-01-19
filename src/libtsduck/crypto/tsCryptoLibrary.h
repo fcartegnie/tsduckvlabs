@@ -21,7 +21,7 @@
     #if defined(TS_MSC)
         #pragma comment(lib, "bcrypt.lib")
     #endif
-#else
+#elif !defined(TS_NO_OPENSSL)
     #include "tsBeforeStandardHeaders.h"
     #include <openssl/opensslv.h>
     #include <openssl/evp.h>
@@ -39,6 +39,11 @@
         #include <openssl/provider.h>
         #include "tsAfterStandardHeaders.h"
     #endif
+#elif !defined(TS_NO_CRYPTO_LIBRARY)
+
+    // No support for external library
+    #define TS_NO_CRYPTO_LIBRARY 1
+
 #endif
 
 namespace ts {

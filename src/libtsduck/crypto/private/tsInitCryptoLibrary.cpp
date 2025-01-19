@@ -46,7 +46,7 @@ ts::FetchBCryptAlgorithm::~FetchBCryptAlgorithm()
     }
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 //----------------------------------------------------------------------------
 // OpenSSL crypto library support (Unix systems only).
@@ -158,4 +158,7 @@ ts::FetchCipherAlgorithm::~FetchCipherAlgorithm()
 #endif
 }
 
+#else
+TS_LLVM_NOWARNING(missing-variable-declarations)
+bool tsInitCryptoLibraryIsEmpty = true; // Avoid warning about empty module.
 #endif

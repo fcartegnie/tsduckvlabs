@@ -30,6 +30,17 @@ ts::AES128::AES128(const BlockCipherProperties& props) : BlockCipher(props)
     canProcessInPlace(true);
 }
 
+ts::AES128::~AES128()
+{
+}
+
+
+//----------------------------------------------------------------------------
+// Implementation using external cryptographic libraries.
+//----------------------------------------------------------------------------
+
+#if !defined(TS_NO_CRYPTO_LIBRARY)
+
 #if defined(TS_WINDOWS)
 
 TS_STATIC_INSTANCE(ts::FetchBCryptAlgorithm, (BCRYPT_AES_ALGORITHM, BCRYPT_CHAIN_MODE_ECB), FetchECB);
@@ -40,7 +51,7 @@ void ts::AES128::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& i
     ignore_iv = true;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("AES-128-ECB"), Algo);
 const EVP_CIPHER* ts::AES128::getAlgorithm() const
@@ -78,7 +89,7 @@ void ts::ECB<ts::AES128>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length
     ignore_iv = true;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 const EVP_CIPHER* ts::ECB<ts::AES128>::getAlgorithm() const
 {
@@ -115,7 +126,7 @@ void ts::CBC<ts::AES128>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length
     ignore_iv = false;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("AES-128-CBC"), AlgoCBC);
 const EVP_CIPHER* ts::CBC<ts::AES128>::getAlgorithm() const
@@ -124,3 +135,5 @@ const EVP_CIPHER* ts::CBC<ts::AES128>::getAlgorithm() const
 }
 
 #endif
+
+#endif // TS_NO_CRYPTO_LIBRARY

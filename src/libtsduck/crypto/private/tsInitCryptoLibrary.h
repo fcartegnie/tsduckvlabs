@@ -99,7 +99,7 @@ namespace ts {
     // Can be called many times, executed only once.
     inline void InitCryptographicLibrary()
     {
-#if !defined(TS_WINDOWS)
+#if !defined(TS_WINDOWS) && !defined(TS_NO_OPENSSL)
         InitCryptoLibrary::Instance();
 #endif
     }
@@ -107,7 +107,7 @@ namespace ts {
     // Internal function to display errors from the underlying cryptographic library on standard error.
     inline void PrintCryptographicLibraryErrors()
     {
-#if !defined(TS_WINDOWS)
+#if !defined(TS_WINDOWS) && !defined(TS_NO_OPENSSL)
         if (InitCryptoLibrary::Instance().debug()) {
             ERR_print_errors_fp(stderr);
         }
