@@ -411,7 +411,9 @@ ts::UString ts::NameGUID(const ::GUID& guid)
         const UChar*   name;
     };
     static const KnownValue knownValues[] = {
-#define _N_(g) {&g, u#g},
+#define WIDEN2(x) u ## x
+#define WIDEN(x) WIDEN2(x)
+#define _N_(g) {&g, WIDEN(#g)},
         _N_(AM_INTERFACESETID_Standard)
         _N_(AM_KSCATEGORY_AUDIO)
         _N_(AM_KSCATEGORY_CAPTURE)
@@ -822,6 +824,8 @@ ts::UString ts::NameGUID(const ::GUID& guid)
         _N_(TIME_FORMAT_NONE)
         _N_(TIME_FORMAT_SAMPLE)
 #undef  _N_
+#undef WIDEN
+#undef WIDEN2
         {0, 0}
     };
 
