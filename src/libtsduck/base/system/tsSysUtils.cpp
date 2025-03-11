@@ -567,7 +567,7 @@ bool ts::StdErrIsTerminal()
 // Get the name of a class from the @c type_info of an object.
 //----------------------------------------------------------------------------
 
-#if defined(TS_GCC)
+#if defined(TS_GCC) && !defined(__clang__)
 #include <cxxabi.h>
 #endif
 
@@ -578,7 +578,7 @@ ts::UString ts::ClassName(const std::type_info& info)
     if (rtti != nullptr) {
         // By default, use the plain RTTI name. Not always a pretty name.
         name.assignFromUTF8(rtti);
-#if defined(TS_GCC)
+#if defined(TS_GCC) && !defined(__clang__)
         // With gcc and clang, this is a C++ mangled name.
         // Demangle it using the portable C++ ABI library.
         int status = 0;
