@@ -15,6 +15,12 @@
 #pragma once
 #include "tsByteSwap.h"
 
+// #if defined(_TSDUCKDLL_USE)
+//     #define TSDUCK_TEMPLATE_DLL TSDUCKDLL
+// #else
+    #define TSDUCK_TEMPLATE_DLL
+// #endif
+
 //!
 //! Zeroing an plain memory variable.
 //! Do not use with instances of C++ classes.
@@ -1091,22 +1097,22 @@ namespace ts {
     // Non-inline versions when strict memory alignment is required.
 
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL INT GetIntBE(const void* p);
+    TSDUCK_TEMPLATE_DLL INT GetIntBE(const void* p);
 
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL INT GetIntLE(const void* p);
+    TSDUCK_TEMPLATE_DLL INT GetIntLE(const void* p);
 
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL void GetIntBE(const void* p, INT& i);
+    TSDUCK_TEMPLATE_DLL void GetIntBE(const void* p, INT& i);
 
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL void GetIntLE(const void* p, INT& i);
+    TSDUCK_TEMPLATE_DLL void GetIntLE(const void* p, INT& i);
 
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL void PutIntBE(void* p, INT i);
+    TSDUCK_TEMPLATE_DLL void PutIntBE(void* p, INT i);
 
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL void PutIntLE(void* p, INT i);
+    TSDUCK_TEMPLATE_DLL void PutIntLE(void* p, INT i);
 
 #endif
 
@@ -1158,7 +1164,7 @@ namespace ts {
     //! @return The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline INT GetIntVarBE(const void* p, size_t size);
+    TSDUCK_TEMPLATE_DLL inline INT GetIntVarBE(const void* p, size_t size);
 
     //!
     //! Template function getting a variable-length integer from serialized data in little endian representation.
@@ -1169,7 +1175,7 @@ namespace ts {
     //! @return The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline INT GetIntVarLE(const void* p, size_t size);
+    TSDUCK_TEMPLATE_DLL inline INT GetIntVarLE(const void* p, size_t size);
 
     //!
     //! Template function getting a variable-length integer from serialized data in big endian representation.
@@ -1208,7 +1214,7 @@ namespace ts {
     //! @param [in] i The INT in native byte order to serialize in big endian representation.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void PutIntVarBE(void* p, size_t size, INT i);
+    TSDUCK_TEMPLATE_DLL inline void PutIntVarBE(void* p, size_t size, INT i);
 
     //!
     //! Template function serializing a variable-length integer data in little endian representation.
@@ -1219,7 +1225,7 @@ namespace ts {
     //! @param [in] i The INT in native byte order to serialize in little endian representation.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void PutIntVarLE(void* p, size_t size, INT i);
+    TSDUCK_TEMPLATE_DLL inline void PutIntVarLE(void* p, size_t size, INT i);
 
     //!
     //! Template function getting a variable-length integer from serialized data in big endian representation.
@@ -1273,7 +1279,7 @@ namespace ts {
 #if defined(TS_STRICT_MEMORY_ALIGN)
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-INT ts::GetIntBE(const void* p)
+TSDUCK_TEMPLATE_DLL INT ts::GetIntBE(const void* p)
 {
     switch (sizeof(INT)) {
         case 1: return static_cast<INT>(GetUInt8(p));
@@ -1285,7 +1291,7 @@ INT ts::GetIntBE(const void* p)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-INT ts::GetIntLE(const void* p)
+TSDUCK_TEMPLATE_DLL INT ts::GetIntLE(const void* p)
 {
     switch (sizeof(INT)) {
         case 1: return static_cast<INT>(GetUInt8(p));
@@ -1297,7 +1303,7 @@ INT ts::GetIntLE(const void* p)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-void ts::GetIntBE(const void* p, INT& i)
+TSDUCK_TEMPLATE_DLL void ts::GetIntBE(const void* p, INT& i)
 {
     switch (sizeof(INT)) {
         case 1: i = static_cast<INT>(GetUInt8(p)); break;
@@ -1309,7 +1315,7 @@ void ts::GetIntBE(const void* p, INT& i)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-void ts::GetIntLE(const void* p, INT& i)
+TSDUCK_TEMPLATE_DLL void ts::GetIntLE(const void* p, INT& i)
 {
     switch (sizeof(INT)) {
         case 1: i = static_cast<INT>(GetUInt8(p)); break;
@@ -1321,7 +1327,7 @@ void ts::GetIntLE(const void* p, INT& i)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-void ts::PutIntBE(void* p, INT i)
+TSDUCK_TEMPLATE_DLL void ts::PutIntBE(void* p, INT i)
 {
     switch (sizeof(INT)) {
         case 1: PutUInt8(p, static_cast<uint8_t>(i)); break;
@@ -1333,7 +1339,7 @@ void ts::PutIntBE(void* p, INT i)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-void ts::PutIntLE(void* p, INT i)
+TSDUCK_TEMPLATE_DLL void ts::PutIntLE(void* p, INT i)
 {
     switch (sizeof(INT)) {
         case 1: PutUInt8(p, static_cast<uint8_t>(i)); break;
@@ -1352,7 +1358,7 @@ void ts::PutIntLE(void* p, INT i)
 //----------------------------------------------------------------------------
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-INT ts::GetIntVarBE(const void* p, size_t size)
+TSDUCK_TEMPLATE_DLL INT ts::GetIntVarBE(const void* p, size_t size)
 {
     switch (size) {
         case 1: return static_cast<INT>(GetUInt8(p));
@@ -1367,7 +1373,7 @@ INT ts::GetIntVarBE(const void* p, size_t size)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-INT ts::GetIntVarLE(const void* p, size_t size)
+TSDUCK_TEMPLATE_DLL INT ts::GetIntVarLE(const void* p, size_t size)
 {
     switch (size) {
         case 1: return static_cast<INT>(GetUInt8(p));
@@ -1382,7 +1388,7 @@ INT ts::GetIntVarLE(const void* p, size_t size)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-void ts::PutIntVarBE(void* p, size_t size, INT i)
+TSDUCK_TEMPLATE_DLL void ts::PutIntVarBE(void* p, size_t size, INT i)
 {
     switch (size) {
         case 1: PutUInt8(p, static_cast<uint8_t>(i)); break;
@@ -1397,7 +1403,7 @@ void ts::PutIntVarBE(void* p, size_t size, INT i)
 }
 
 template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type*>
-void ts::PutIntVarLE(void* p, size_t size, INT i)
+TSDUCK_TEMPLATE_DLL void ts::PutIntVarLE(void* p, size_t size, INT i)
 {
     switch (size) {
         case 1: PutUInt8(p, static_cast<uint8_t>(i)); break;
