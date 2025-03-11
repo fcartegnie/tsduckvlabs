@@ -1,0 +1,22 @@
+if(BUILD_SHARED_LIBS)
+    add_executable(tsp tsp.cpp)
+    target_compile_definitions(tsp PRIVATE TS_WINVER_FILETYPE=VFT_APP)
+    target_link_libraries(tsp tsduck)
+endif()
+
+if(NOT BUILD_SHARED_LIBS)
+    set(tsp_static_SOURCES tsp.cpp)
+    list(TRANSFORM TSPLUGINS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/../tsplugins/tsplugin_ OUTPUT_VARIABLE tsplugin_static_SOURCES)
+    list(TRANSFORM tsplugin_static_SOURCES APPEND ".cpp")
+    list(APPEND tsp_static_SOURCES ${tsplugin_static_SOURCES})
+    
+    add_executable(tsp_static ${tsp_static_SOURCES})
+    target_compile_definitions(tsp_static PRIVATE TS_WINVER_FILETYPE=VFT_APP)
+    target_link_libraries(tsp_static tsducklib)
+endif()
+
+if(BUILD_SHARED_LIBS)
+    add_executable(tsxml tsxml.cpp)
+    target_compile_definitions(tsxml PRIVATE TS_WINVER_FILETYPE=VFT_APP)
+    target_link_libraries(tsxml tsduck)
+endif()
