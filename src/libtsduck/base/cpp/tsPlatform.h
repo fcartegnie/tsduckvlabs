@@ -548,7 +548,14 @@
     // TSDuck code becomes compatible with older and newer mscvp140.dll. This definition should be removed some day,
     // when all environments are upgraded to a recent mscvp140.dll, which means probably never...
     //
+    #if defined(__clang__)
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wreserved-macro-identifier"
+    #endif
     #define _DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR 1
+    #if defined(__clang__)
+        #pragma clang diagnostic pop
+    #endif
 #endif
 
 
