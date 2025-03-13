@@ -876,8 +876,10 @@ void ts::DirectShowTest::displayInterfaces(::IUnknown* object, const UString& ma
         _I_(IAMVideoControl)
         _I_(IAMVideoDecimationProperties)
         _I_(IAMVideoProcAmp)
+#if !defined(__MINGW64_VERSION_MAJOR)
         _I_(IAMWMBufferPass)
         _I_(IAMWMBufferPassCallback)
+#endif
         _I_(IAMovieSetup)
         _I_(IAsyncReader)
         _I_(IATSCChannelTuneRequest)
