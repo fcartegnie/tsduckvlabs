@@ -17,7 +17,10 @@
 
 #include "tsBeforeStandardHeaders.h"
 #include <dshow.h>     // DirectShow (aka ActiveMovie)
+#if !defined(__MINGW64_VERSION_MAJOR)
+// this header is not available in mingw-w64
 #include <dshowasf.h>
+#endif
 #include <amstream.h>
 #include <videoacc.h>
 #include <ks.h>

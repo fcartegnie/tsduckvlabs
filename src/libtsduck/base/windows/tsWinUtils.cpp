@@ -18,7 +18,10 @@
 #include <shellapi.h>
 #include <setupapi.h>
 #include <wininet.h>
+#if !defined(__MINGW64_VERSION_MAJOR)
+// this header is not available in mingw-w64
 #include <dshowasf.h>
+#endif
 #include <ks.h>
 #include <ksproxy.h>
 #include <ksmedia.h>
@@ -537,8 +540,10 @@ ts::UString ts::NameGUID(const ::GUID& guid)
         _N_(IID_IAMVideoControl)
         _N_(IID_IAMVideoDecimationProperties)
         _N_(IID_IAMVideoProcAmp)
+#if !defined(__MINGW64_VERSION_MAJOR)
         _N_(IID_IAMWMBufferPass)
         _N_(IID_IAMWMBufferPassCallback)
+#endif
         _N_(IID_IBDA_AutoDemodulate)
         _N_(IID_IBDA_AutoDemodulateEx)
         _N_(IID_IBDA_ConditionalAccess)
