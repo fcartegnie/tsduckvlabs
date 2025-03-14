@@ -578,7 +578,11 @@ bool ts::TunerDevice::FindTuners(DuckContext& duck, TunerDevice* tuner, TunerPtr
 
     // If not directly found, enumerate all filters with category KSCATEGORY_BDA_NETWORK_TUNER.
     // These filters are usually installed by vendors of hardware tuners when they provide BDA-compatible drivers.
+#if defined(__MINGW64_VERSION_MAJOR) // KSCATEGORY_BDA_NETWORK_TUNER not available
+    if (tuner_monikers.empty()) {
+#else
     if (tuner_monikers.empty() && !EnumerateDevicesByClass(KSCATEGORY_BDA_NETWORK_TUNER, tuner_monikers, report)) {
+#endif
         return false;
     }
 
