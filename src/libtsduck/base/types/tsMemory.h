@@ -34,7 +34,7 @@ namespace ts {
     //! @param [out] addr Address of a memory area to fill with zeroes.
     //! @param [in] size Size in bytes of the memory area.
     //!
-    TSDUCKDLL inline void MemZero(void* addr, size_t size)
+    inline void MemZero(void* addr, size_t size)
     {
         if (size > 0) {
 #if defined(TS_WINDOWS)
@@ -52,7 +52,7 @@ namespace ts {
     //! @param [in] value Byte value to set in all area.
     //! @param [in] size Size in bytes of the memory area.
     //!
-    TSDUCKDLL inline void MemSet(void* addr, uint8_t value, size_t size)
+    inline void MemSet(void* addr, uint8_t value, size_t size)
     {
         if (size > 0) {
             std::memset(addr, value, size);
@@ -67,7 +67,7 @@ namespace ts {
     //! @param [in] src Base address of source area.
     //! @param [in] size Size in bytes of the memory area.
     //!
-    TSDUCKDLL inline void MemCopy(void* dest, const void* src, size_t size)
+    inline void MemCopy(void* dest, const void* src, size_t size)
     {
         if (size > 0) {
             std::memmove(dest, src, size);
@@ -82,7 +82,7 @@ namespace ts {
     //! @param [in] size Size in bytes of the memory area.
     //! @return Same as std::memcmp(). Zero when the twa areas are equal or @a size is zero.
     //!
-    TSDUCKDLL inline int MemCompare(const void* addr1, const void* addr2, size_t size)
+    inline int MemCompare(const void* addr1, const void* addr2, size_t size)
     {
         return size == 0 ? 0 : std::memcmp(addr1, addr2, size);
     }
@@ -94,7 +94,7 @@ namespace ts {
     //! @param [in] size Size in bytes of the memory area.
     //! @return True if the twa areas are equal or @a size is zero, false otherwise.
     //!
-    TSDUCKDLL inline bool MemEqual(const void* addr1, const void* addr2, size_t size)
+    inline bool MemEqual(const void* addr1, const void* addr2, size_t size)
     {
         return size == 0 || std::memcmp(addr1, addr2, size) == 0;
     }
@@ -1022,7 +1022,7 @@ namespace ts {
     //! @return The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline INT GetIntBE(const void* p)
+    inline INT GetIntBE(const void* p)
     {
         return CondByteSwapBE<INT>(*(static_cast<const INT*>(p)));
     }
@@ -1035,7 +1035,7 @@ namespace ts {
     //! @return The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline INT GetIntLE(const void* p)
+    inline INT GetIntLE(const void* p)
     {
         return CondByteSwapLE<INT>(*(static_cast<const INT*>(p)));
     }
@@ -1048,7 +1048,7 @@ namespace ts {
     //! @param [out] i The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void GetIntBE(const void* p, INT& i)
+    inline void GetIntBE(const void* p, INT& i)
     {
         i = CondByteSwapBE<INT>(*(static_cast<const INT*>(p)));
     }
@@ -1061,7 +1061,7 @@ namespace ts {
     //! @param [out] i The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void GetIntLE(const void* p, INT& i)
+    inline void GetIntLE(const void* p, INT& i)
     {
         i = CondByteSwapLE<INT>(*(static_cast<const INT*>(p)));
     }
@@ -1074,7 +1074,7 @@ namespace ts {
     //! @param [in]  i The INT in native byte order to serialize in big endian representation.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void PutIntBE(void* p, INT i)
+    inline void PutIntBE(void* p, INT i)
     {
         *(static_cast<INT*>(p)) = CondByteSwapBE<INT>(i);
     }
@@ -1087,7 +1087,7 @@ namespace ts {
     //! @param [in]  i The INT in native byte order to serialize in little endian representation.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void PutIntLE(void* p, INT i)
+    inline void PutIntLE(void* p, INT i)
     {
         *(static_cast<INT*>(p)) = CondByteSwapLE<INT>(i);
     }
@@ -1124,7 +1124,7 @@ namespace ts {
     //! @return The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline INT GetInt(const void* p)
+    inline INT GetInt(const void* p)
     {
         return GetIntBE<INT>(p);
     }
@@ -1137,7 +1137,7 @@ namespace ts {
     //! @param [out] i The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void GetInt(const void* p, INT& i)
+    inline void GetInt(const void* p, INT& i)
     {
         GetIntBE<INT>(p, i);
     }
@@ -1150,7 +1150,7 @@ namespace ts {
     //! @param [in]  i The INT in native byte order to serialize in big endian representation.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void PutInt(void* p, INT i)
+    inline void PutInt(void* p, INT i)
     {
         PutIntBE<INT>(p, i);
     }
@@ -1186,7 +1186,7 @@ namespace ts {
     //! @param [out] i The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void GetIntVarBE(const void* p, size_t size, INT& i)
+    inline void GetIntVarBE(const void* p, size_t size, INT& i)
     {
         i = GetIntVarBE<INT>(p, size);
     }
@@ -1200,7 +1200,7 @@ namespace ts {
     //! @param [out] i The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void GetIntVarLE(const void* p, size_t size, INT& i)
+    inline void GetIntVarLE(const void* p, size_t size, INT& i)
     {
         i = GetIntVarLE<INT>(p, size);
     }
@@ -1236,7 +1236,7 @@ namespace ts {
     //! @return The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline INT GetIntVar(const void* p, size_t size)
+    inline INT GetIntVar(const void* p, size_t size)
     {
         return GetIntVarBE<INT>(p, size);
     }
@@ -1250,7 +1250,7 @@ namespace ts {
     //! @param [out] i The INT value in native byte order, deserialized from @a p.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void GetIntVar(const void* p, size_t size, INT& i)
+    inline void GetIntVar(const void* p, size_t size, INT& i)
     {
         GetIntVarBE<INT>(p, size, i);
     }
@@ -1264,7 +1264,7 @@ namespace ts {
     //! @param [in] i The INT in native byte order to serialize in big endian representation.
     //!
     template <typename INT, typename std::enable_if<std::is_integral<INT>::value>::type* = nullptr>
-    TSDUCKDLL inline void PutIntVar(void* p, size_t size, INT i)
+    inline void PutIntVar(void* p, size_t size, INT i)
     {
         PutIntVarBE<INT>(p, size, i);
     }
