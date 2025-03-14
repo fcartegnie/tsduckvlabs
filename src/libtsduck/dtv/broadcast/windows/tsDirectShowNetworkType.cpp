@@ -159,6 +159,7 @@ bool ts::DirectShowNetworkType::initialize(const::GUID& network_type, Report& re
         return true;
     }
 
+#if !defined(__MINGW64_VERSION_MAJOR) // ISDB_xxx_NETWORK_TYPE not available
     // ISDB-S network.
     // There are two GUID with similar names but distinct values.
     // The differences are unknown, so treat them equally.
@@ -231,6 +232,7 @@ bool ts::DirectShowNetworkType::initialize(const::GUID& network_type, Report& re
         _tuning_space.assign(tspace);
         return true;
     }
+#endif
 
     return false;
 }
