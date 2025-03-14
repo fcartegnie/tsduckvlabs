@@ -35,7 +35,7 @@ namespace ts {
         //! @param [in] tag Command tag.
         //! @return True if @a tag is a valid command for the ECMG <=> SCS protocol.
         //!
-        TSDUCKDLL inline bool IsValidCommand(uint16_t tag)
+        TSDUCKDLL_INLINE inline bool IsValidCommand(uint16_t tag)
         {
             return (tag >= 0x0001 && tag <= 0x0005) || (tag >= 0x0101 && tag <= 0x0106) || (tag >= 0x0201 && tag <= 0x0202);
         }

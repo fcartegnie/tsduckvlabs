@@ -34,7 +34,7 @@ namespace ts {
         //! @param [in] tag Command tag.
         //! @return True if @a tag is a valid command for the EMMG/PDG <=> MUX protocol.
         //!
-        TSDUCKDLL inline bool IsValidCommand(uint16_t tag)
+        TSDUCKDLL_INLINE inline bool IsValidCommand(uint16_t tag)
         {
             return (tag >= 0x0011 && tag <= 0x0015) || (tag >= 0x0111 && tag <= 0x0118) || tag == 0x0211;
         }

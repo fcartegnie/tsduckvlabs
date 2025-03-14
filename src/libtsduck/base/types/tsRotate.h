@@ -33,7 +33,7 @@ namespace ts {
     //! Can be positive (left-rotate) or negative (right-rotate).
     //! @return The value of @a word left-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint32_t ROL(uint32_t word, int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint32_t ROL(uint32_t word, int i) { return XX; }
 
     //!
     //! Inlined function performing 32-bit left-rotate with a constant value in the range 0..31 for index.
@@ -51,7 +51,7 @@ namespace ts {
     //! Must be a constant value in the range 0..31.
     //! @return The value of @a word left-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint32_t ROLc(uint32_t word, const int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint32_t ROLc(uint32_t word, const int i) { return XX; }
 
     //!
     //! Inlined function performing 32-bit right-rotate.
@@ -61,7 +61,7 @@ namespace ts {
     //! Can be positive (right-rotate) or negative (left-rotate).
     //! @return The value of @a word right-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint32_t ROR(uint32_t word, int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint32_t ROR(uint32_t word, int i) { return XX; }
 
     //!
     //! Inlined function performing 32-bit right-rotate with a constant value in the range 0..31 for index.
@@ -82,33 +82,33 @@ namespace ts {
     //! Must be a constant value in the range 0..31.
     //! @return The value of @a word right-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint32_t RORc(uint32_t word, const int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint32_t RORc(uint32_t word, const int i) { return XX; }
 
 #elif defined(TS_MSC)
 
     #pragma intrinsic(_lrotr,_lrotl)
 
-    TSDUCKDLL inline uint32_t ROL(uint32_t word, int i) { return _lrotl(word, i); }
-    TSDUCKDLL inline uint32_t ROR(uint32_t word, int i) { return _lrotr(word, i); }
+    TSDUCKDLL_INLINE inline uint32_t ROL(uint32_t word, int i) { return _lrotl(word, i); }
+    TSDUCKDLL_INLINE inline uint32_t ROR(uint32_t word, int i) { return _lrotr(word, i); }
 
-    TSDUCKDLL inline uint32_t ROLc(uint32_t word, const int i) { return _lrotl(word, i); }
-    TSDUCKDLL inline uint32_t RORc(uint32_t word, const int i) { return _lrotr(word, i); }
+    TSDUCKDLL_INLINE inline uint32_t ROLc(uint32_t word, const int i) { return _lrotl(word, i); }
+    TSDUCKDLL_INLINE inline uint32_t RORc(uint32_t word, const int i) { return _lrotr(word, i); }
 
 #elif defined(TS_GCC) && defined(TS_ARM64)
 
-    TSDUCKDLL inline uint32_t ROL(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROL(uint32_t word, int i)
     {
         asm("mov w8, #32 \n sub w8, w8, %w1 \n ror %w0, %w0, w8" : "+r" (word) : "r" (i) : "w8", "cc");
         return word;
     }
 
-    TSDUCKDLL inline uint32_t ROR(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROR(uint32_t word, int i)
     {
         asm("ror %w0, %w0, %w1" : "+r" (word) : "r" (i));
         return word;
     }
 
-    TSDUCKDLL inline uint32_t ROLc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t ROLc(uint32_t word, const int i)
     {
     #if defined(DEBUG)
         return ROL(word, i);
@@ -118,7 +118,7 @@ namespace ts {
     #endif
     }
 
-    TSDUCKDLL inline uint32_t RORc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t RORc(uint32_t word, const int i)
     {
     #if defined(DEBUG)
         return ROR(word, i);
@@ -130,19 +130,19 @@ namespace ts {
 
 #elif defined(TS_GCC) && (defined(TS_I386) || defined(TS_X86_64))
 
-    TSDUCKDLL inline uint32_t ROL(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROL(uint32_t word, int i)
     {
         asm("roll %%cl, %0" : "=r" (word) : "0" (word), "c" (i));
         return word;
     }
 
-    TSDUCKDLL inline uint32_t ROR(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROR(uint32_t word, int i)
     {
         asm("rorl %%cl, %0" : "=r" (word) : "0" (word), "c" (i));
         return word;
     }
 
-    TSDUCKDLL inline uint32_t ROLc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t ROLc(uint32_t word, const int i)
     {
     #if defined(DEBUG) || defined(TS_LLVM)
         return ROL(word, i);
@@ -152,7 +152,7 @@ namespace ts {
     #endif
     }
 
-    TSDUCKDLL inline uint32_t RORc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t RORc(uint32_t word, const int i)
     {
     #if defined(DEBUG) || defined(TS_LLVM)
         return ROR(word, i);
@@ -164,19 +164,19 @@ namespace ts {
 
 #elif defined(TS_POWERPC)
 
-    TSDUCKDLL inline uint32_t ROL(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROL(uint32_t word, int i)
     {
         asm("rotlw %0, %0, %2" : "=r" (word) : "0" (word), "r" (i));
         return word;
     }
 
-    TSDUCKDLL inline uint32_t ROR(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROR(uint32_t word, int i)
     {
         asm("rotlw %0, %0, %2" : "=r" (word) : "0" (word), "r" (32-i));
         return word;
     }
 
-    TSDUCKDLL inline uint32_t ROLc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t ROLc(uint32_t word, const int i)
     {
     #if defined(DEBUG)
         return ROL(word, i);
@@ -186,7 +186,7 @@ namespace ts {
     #endif
     }
 
-    TSDUCKDLL inline uint32_t RORc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t RORc(uint32_t word, const int i)
     {
     #if defined(DEBUG)
         return ROR(word, i);
@@ -200,22 +200,22 @@ namespace ts {
 
     // Rotates the hard way
 
-    TSDUCKDLL inline uint32_t ROL(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROL(uint32_t word, int i)
     {
         return ((word << (i&31)) | ((word&0xFFFFFFFFUL) >> (32-(i&31)))) & 0xFFFFFFFFUL;
     }
 
-    TSDUCKDLL inline uint32_t ROR(uint32_t word, int i)
+    TSDUCKDLL_INLINE inline uint32_t ROR(uint32_t word, int i)
     {
         return (((word&0xFFFFFFFFUL) >> (i&31)) | (word << (32-(i&31)))) & 0xFFFFFFFFUL;
     }
 
-    TSDUCKDLL inline uint32_t ROLc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t ROLc(uint32_t word, const int i)
     {
         return ((word << (i&31)) | ((word&0xFFFFFFFFUL) >> (32-(i&31)))) & 0xFFFFFFFFUL;
     }
 
-    TSDUCKDLL inline uint32_t RORc(uint32_t word, const int i)
+    TSDUCKDLL_INLINE inline uint32_t RORc(uint32_t word, const int i)
     {
         return (((word&0xFFFFFFFFUL) >> (i&31)) | (word << (32-(i&31)))) & 0xFFFFFFFFUL;
     }
@@ -231,7 +231,7 @@ namespace ts {
     //! Can be positive (left-rotate) or negative (right-rotate).
     //! @return The value of @a word left-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint64_t ROL64(uint64_t word, int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint64_t ROL64(uint64_t word, int i) { return XX; }
 
     //!
     //! Inlined function performing 64-bit left-rotate with a constant value in the range 0..63 for index.
@@ -249,7 +249,7 @@ namespace ts {
     //! Must be a constant value in the range 0..63.
     //! @return The value of @a word left-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint64_t ROL64c(uint64_t word, const int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint64_t ROL64c(uint64_t word, const int i) { return XX; }
 
     //!
     //! Inlined function performing 64-bit right-rotate.
@@ -259,7 +259,7 @@ namespace ts {
     //! Can be positive (right-rotate) or negative (left-rotate).
     //! @return The value of @a word right-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint64_t ROR64(uint64_t word, int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint64_t ROR64(uint64_t word, int i) { return XX; }
 
     //!
     //! Inlined function performing 64-bit right-rotate with a constant value in the range 0..63 for index.
@@ -277,23 +277,23 @@ namespace ts {
     //! Must be a constant value in the range 0..63.
     //! @return The value of @a word right-rotated by @a i bits.
     //!
-    TSDUCKDLL inline uint64_t ROR64c(uint64_t word, const int i) { return XX; }
+    TSDUCKDLL_INLINE inline uint64_t ROR64c(uint64_t word, const int i) { return XX; }
 
 #elif defined(TS_GCC) && defined(TS_ARM64)
 
-    TSDUCKDLL inline uint64_t ROL64(uint64_t word, int i)
+    TSDUCKDLL_INLINE inline uint64_t ROL64(uint64_t word, int i)
     {
         asm("sub %1, %1, #64 \n neg %1, %1 \n ror %0, %0, %1" : "+r" (word) : "r" (uint64_t(i)));
         return word;
     }
 
-    TSDUCKDLL inline uint64_t ROR64(uint64_t word, int i)
+    TSDUCKDLL_INLINE inline uint64_t ROR64(uint64_t word, int i)
     {
         asm("ror %0, %0, %1" : "+r" (word) : "r" (uint64_t(i)));
         return word;
     }
 
-    TSDUCKDLL inline uint64_t ROL64c(uint64_t word, const int i)
+    TSDUCKDLL_INLINE inline uint64_t ROL64c(uint64_t word, const int i)
     {
     #if defined(DEBUG) || defined(TS_LLVM)
         return ROL64(word, i);
@@ -303,7 +303,7 @@ namespace ts {
     #endif
     }
 
-    TSDUCKDLL inline uint64_t ROR64c(uint64_t word, const int i)
+    TSDUCKDLL_INLINE inline uint64_t ROR64c(uint64_t word, const int i)
     {
     #if defined(DEBUG) || defined(TS_LLVM)
         return ROR64(word, i);
@@ -315,19 +315,19 @@ namespace ts {
 
 #elif defined(TS_GCC) && defined(TS_X86_64)
 
-    TSDUCKDLL inline uint64_t ROL64(uint64_t word, int i)
+    TSDUCKDLL_INLINE inline uint64_t ROL64(uint64_t word, int i)
     {
         asm("rolq %%cl, %0" : "=r" (word) : "0" (word), "c" (i));
         return word;
     }
 
-    TSDUCKDLL inline uint64_t ROR64(uint64_t word, int i)
+    TSDUCKDLL_INLINE inline uint64_t ROR64(uint64_t word, int i)
     {
         asm("rorq %%cl, %0" : "=r" (word) : "0" (word), "c" (i));
         return word;
     }
 
-    TSDUCKDLL inline uint64_t ROL64c(uint64_t word, const int i)
+    TSDUCKDLL_INLINE inline uint64_t ROL64c(uint64_t word, const int i)
     {
     #if defined(DEBUG) || defined(TS_LLVM)
         return ROL64(word, i);
@@ -337,7 +337,7 @@ namespace ts {
     #endif
     }
 
-    TSDUCKDLL inline uint64_t ROR64c(uint64_t word, const int i)
+    TSDUCKDLL_INLINE inline uint64_t ROR64c(uint64_t word, const int i)
     {
     #if defined(DEBUG) || defined(TS_LLVM)
         return ROR64(word, i);
@@ -349,22 +349,22 @@ namespace ts {
 
 #else
 
-    TSDUCKDLL inline uint64_t ROL64(uint64_t word, int i)
+    TSDUCKDLL_INLINE inline uint64_t ROL64(uint64_t word, int i)
     {
         return (word << (i & 63)) | ((word & 0xFFFFFFFFFFFFFFFF) >> (64 - (i & 63)));
     }
 
-    TSDUCKDLL inline uint64_t ROR64(uint64_t word, int i)
+    TSDUCKDLL_INLINE inline uint64_t ROR64(uint64_t word, int i)
     {
         return ((word & 0xFFFFFFFFFFFFFFFF) >> (i & 63)) | (word << (64 - (i & 63)));
     }
 
-    TSDUCKDLL inline uint64_t ROL64c(uint64_t word, const int i)
+    TSDUCKDLL_INLINE inline uint64_t ROL64c(uint64_t word, const int i)
     {
         return ROL64(word, i);
     }
 
-    TSDUCKDLL inline uint64_t ROR64c(uint64_t word, const int i)
+    TSDUCKDLL_INLINE inline uint64_t ROR64c(uint64_t word, const int i)
     {
         return ROR64(word, i);
     }

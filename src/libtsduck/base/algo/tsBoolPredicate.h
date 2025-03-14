@@ -39,7 +39,7 @@ namespace ts {
     //! @param [in] arg A boolean argument.
     //! @return The same as @a arg.
     //!
-    TSDUCKDLL inline bool Identity(bool arg) { return arg; }
+    TSDUCKDLL_INLINE inline bool Identity(bool arg) { return arg; }
 
     //!
     //! MonoBoolPredicate "not".
@@ -47,7 +47,7 @@ namespace ts {
     //! @param [in] arg A boolean argument.
     //! @return Not @a arg.
     //!
-    TSDUCKDLL inline bool Not(bool arg) { return !arg; }
+    TSDUCKDLL_INLINE inline bool Not(bool arg) { return !arg; }
 
     //!
     //! BoolPredicate "and".
@@ -58,7 +58,7 @@ namespace ts {
     //! @param [in] arg2 A boolean argument.
     //! @return @a arg1 and @a arg2.
     //!
-    TSDUCKDLL inline bool And(bool arg1, bool arg2) { return arg1 && arg2; }
+    TSDUCKDLL_INLINE inline bool And(bool arg1, bool arg2) { return arg1 && arg2; }
 
     //!
     //! BoolPredicate "or".
@@ -69,7 +69,7 @@ namespace ts {
     //! @param [in] arg2 A boolean argument.
     //! @return @a arg1 or @a arg2.
     //!
-    TSDUCKDLL inline bool Or(bool arg1, bool arg2) { return arg1 || arg2; }
+    TSDUCKDLL_INLINE inline bool Or(bool arg1, bool arg2) { return arg1 || arg2; }
 
     //!
     //! BoolPredicate "nand".
@@ -78,7 +78,7 @@ namespace ts {
     //! @param [in] arg2 A boolean argument.
     //! @return Not @a arg1 and @a arg2.
     //!
-    TSDUCKDLL inline bool Nand(bool arg1, bool arg2) { return !(arg1 && arg2); }
+    TSDUCKDLL_INLINE inline bool Nand(bool arg1, bool arg2) { return !(arg1 && arg2); }
 
     //!
     //! BoolPredicate "nor".
@@ -87,7 +87,7 @@ namespace ts {
     //! @param [in] arg2 A boolean argument.
     //! @return Not@a arg1 or @a arg2.
     //!
-    TSDUCKDLL inline bool Nor(bool arg1, bool arg2) { return !(arg1 || arg2); }
+    TSDUCKDLL_INLINE inline bool Nor(bool arg1, bool arg2) { return !(arg1 || arg2); }
 
     //!
     //! BoolPredicate "exclusive or".
@@ -96,7 +96,7 @@ namespace ts {
     //! @param [in] arg2 A boolean argument.
     //! @return @a arg1 xor @a arg2.
     //!
-    TSDUCKDLL inline bool Xor(bool arg1, bool arg2) { return bool(int(arg1) ^ int(arg2)); }
+    TSDUCKDLL_INLINE inline bool Xor(bool arg1, bool arg2) { return bool(int(arg1) ^ int(arg2)); }
 
     //!
     //! MultiBoolPredicate "and".
@@ -120,7 +120,7 @@ namespace ts {
     //! @param [in] args A variable list of boolean arguments.
     //! @return False if all boolean values in @a args are true, true otherwise.
     //!
-    TSDUCKDLL inline bool MultiNand(std::initializer_list<bool> args) { return !MultiAnd(args); }
+    TSDUCKDLL_INLINE inline bool MultiNand(std::initializer_list<bool> args) { return !MultiAnd(args); }
 
     //!
     //! MultiBoolPredicate "nor".
@@ -128,5 +128,5 @@ namespace ts {
     //! @param [in] args A variable list of boolean arguments.
     //! @return False if any boolean values in @a args is true, true otherwise.
     //!
-    TSDUCKDLL inline bool MultiNor(std::initializer_list<bool> args) { return !MultiOr(args); }
+    TSDUCKDLL_INLINE inline bool MultiNor(std::initializer_list<bool> args) { return !MultiOr(args); }
 }

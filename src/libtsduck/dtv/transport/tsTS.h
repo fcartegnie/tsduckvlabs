@@ -190,7 +190,7 @@ namespace ts {
     //! @param [in] bitrate188 Bitrate using 188-byte packet as reference.
     //! @return Corresponding bitrate using 204-byte packet as reference.
     //!
-    TSDUCKDLL inline BitRate ToBitrate204(const BitRate& bitrate188)
+    TSDUCKDLL_INLINE inline BitRate ToBitrate204(const BitRate& bitrate188)
     {
         return (bitrate188 * 204) / 188;
     }
@@ -200,7 +200,7 @@ namespace ts {
     //! @param [in] bitrate204 Bitrate using 204-byte packet as reference.
     //! @return Corresponding bitrate using 188-byte packet as reference.
     //!
-    TSDUCKDLL inline BitRate ToBitrate188(const BitRate& bitrate204)
+    TSDUCKDLL_INLINE inline BitRate ToBitrate188(const BitRate& bitrate204)
     {
         return (bitrate204 * 188) / 204;
     }
@@ -299,7 +299,7 @@ namespace ts {
     //! @param [in] section_size Total section size in bytes.
     //! @return Number of packets required for the section.
     //!
-    TSDUCKDLL inline PacketCounter SectionPacketCount(size_t section_size)
+    TSDUCKDLL_INLINE inline PacketCounter SectionPacketCount(size_t section_size)
     {
         // The required size for a section is section_size + 1 (1 for pointer_field
         // in first packet). In each packet, the useable size is 184 bytes.
@@ -495,7 +495,7 @@ namespace ts {
     //! The exact criteria is that @a pcr2 wraps up after @a pcr1 and their
     //! distance is within 20% of a full PCR range.
     //!
-    TSDUCKDLL inline bool WrapUpPCR(uint64_t pcr1, uint64_t pcr2)
+    TSDUCKDLL_INLINE inline bool WrapUpPCR(uint64_t pcr1, uint64_t pcr2)
     {
         return pcr2 < pcr1 && (pcr1 - pcr2) > ((4 * PCR_SCALE) / 5);
     }
@@ -540,7 +540,7 @@ namespace ts {
     //! @param [in] pts2 Second PTS.
     //! @return True is @a pts2 is probably following @a pts1 after wrapping up at 2^33.
     //!
-    TSDUCKDLL inline bool WrapUpPTS(uint64_t pts1, uint64_t pts2)
+    TSDUCKDLL_INLINE inline bool WrapUpPTS(uint64_t pts1, uint64_t pts2)
     {
         return pts2 < pts1 && (pts1 - pts2) > 0x00000001F0000000LL;
     }
@@ -556,7 +556,7 @@ namespace ts {
     //! @param [in] pts2 Second PTS.
     //! @return True is @a pts2 is after @a pts1, possibly after wrapping up at 2**33.
     //!
-    TSDUCKDLL inline bool SequencedPTS(uint64_t pts1, uint64_t pts2)
+    TSDUCKDLL_INLINE inline bool SequencedPTS(uint64_t pts1, uint64_t pts2)
     {
         return pts1 <= pts2 || WrapUpPTS(pts1, pts2);
     }

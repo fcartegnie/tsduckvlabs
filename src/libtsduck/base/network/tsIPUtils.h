@@ -333,7 +333,7 @@ namespace ts {
     //! @param [in] sock System socket descriptor.
     //! @return Error code.
     //!
-    TSDUCKDLL inline int SysCloseSocket(SysSocketType sock)
+    TSDUCKDLL_INLINE inline int SysCloseSocket(SysSocketType sock)
     {
 #if defined(TS_WINDOWS)
         return ::closesocket(sock);

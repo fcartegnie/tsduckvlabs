@@ -938,10 +938,13 @@ TS_MSC_NOWARNING(5045)  // Compiler will insert Spectre mitigation for memory lo
 //!
 #if defined(TS_WINDOWS) && defined(_TSDUCKDLL_IMPL)
     #define TSDUCKDLL __declspec(dllexport)
+    #define TSDUCKDLL_INLINE __declspec(dllexport)
 #elif defined(TS_WINDOWS) && defined(_TSDUCKDLL_USE)
     #define TSDUCKDLL __declspec(dllimport)
+    #define TSDUCKDLL_INLINE
 #else
     #define TSDUCKDLL
+    #define TSDUCKDLL_INLINE
 #endif
 
 //!

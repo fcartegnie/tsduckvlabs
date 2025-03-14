@@ -238,7 +238,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::margin()
     //!
-    TSDUCKDLL inline std::ostream& endl(std::ostream& os)
+    TSDUCKDLL_INLINE inline std::ostream& endl(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::endl);
     }
@@ -249,7 +249,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::margin()
     //!
-    TSDUCKDLL inline std::ostream& margin(std::ostream& os)
+    TSDUCKDLL_INLINE inline std::ostream& margin(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::margin);
     }
@@ -260,7 +260,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::indent()
     //!
-    TSDUCKDLL inline std::ostream& indent(std::ostream& os)
+    TSDUCKDLL_INLINE inline std::ostream& indent(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::indent);
     }
@@ -271,7 +271,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::unindent()
     //!
-    TSDUCKDLL inline std::ostream& unindent(std::ostream& os)
+    TSDUCKDLL_INLINE inline std::ostream& unindent(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::unindent);
     }

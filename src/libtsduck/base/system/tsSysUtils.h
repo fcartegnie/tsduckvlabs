@@ -43,7 +43,7 @@ namespace ts {
     //!
     //! @return The error code of the last operating system call.
     //!
-    TSDUCKDLL inline int LastSysErrorCode()
+    TSDUCKDLL_INLINE inline int LastSysErrorCode()
     {
 #if defined(TS_WINDOWS)
         return ::GetLastError();
@@ -59,7 +59,7 @@ namespace ts {
     //! @param [in] category Error category, system by default.
     //! @return A string describing the error.
     //!
-    TSDUCKDLL inline std::string SysErrorCodeMessage(int code = LastSysErrorCode(), const std::error_category& category = std::system_category())
+    TSDUCKDLL_INLINE inline std::string SysErrorCodeMessage(int code = LastSysErrorCode(), const std::error_category& category = std::system_category())
     {
         return std::error_code(code, category).message();
     }

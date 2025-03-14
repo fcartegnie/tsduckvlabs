@@ -265,7 +265,7 @@ namespace ts {
 //! @param [in] date A @link ts::SimulCryptDate @endlink object.
 //! @return A reference to the @a strm object.
 //!
-TSDUCKDLL inline std::ostream& operator<<(std::ostream& strm, const ts::SimulCryptDate& date)
+TSDUCKDLL_INLINE inline std::ostream& operator<<(std::ostream& strm, const ts::SimulCryptDate& date)
 {
     return strm << ts::UString(date);
 }
