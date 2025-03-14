@@ -34,8 +34,16 @@
 #include <bdatypes.h>  // BDA (Broadcast Device Architecture)
 #include <bdamedia.h>
 #include <bdaiface.h>
+#if defined(__clang__)
+    // disable warning on untested API on older mingw-w64
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-W#warnings"
+#endif
 #include <dvbsiparser.h>
 #include <mpeg2data.h>
+#if defined(__clang__)
+    #pragma clang diagnostic pop
+#endif
 #include <vidcap.h>
 #include "tsAfterStandardHeaders.h"
 
