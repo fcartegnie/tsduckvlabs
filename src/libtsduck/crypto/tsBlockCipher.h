@@ -284,7 +284,7 @@ namespace ts {
 #define TS_BLOCK_CIPHER_DECLARE_PROPERTIES(Prefix)                  \
         /** Properties of this algorithm. */                        \
         /** @return A constant reference to the properties. */      \
-        static const BlockCipherProperties& PROPERTIES()            \
+        static TSDUCKDLL_INLINE const BlockCipherProperties& PROPERTIES() \
         {                                                           \
             return Prefix##_PropertiesSingleton::Instance();        \
         }                                                           \
@@ -293,7 +293,7 @@ namespace ts {
         {                                                           \
             TS_NOCOPY(Prefix##_PropertiesSingleton);                \
         public:                                                     \
-            static const BlockCipherProperties& Instance();         \
+            static TSDUCKDLL_INLINE const BlockCipherProperties& Instance(); \
         private:                                                    \
             static const BlockCipherProperties* volatile _instance; \
             static std::once_flag _once_flag;                       \
