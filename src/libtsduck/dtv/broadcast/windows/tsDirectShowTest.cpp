@@ -77,6 +77,9 @@ void ts::DirectShowTest::runTest(TestType type)
 void ts::DirectShowTest::testBDATuners(const UString& margin)
 {
     // Build an instance of all tuners.
+#if defined(__MINGW64_VERSION_MAJOR) // KSCATEGORY_BDA_NETWORK_TUNER/KSCATEGORY_BDA_NETWORK_PROVIDER not available
+    _report.error(u"no BDA tuner found");
+#else
     DirectShowFilterCategory tuners(KSCATEGORY_BDA_NETWORK_TUNER, _report);
     if (tuners.empty()) {
         _report.error(u"no BDA tuner found");
@@ -143,6 +146,7 @@ void ts::DirectShowTest::testBDATuners(const UString& margin)
             graph.removeFilter(provider.pointer(), _report);
         }
     }
+#endif
 }
 
 
@@ -152,6 +156,7 @@ void ts::DirectShowTest::testBDATuners(const UString& margin)
 
 void ts::DirectShowTest::testTuningSpaces(const UString& margin)
 {
+#if !defined(__MINGW64_VERSION_MAJOR) // KSCATEGORY_BDA_NETWORK_PROVIDER not available
     // Build an instance of all network providers.
     DirectShowFilterCategory filters(KSCATEGORY_BDA_NETWORK_PROVIDER, _report);
 
@@ -216,6 +221,7 @@ void ts::DirectShowTest::testTuningSpaces(const UString& margin)
     }
 
     _output << std::endl;
+#endif
 }
 
 
@@ -225,11 +231,13 @@ void ts::DirectShowTest::testTuningSpaces(const UString& margin)
 
 void ts::DirectShowTest::listDevices(const UString& margin)
 {
+#if !defined(__MINGW64_VERSION_MAJOR)
     displayDevicesByCategory(KSCATEGORY_BDA_NETWORK_PROVIDER, u"Netwok providers", false, margin);
     displayDevicesByCategory(KSCATEGORY_BDA_NETWORK_TUNER, u"Tuners", false, margin);
     displayDevicesByCategory(KSCATEGORY_BDA_RECEIVER_COMPONENT, u"Receivers", false, margin);
     displayDevicesByCategory(KSCATEGORY_BDA_TRANSPORT_INFORMATION, u"Transport information", false, margin);
     _output << std::endl;
+#endif
 }
 
 
@@ -242,10 +250,12 @@ void ts::DirectShowTest::enumerateDevices(const UString& margin)
     displayDevicesByCategory(KSCATEGORY_CAPTURE, u"CAPTURE", true, margin);
     displayDevicesByCategory(KSCATEGORY_SPLITTER, u"SPLITTER", true, margin);
     displayDevicesByCategory(KSCATEGORY_TVTUNER, u"TVTUNER", true, margin);
+#if !defined(__MINGW64_VERSION_MAJOR)
     displayDevicesByCategory(KSCATEGORY_BDA_NETWORK_PROVIDER, u"BDA_NETWORK_PROVIDER", true, margin);
     displayDevicesByCategory(KSCATEGORY_BDA_TRANSPORT_INFORMATION, u"BDA_TRANSPORT_INFORMATION", true, margin);
     displayDevicesByCategory(KSCATEGORY_BDA_RECEIVER_COMPONENT, u"BDA_RECEIVER_COMPONENT", true, margin);
     displayDevicesByCategory(KSCATEGORY_BDA_NETWORK_TUNER, u"BDA_NETWORK_TUNER", true, margin);
+#endif
     displayTuningSpaces(margin);
     _output << std::endl;
 }
