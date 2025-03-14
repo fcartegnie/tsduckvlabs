@@ -18,19 +18,22 @@
 #include "tsBeforeStandardHeaders.h"
 #include <dshow.h>     // DirectShow (aka ActiveMovie)
 #if !defined(__MINGW64_VERSION_MAJOR)
-// this header is not available in mingw-w64
+// these headers are not available in mingw-w64
 #include <dshowasf.h>
+#include <videoacc.h>
+#include <bdatif.h>
+#include <dsattrib.h>
+#else
+// available in mingw-w64 and included by the unavailable headers
+#include <tuner.h>
 #endif
 #include <amstream.h>
-#include <videoacc.h>
 #include <ks.h>
 #include <ksproxy.h>
 #include <ksmedia.h>
 #include <bdatypes.h>  // BDA (Broadcast Device Architecture)
 #include <bdamedia.h>
 #include <bdaiface.h>
-#include <bdatif.h>
-#include <dsattrib.h>
 #include <dvbsiparser.h>
 #include <mpeg2data.h>
 #include <vidcap.h>
