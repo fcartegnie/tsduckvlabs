@@ -402,7 +402,7 @@ namespace ts {
     //! @param [in] sock System socket descriptor.
     //! @return Error code.
     //!
-    TSCOREDLL inline int SysCloseSocket(SysSocketType sock)
+    TSCOREDLL_INLINE inline int SysCloseSocket(SysSocketType sock)
     {
 #if defined(TS_WINDOWS)
         return ::closesocket(sock);

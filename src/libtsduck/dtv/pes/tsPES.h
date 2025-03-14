@@ -58,7 +58,7 @@ namespace ts {
     //! @param [in] sid Stream id as found in a PES header.
     //! @return True if @a sid indicates a video stream.
     //!
-    TSDUCKDLL inline bool IsVideoSID(uint8_t sid)
+    TSDUCKDLL_INLINE inline bool IsVideoSID(uint8_t sid)
     {
         return (sid & ~SID_VIDEO_MASK) == SID_VIDEO;
     }
@@ -68,7 +68,7 @@ namespace ts {
     //! @param [in] sid Stream id as found in a PES header.
     //! @return True if @a sid indicates an audio stream.
     //!
-    TSDUCKDLL inline bool IsAudioSID(uint8_t sid)
+    TSDUCKDLL_INLINE inline bool IsAudioSID(uint8_t sid)
     {
         return (sid & ~SID_AUDIO_MASK) == SID_AUDIO;
     }

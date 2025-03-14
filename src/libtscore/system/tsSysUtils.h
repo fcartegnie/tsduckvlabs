@@ -44,7 +44,7 @@ namespace ts {
     //! @ingroup system
     //! @return The error code of the last operating system call.
     //!
-    TSCOREDLL inline int LastSysErrorCode()
+    TSCOREDLL_INLINE inline int LastSysErrorCode()
     {
 #if defined(TS_WINDOWS)
         return ::GetLastError();
@@ -61,7 +61,7 @@ namespace ts {
     //! @param [in] category Error category, system by default.
     //! @return A string describing the error.
     //!
-    TSCOREDLL inline std::string SysErrorCodeMessage(int code = LastSysErrorCode(), const std::error_category& category = std::system_category())
+    TSCOREDLL_INLINE inline std::string SysErrorCodeMessage(int code = LastSysErrorCode(), const std::error_category& category = std::system_category())
     {
         return std::error_code(code, category).message();
     }
@@ -227,7 +227,7 @@ namespace ts {
     //! @param [in] info The @c type_info of an object.
     //! @return An implementation-specific name of the object class.
     //!
-    inline TSCOREDLL UString ClassName(const std::type_info& info)
+    TSCOREDLL_INLINE inline UString ClassName(const std::type_info& info)
     {
         return ClassName(std::type_index(info));
     }

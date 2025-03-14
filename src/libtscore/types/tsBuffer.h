@@ -1485,7 +1485,7 @@ namespace ts {
 
     //! @cond nodoxygen
     // Template specialization for boolean.
-    template<> TSCOREDLL inline bool Buffer::putBits(bool value, size_t bits) { return putBits<int>(value ? 1 : 0, bits); }
+    template<> TSCOREDLL_INLINE inline bool Buffer::putBits(bool value, size_t bits) { return putBits<int>(value ? 1 : 0, bits); }
     //! @endcond
 }
 

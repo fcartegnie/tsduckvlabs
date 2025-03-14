@@ -68,7 +68,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is a space, tab, new line character.
     //!
-    TSCOREDLL inline bool IsSpace(UChar c)
+    TSCOREDLL_INLINE inline bool IsSpace(UChar c)
     {
         return (UCharacteristics(c) & CCHAR_SPACE) != 0;
     }
@@ -79,7 +79,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is a printable character.
     //!
-    TSCOREDLL inline bool IsPrintable(UChar c)
+    TSCOREDLL_INLINE inline bool IsPrintable(UChar c)
     {
         return (UCharacteristics(c) & CCHAR_PRINT) != 0;
     }
@@ -90,7 +90,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is a letter.
     //!
-    TSCOREDLL inline bool IsAlpha(UChar c)
+    TSCOREDLL_INLINE inline bool IsAlpha(UChar c)
     {
         return (UCharacteristics(c) & CCHAR_LETTER) != 0;
     }
@@ -101,7 +101,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is a decimal digit.
     //!
-    TSCOREDLL inline bool IsDigit(UChar c)
+    TSCOREDLL_INLINE inline bool IsDigit(UChar c)
     {
         return (UCharacteristics(c) & CCHAR_DIGIT) != 0;
     }
@@ -112,7 +112,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is alphanumerical.
     //!
-    TSCOREDLL inline bool IsAlphaNum(UChar c)
+    TSCOREDLL_INLINE inline bool IsAlphaNum(UChar c)
     {
         return (UCharacteristics(c) & (CCHAR_LETTER | CCHAR_DIGIT)) != 0;
     }
@@ -123,7 +123,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is an hexadecimal digit.
     //!
-    TSCOREDLL inline bool IsHexa(UChar c)
+    TSCOREDLL_INLINE inline bool IsHexa(UChar c)
     {
         return (UCharacteristics(c) & CCHAR_HEXA) != 0;
     }
@@ -207,7 +207,7 @@ namespace ts {
     //! @param [in] c A character.
     //! @return True if @a c is a combining diacritical character.
     //!
-    TSCOREDLL inline bool IsCombiningDiacritical(UChar c)
+    TSCOREDLL_INLINE inline bool IsCombiningDiacritical(UChar c)
     {
         return (UCharacteristics(c) & CCHAR_CDIACRIT) != 0;
     }
@@ -227,7 +227,7 @@ namespace ts {
     //! @return True if @a c is a "leading surrogate" value.
     //! @see IsTrailingSurrogate()
     //!
-    TSCOREDLL inline bool IsLeadingSurrogate(UChar c)
+    TSCOREDLL_INLINE inline bool IsLeadingSurrogate(UChar c)
     {
         return (int(c) & 0xFC00) == 0xD800;
     }
@@ -239,7 +239,7 @@ namespace ts {
     //! @return True if @a c is a "trailing surrogate" value.
     //! @see IsLeadingSurrogate()
     //!
-    TSCOREDLL inline bool IsTrailingSurrogate(UChar c)
+    TSCOREDLL_INLINE inline bool IsTrailingSurrogate(UChar c)
     {
         return (int(c) & 0xFC00) == 0xDC00;
     }
@@ -250,7 +250,7 @@ namespace ts {
     //! @param [in] cp A 32-bit Unicode code point.
     //! @return True if @a cp needs a surrogate pair.
     //!
-    TSCOREDLL inline bool NeedSurrogate(char32_t cp)
+    TSCOREDLL_INLINE inline bool NeedSurrogate(char32_t cp)
     {
         return cp >= 0x10000;
     }
@@ -262,7 +262,7 @@ namespace ts {
     //! @return The first part of its surrogate pair.
     //! @see NeedSurrogate()
     //!
-    TSCOREDLL inline UChar LeadingSurrogate(char32_t cp)
+    TSCOREDLL_INLINE inline UChar LeadingSurrogate(char32_t cp)
     {
         return 0xD800 | UChar(((cp - 0x10000) >> 10) & 0x03FF);
     }
@@ -274,7 +274,7 @@ namespace ts {
     //! @return The second part of its surrogate pair.
     //! @see NeedSurrogate()
     //!
-    TSCOREDLL inline UChar TrailingSurrogate(char32_t cp)
+    TSCOREDLL_INLINE inline UChar TrailingSurrogate(char32_t cp)
     {
         return 0xDC00 | UChar((cp - 0x10000) & 0x03FF);
     }
@@ -286,7 +286,7 @@ namespace ts {
     //! @param [in] trail Second part of the surrogate pair.
     //! @return A 32-bit Unicode code point.
     //!
-    TSCOREDLL inline char32_t FromSurrogatePair(UChar lead, UChar trail)
+    TSCOREDLL_INLINE inline char32_t FromSurrogatePair(UChar lead, UChar trail)
     {
         return 0x10000 + (((uint32_t(lead) & 0x03FF) << 10) | (uint32_t(trail) & 0x03FF));
     }

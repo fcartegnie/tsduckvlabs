@@ -239,7 +239,7 @@ namespace ts {
 //! @param [in] config A @link ts::ConfigSection @endlink object.
 //! @return A reference to the @a strm object.
 //!
-TSCOREDLL inline std::ostream& operator<<(std::ostream& strm, const ts::ConfigSection& config)
+TSCOREDLL_INLINE inline std::ostream& operator<<(std::ostream& strm, const ts::ConfigSection& config)
 {
     return config.save(strm);
 }

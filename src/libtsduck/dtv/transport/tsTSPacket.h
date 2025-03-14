@@ -908,7 +908,7 @@ namespace ts {
 //! @param [in] pkt TS packet object.
 //! @return A reference to the @a strm object.
 //!
-TSDUCKDLL inline std::ostream& operator<<(std::ostream& strm, const ts::TSPacket& pkt)
+TSDUCKDLL_INLINE inline std::ostream& operator<<(std::ostream& strm, const ts::TSPacket& pkt)
 {
     return pkt.display(strm);
 }

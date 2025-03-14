@@ -42,7 +42,7 @@ namespace ts {
 //! @param [in] obj The object to display.
 //! @return A reference to @a strm.
 //!
-TSCOREDLL inline std::ostream& operator<<(std::ostream& strm, const ts::DisplayInterface& obj)
+TSCOREDLL_INLINE inline std::ostream& operator<<(std::ostream& strm, const ts::DisplayInterface& obj)
 {
     return obj.display(strm);
 }

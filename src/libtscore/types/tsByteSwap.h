@@ -27,7 +27,7 @@ namespace ts {
     //! @param [in] x A 32-bit integer containing a signed 24-bit value to extend.
     //! @return A 32-bit signed integer containing the signed 24-bit value with proper sign extension on 32-bits.
     //!
-    TSCOREDLL inline int32_t SignExtend24(int32_t x)
+    TSCOREDLL_INLINE inline int32_t SignExtend24(int32_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("sbfm %w0, %w0, #0, #23" : "+r" (x)); return x;
@@ -42,7 +42,7 @@ namespace ts {
     //! @param [in] x A 64-bit integer containing a signed 40-bit value to extend.
     //! @return A 64-bit signed integer containing the signed 40-bit value with proper sign extension on 64-bits.
     //!
-    TSCOREDLL inline int64_t SignExtend40(int64_t x)
+    TSCOREDLL_INLINE inline int64_t SignExtend40(int64_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("sbfm %0, %0, #0, #39" : "+r" (x)); return x;
@@ -57,7 +57,7 @@ namespace ts {
     //! @param [in] x A 64-bit integer containing a signed 48-bit value to extend.
     //! @return A 64-bit signed integer containing the signed 48-bit value with proper sign extension on 64-bits.
     //!
-    TSCOREDLL inline int64_t SignExtend48(int64_t x)
+    TSCOREDLL_INLINE inline int64_t SignExtend48(int64_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("sbfm %0, %0, #0, #47" : "+r" (x)); return x;
@@ -74,7 +74,7 @@ namespace ts {
     //! @param [in] x A 16-bit unsigned integer to swap.
     //! @return The value of @a x where bytes were swapped.
     //!
-    TSCOREDLL inline uint16_t ByteSwap16(uint16_t x)
+    TSCOREDLL_INLINE inline uint16_t ByteSwap16(uint16_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("rev16 %w0, %w0" : "+r" (x)); return x;
@@ -97,7 +97,7 @@ namespace ts {
     //! @param [in] x A 32-bit unsigned integer containing a 24-bit value to swap.
     //! @return The value of @a x where the three least significant bytes were swapped.
     //!
-    TSCOREDLL inline uint32_t ByteSwap24(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t ByteSwap24(uint32_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("rev %w0, %w0 \n lsr %w0, %w0, #8" : "+r" (x)); return x;
@@ -118,7 +118,7 @@ namespace ts {
     //! @param [in] x A 32-bit unsigned integer to swap.
     //! @return The value of @a x where bytes were swapped.
     //!
-    TSCOREDLL inline uint32_t ByteSwap32(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t ByteSwap32(uint32_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("rev %w0, %w0" : "+r" (x)); return x;
@@ -141,7 +141,7 @@ namespace ts {
     //! @param [in] x A 64-bit unsigned integer to swap.
     //! @return The value of @a x where bytes were swapped.
     //!
-    TSCOREDLL inline uint64_t ByteSwap64(uint64_t x)
+    TSCOREDLL_INLINE inline uint64_t ByteSwap64(uint64_t x)
     {
     #if defined(TS_ASM_ARM64)
         asm("rev %0, %0" : "+r" (x)); return x;
@@ -172,7 +172,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where bytes were swapped.
     //! On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint16_t CondByteSwap16BE(uint16_t x)
+    TSCOREDLL_INLINE inline uint16_t CondByteSwap16BE(uint16_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return ByteSwap16(x);
@@ -190,7 +190,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where bytes were swapped.
     //! On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint16_t CondByteSwap16(uint16_t x)
+    TSCOREDLL_INLINE inline uint16_t CondByteSwap16(uint16_t x)
     {
         return CondByteSwap16BE(x);
     }
@@ -203,7 +203,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where the three least
     //! significant bytes were swapped. On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint32_t CondByteSwap24BE(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t CondByteSwap24BE(uint32_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return ByteSwap24(x);
@@ -221,7 +221,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where the three least
     //! significant bytes were swapped. On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint32_t CondByteSwap24(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t CondByteSwap24(uint32_t x)
     {
         return CondByteSwap24BE(x);
     }
@@ -234,7 +234,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where bytes were swapped.
     //! On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint32_t CondByteSwap32BE(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t CondByteSwap32BE(uint32_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return ByteSwap32(x);
@@ -252,7 +252,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where bytes were swapped.
     //! On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint32_t CondByteSwap32(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t CondByteSwap32(uint32_t x)
     {
         return CondByteSwap32BE(x);
     }
@@ -265,7 +265,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where bytes were swapped.
     //! On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint64_t CondByteSwap64BE(uint64_t x)
+    TSCOREDLL_INLINE inline uint64_t CondByteSwap64BE(uint64_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return ByteSwap64(x);
@@ -283,7 +283,7 @@ namespace ts {
     //! @return On little-endian platforms, return the value of @a x where bytes were swapped.
     //! On big-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint64_t CondByteSwap64(uint64_t x)
+    TSCOREDLL_INLINE inline uint64_t CondByteSwap64(uint64_t x)
     {
         return CondByteSwap64BE(x);
     }
@@ -296,7 +296,7 @@ namespace ts {
     //! @return On big-endian platforms, return the value of @a x where bytes were swapped.
     //! On little-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint16_t CondByteSwap16LE(uint16_t x)
+    TSCOREDLL_INLINE inline uint16_t CondByteSwap16LE(uint16_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return x;
@@ -314,7 +314,7 @@ namespace ts {
     //! @return On big-endian platforms, return the value of @a x where the three least
     //! significant bytes were swapped. On little-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint32_t CondByteSwap24LE(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t CondByteSwap24LE(uint32_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return x & 0x00FFFFFF;
@@ -332,7 +332,7 @@ namespace ts {
     //! @return On big-endian platforms, return the value of @a x where bytes were swapped.
     //! On little-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint32_t CondByteSwap32LE(uint32_t x)
+    TSCOREDLL_INLINE inline uint32_t CondByteSwap32LE(uint32_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return x;
@@ -350,7 +350,7 @@ namespace ts {
     //! @return On big-endian platforms, return the value of @a x where bytes were swapped.
     //! On little-endian platforms, return the value of @a x unmodified.
     //!
-    TSCOREDLL inline uint64_t CondByteSwap64LE(uint64_t x)
+    TSCOREDLL_INLINE inline uint64_t CondByteSwap64LE(uint64_t x)
     {
         if constexpr (std::endian::native == std::endian::little) {
             return x;

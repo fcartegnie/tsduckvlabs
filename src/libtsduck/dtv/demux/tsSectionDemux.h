@@ -297,7 +297,7 @@ namespace ts {
 //! @param [in] status The status of a ts::SectionDemux.
 //! @return A reference to the @a strm object.
 //!
-TSDUCKDLL inline std::ostream& operator<<(std::ostream& strm, const ts::SectionDemux::Status& status)
+TSDUCKDLL_INLINE inline std::ostream& operator<<(std::ostream& strm, const ts::SectionDemux::Status& status)
 {
     return status.display(strm);
 }

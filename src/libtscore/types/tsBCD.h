@@ -23,7 +23,7 @@ namespace ts {
     //! @param [in] b A byte containing a BCD-encoded value.
     //! @return True if the value is valid BCDn false otherwise.
     //!
-    TSCOREDLL inline bool IsValidBCD(uint8_t b)
+    TSCOREDLL_INLINE inline bool IsValidBCD(uint8_t b)
     {
         return (b & 0xF0) < 0xA0 && (b & 0x0F) < 0x0A;
     }
@@ -34,7 +34,7 @@ namespace ts {
     //! @param [in] b A byte containing a BCD-encoded value.
     //! @return The decoded value in the range 0 to 99.
     //!
-    TSCOREDLL inline int DecodeBCD(uint8_t b)
+    TSCOREDLL_INLINE inline int DecodeBCD(uint8_t b)
     {
         return 10 * (b >> 4) + (b & 0x0F);
     }
@@ -45,7 +45,7 @@ namespace ts {
     //! @param [in] i The integer to encode (must be in 0..99).
     //! @return One byte containing the BCD-encoded value of @a i.
     //!
-    TSCOREDLL inline uint8_t EncodeBCD(int i)
+    TSCOREDLL_INLINE inline uint8_t EncodeBCD(int i)
     {
         return uint8_t(((i / 10) % 10) << 4) | uint8_t(i % 10);
     }

@@ -126,7 +126,7 @@ namespace ts {
     //! @param [in] p An address pointing to a 32-bit IEEE float in big endian representation.
     //! @return The 32-bit IEEE float in native byte order, deserialized from @a p.
     //!
-    TSCOREDLL inline ieee_float32_t GetFloat32BE(const void* p)
+    TSCOREDLL_INLINE inline ieee_float32_t GetFloat32BE(const void* p)
     {
         const uint32_t i = GetUInt32BE(p);
         TS_PUSH_WARNING()
@@ -141,7 +141,7 @@ namespace ts {
     //! @param [in] p An address pointing to a 32-bit IEEE float in little endian representation.
     //! @return The 32-bit IEEE float in native byte order, deserialized from @a p.
     //!
-    TSCOREDLL inline ieee_float32_t GetFloat32LE(const void* p)
+    TSCOREDLL_INLINE inline ieee_float32_t GetFloat32LE(const void* p)
     {
         const uint32_t i = GetUInt32LE(p);
         TS_PUSH_WARNING()
@@ -156,7 +156,7 @@ namespace ts {
     //! @param [in] p An address pointing to a 32-bit IEEE float in big endian representation.
     //! @return The 32-bit IEEE float in native byte order, deserialized from @a p.
     //!
-    TSCOREDLL inline ieee_float32_t GetFloat32(const void* p) { return GetFloat32BE(p); }
+    TSCOREDLL_INLINE inline ieee_float32_t GetFloat32(const void* p) { return GetFloat32BE(p); }
 
     //!
     //! Function getting a 64-bit IEEE float from serialized data in big endian representation.
@@ -164,7 +164,7 @@ namespace ts {
     //! @param [in] p An address pointing to a 64-bit IEEE float in big endian representation.
     //! @return The 64-bit IEEE float in native byte order, deserialized from @a p.
     //!
-    TSCOREDLL inline ieee_float64_t GetFloat64BE(const void* p)
+    TSCOREDLL_INLINE inline ieee_float64_t GetFloat64BE(const void* p)
     {
         const uint64_t i = GetUInt64BE(p);
         TS_PUSH_WARNING()
@@ -179,7 +179,7 @@ namespace ts {
     //! @param [in] p An address pointing to a 64-bit IEEE float in little endian representation.
     //! @return The 64-bit IEEE float in native byte order, deserialized from @a p.
     //!
-    TSCOREDLL inline ieee_float64_t GetFloat64LE(const void* p)
+    TSCOREDLL_INLINE inline ieee_float64_t GetFloat64LE(const void* p)
     {
         const uint64_t i = GetUInt64LE(p);
         TS_PUSH_WARNING()
@@ -194,7 +194,7 @@ namespace ts {
     //! @param [in] p An address pointing to a 64-bit IEEE float in big endian representation.
     //! @return The 64-bit IEEE float in native byte order, deserialized from @a p.
     //!
-    TSCOREDLL inline ieee_float64_t GetFloat64(const void* p) { return GetFloat64BE(p); }
+    TSCOREDLL_INLINE inline ieee_float64_t GetFloat64(const void* p) { return GetFloat64BE(p); }
 
     //!
     //! Function serializing a 32-bit IEEE float data in big endian representation.
@@ -202,7 +202,7 @@ namespace ts {
     //! @param [out] p An address where to serialize the 32-bit IEEE float.
     //! @param [in]  f The 32-bit IEEE float in native byte order to serialize in big endian representation.
     //!
-    TSCOREDLL inline void PutFloat32BE(void* p, ieee_float32_t f)
+    TSCOREDLL_INLINE inline void PutFloat32BE(void* p, ieee_float32_t f)
     {
         TS_PUSH_WARNING()
         TS_LLVM_NOWARNING(undefined-reinterpret-cast)
@@ -216,7 +216,7 @@ namespace ts {
     //! @param [out] p An address where to serialize the 32-bit IEEE float.
     //! @param [in]  f The 32-bit IEEE float in native byte order to serialize in little endian representation.
     //!
-    TSCOREDLL inline void PutFloat32LE(void* p, ieee_float32_t f)
+    TSCOREDLL_INLINE inline void PutFloat32LE(void* p, ieee_float32_t f)
     {
         TS_PUSH_WARNING()
         TS_LLVM_NOWARNING(undefined-reinterpret-cast)
@@ -230,7 +230,7 @@ namespace ts {
     //! @param [out] p An address where to serialize the 32-bit IEEE float.
     //! @param [in]  f The 32-bit IEEE float in native byte order to serialize in big endian representation.
     //!
-    TSCOREDLL inline void PutFloat32(void* p, ieee_float32_t f) { PutFloat32BE(p, f); }
+    TSCOREDLL_INLINE inline void PutFloat32(void* p, ieee_float32_t f) { PutFloat32BE(p, f); }
 
     //!
     //! Function serializing a 64-bit IEEE float data in big endian representation.
@@ -238,7 +238,7 @@ namespace ts {
     //! @param [out] p An address where to serialize the 64-bit IEEE float.
     //! @param [in]  f The 64-bit IEEE float in native byte order to serialize in big endian representation.
     //!
-    TSCOREDLL inline void PutFloat64BE(void* p, ieee_float64_t f)
+    TSCOREDLL_INLINE inline void PutFloat64BE(void* p, ieee_float64_t f)
     {
         TS_PUSH_WARNING()
         TS_LLVM_NOWARNING(undefined-reinterpret-cast)
@@ -252,7 +252,7 @@ namespace ts {
     //! @param [out] p An address where to serialize the 64-bit IEEE float.
     //! @param [in]  f The 64-bit IEEE float in native byte order to serialize in little endian representation.
     //!
-    TSCOREDLL inline void PutFloat64LE(void* p, ieee_float64_t f)
+    TSCOREDLL_INLINE inline void PutFloat64LE(void* p, ieee_float64_t f)
     {
         TS_PUSH_WARNING()
         TS_LLVM_NOWARNING(undefined-reinterpret-cast)
@@ -266,5 +266,5 @@ namespace ts {
     //! @param [out] p An address where to serialize the 64-bit IEEE float.
     //! @param [in]  f The 64-bit IEEE float in native byte order to serialize in big endian representation.
     //!
-    TSCOREDLL inline void PutFloat64(void* p, ieee_float64_t f) { PutFloat64BE(p, f); }
+    TSCOREDLL_INLINE inline void PutFloat64(void* p, ieee_float64_t f) { PutFloat64BE(p, f); }
 }

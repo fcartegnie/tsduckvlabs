@@ -238,7 +238,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::margin()
     //!
-    TSCOREDLL inline std::ostream& endl(std::ostream& os)
+    TSCOREDLL_INLINE inline std::ostream& endl(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::endl);
     }
@@ -249,7 +249,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::margin()
     //!
-    TSCOREDLL inline std::ostream& margin(std::ostream& os)
+    TSCOREDLL_INLINE inline std::ostream& margin(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::margin);
     }
@@ -260,7 +260,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::indent()
     //!
-    TSCOREDLL inline std::ostream& indent(std::ostream& os)
+    TSCOREDLL_INLINE inline std::ostream& indent(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::indent);
     }
@@ -271,7 +271,7 @@ namespace ts {
     //! @return A reference to @a os.
     //! @see TextFormatter::unindent()
     //!
-    TSCOREDLL inline std::ostream& unindent(std::ostream& os)
+    TSCOREDLL_INLINE inline std::ostream& unindent(std::ostream& os)
     {
         return IOManipulator(os, &TextFormatter::unindent);
     }

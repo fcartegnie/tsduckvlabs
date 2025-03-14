@@ -44,7 +44,7 @@ namespace ts {
     //! @param [in] fmt MJD storage format.
     //! @return Size in bytes of the MJD values in this format.
     //!
-    TSDUCKDLL inline size_t MJDSize(MJDFormat fmt) { return size_t(fmt) % 10; }
+    TSDUCKDLL_INLINE inline size_t MJDSize(MJDFormat fmt) { return size_t(fmt) % 10; }
 
     //!
     //! Convert a Modified Julian Date (MJD) into a ts::Time.

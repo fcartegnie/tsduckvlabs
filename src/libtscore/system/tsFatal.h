@@ -57,7 +57,7 @@ namespace ts {
     //! @param [in] ptr The pointer to check.
     //! @see FatalMemoryAllocation()
     //!
-    TSCOREDLL inline void CheckNonNull(const void* ptr)
+    TSCOREDLL_INLINE inline void CheckNonNull(const void* ptr)
     {
         if (ptr == nullptr) {
             FatalMemoryAllocation();

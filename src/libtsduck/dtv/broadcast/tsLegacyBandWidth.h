@@ -39,7 +39,7 @@ namespace ts {
     //! @param [in] bw Bandwidth in Hz (or legacy bandwidth enumeration value).
     //! @return Bandwidth in Hz or zero if unknown.
     //!
-    TSDUCKDLL inline uint32_t BandWidthValueHz(BandWidth bw) { return bw; }
+    TSDUCKDLL_INLINE inline uint32_t BandWidthValueHz(BandWidth bw) { return bw; }
 
     //!
     //! Get the bandwidth code from a value in Hz (deprecated).
@@ -47,7 +47,7 @@ namespace ts {
     //! @param [in] hz Bandwidth in Hz.
     //! @return Same bandwidth in Hz.
     //!
-    TSDUCKDLL inline BandWidth BandWidthCodeFromHz(uint32_t hz) { return hz; }
+    TSDUCKDLL_INLINE inline BandWidth BandWidthCodeFromHz(uint32_t hz) { return hz; }
 
     //!
     //! Convert a string containing a bandwidth value into an integer value in Hz.
