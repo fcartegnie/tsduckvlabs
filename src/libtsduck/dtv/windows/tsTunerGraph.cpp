@@ -149,7 +149,10 @@ bool ts::TunerGraph::initialize(const UString& tuner_name, ::IMoniker* tuner_mon
 
         // Enumerate all filters with category KSCATEGORY_BDA_RECEIVER_COMPONENT
         std::vector <ComPtr<::IMoniker>> receiver_monikers;
-        if (!EnumerateDevicesByClass(KSCATEGORY_BDA_RECEIVER_COMPONENT, receiver_monikers, report)) {
+#if !defined(__MINGW64_VERSION_MAJOR) // KSCATEGORY_BDA_RECEIVER_COMPONENT not available
+        if (!EnumerateDevicesByClass(KSCATEGORY_BDA_RECEIVER_COMPONENT, receiver_monikers, report)) 
+#endif
+        {
             clear(report);
             return false;
         }
@@ -361,7 +364,11 @@ bool ts::TunerGraph::buildGraphAtTIF(const ComPtr <::IBaseFilter>& demux, Report
 
     // Enumerate all TIF.
     ComPtr<::IEnumMoniker> enum_tif;
+#if defined(__MINGW64_VERSION_MAJOR)
+    ::HRESULT hr = E_FAIL;
+#else
     ::HRESULT hr = enum_devices->CreateClassEnumerator(KSCATEGORY_BDA_TRANSPORT_INFORMATION, enum_tif.creator(), 0);
+#endif
     if (!ComSuccess(hr, u"CreateClassEnumerator (for TIF)", report) || hr != S_OK) {
         // Must use ComSuccess to get a message in case of error.
         // Must also explicitly test for S_OK because empty categories return another success status.
