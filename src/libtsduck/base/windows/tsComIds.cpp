@@ -7,4 +7,8 @@
 //-----------------------------------------------------------------------------
 
 #define TS_COMIDS_DEFINE 1
+#include <initguid.h>
+#include <tuner.h>
+#include <dvbsiparser.h>
+#include <uuids.h>
 #include "tsComIds.h"
