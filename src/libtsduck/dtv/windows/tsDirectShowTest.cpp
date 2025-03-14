@@ -442,8 +442,10 @@ void ts::DirectShowTest::displayIKsPropertySet(::IUnknown* object, const UString
     _P_(SignalStats, SIGNAL_PRESENT);
     _P_(SignalStats, SIGNAL_LOCKED);
     _P_(SignalStats, SAMPLE_TIME);
+#if !defined(__MINGW64_VERSION_MAJOR)
     _P_(SignalStats, SIGNAL_LOCK_CAPS);
     _P_(SignalStats, SIGNAL_LOCK_TYPE);
+#endif
 
     _P_(FrequencyFilter, RF_TUNER_FREQUENCY);
     _P_(FrequencyFilter, RF_TUNER_POLARITY);
@@ -534,8 +536,10 @@ void ts::DirectShowTest::displayIKsControl(::IUnknown* object, const UString& ma
     _P_(SignalStats, SIGNAL_PRESENT);
     _P_(SignalStats, SIGNAL_LOCKED);
     _P_(SignalStats, SAMPLE_TIME);
+#if !defined(__MINGW64_VERSION_MAJOR)
     _P_(SignalStats, SIGNAL_LOCK_CAPS);
     _P_(SignalStats, SIGNAL_LOCK_TYPE);
+#endif
 
     _P_(FrequencyFilter, RF_TUNER_FREQUENCY);
     _P_(FrequencyFilter, RF_TUNER_POLARITY);
