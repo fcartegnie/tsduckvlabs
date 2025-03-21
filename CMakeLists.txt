@@ -1178,6 +1178,7 @@ if(BUILD_SHARED_LIBS)
   
     target_link_libraries(tsduck PUBLIC ${LIBTSDUCK_LINK_LIBRARIES})
     install(TARGETS tsduck
+        COMPONENT tsduck
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
 endif(BUILD_SHARED_LIBS)
@@ -1200,6 +1201,7 @@ if(NOT BUILD_SHARED_LIBS)
 
     target_link_libraries(tsducklib PUBLIC ${LIBTSDUCK_LINK_LIBRARIES})
     install(TARGETS tsducklib
+        COMPONENT tsduck
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
 endif()

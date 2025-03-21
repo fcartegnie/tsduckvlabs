@@ -17,5 +17,6 @@ target_compile_definitions(tsxml PRIVATE TS_WINVER_FILETYPE=VFT_APP)
 target_link_libraries(tsxml ${tsp_tsduck})
 
 install(TARGETS tsxml tsp
+    COMPONENT tsduck
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
