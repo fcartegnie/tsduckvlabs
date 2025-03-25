@@ -8,6 +8,10 @@
 
 #include "tsCommandLine.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor

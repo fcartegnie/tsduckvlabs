@@ -14,6 +14,8 @@
 #include "tsFatal.h"
 
 #include "tsBeforeStandardHeaders.h"
+#include <array>
+#include <windows.h>
 #include <errors.h>
 #include <shellapi.h>
 #include <setupapi.h>

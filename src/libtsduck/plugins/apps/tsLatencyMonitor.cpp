@@ -10,6 +10,9 @@
 #include "tstslatencymonitorInputExecutor.h"
 #include "tsFileUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <string>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructors and destructor.

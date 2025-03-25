@@ -17,6 +17,10 @@
 #include "tsErrCodeReport.h"
 #include "tsThread.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace {
     // Default interval in milliseconds between two poll operations.
     constexpr cn::milliseconds DEFAULT_POLL_INTERVAL = cn::milliseconds(500);

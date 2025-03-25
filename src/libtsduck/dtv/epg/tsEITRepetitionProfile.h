@@ -17,6 +17,10 @@
 #include "tsPSI.h"
 #include "tsEIT.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! List of EIT sections repetition profiles.

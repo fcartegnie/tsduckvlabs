@@ -14,6 +14,7 @@
 #pragma once
 
 #include "tsBeforeStandardHeaders.h"
+#include <vector>
 #include <signal.h>
 #include "tsAfterStandardHeaders.h"
 

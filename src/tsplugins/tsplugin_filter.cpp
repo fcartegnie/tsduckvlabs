@@ -17,6 +17,9 @@
 #include "tsAlgorithm.h"
 #include "tsMemory.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <climits>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Plugin definition

@@ -14,6 +14,10 @@
 #include "tsjsonString.h"
 #include "tsjsonObject.h"
 #include "tsjsonArray.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
 #include "tsTextParser.h"
 
 

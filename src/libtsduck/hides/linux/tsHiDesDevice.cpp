@@ -69,6 +69,11 @@
 #include "tsFileUtils.h"
 #include "tsNames.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include "tsAfterStandardHeaders.h"
+
 // Maximum size of our transfers. See comments above.
 #define ITE_MAX_SEND_PACKETS  172
 #define ITE_MAX_SEND_BYTES    (ITE_MAX_SEND_PACKETS * 188)

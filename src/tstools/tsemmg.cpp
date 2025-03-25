@@ -19,6 +19,11 @@
 #include "tsSection.h"
 #include "tsSectionFile.h"
 #include "tsTSPacket.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 namespace {

@@ -22,6 +22,11 @@
 #include "tstlvConnection.h"
 #include "tsDuckProtocol.h"
 #include "tsOneShotPacketizer.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 namespace {

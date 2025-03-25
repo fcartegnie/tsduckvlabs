@@ -29,6 +29,11 @@
 #include "tsSysInfo.h"
 #include "tsjsonValue.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Constructor with download of the version information from GitHub.

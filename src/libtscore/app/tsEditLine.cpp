@@ -15,16 +15,17 @@
     #define TS_NO_EDITLINE 1
 #endif
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
 #if !defined(TS_NO_EDITLINE)
-    #include "tsBeforeStandardHeaders.h"
     #if defined(TS_OPENBSD)
         #include <readline/readline.h>
         #include <readline/history.h>
     #else
         #include <editline/readline.h>
     #endif
-    #include "tsAfterStandardHeaders.h"
 #endif
+#include "tsAfterStandardHeaders.h"
 
 ts::UString ts::EditLine::_default_prompt(u"> ");
 ts::UString ts::EditLine::_default_next_prompt(u">>> ");

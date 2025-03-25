@@ -14,6 +14,11 @@
 #include "tsArgs.h"
 #include "tsTelnetConnection.h"
 #include "tsTSPControlCommand.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 

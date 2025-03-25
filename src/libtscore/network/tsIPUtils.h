@@ -16,6 +16,12 @@
 #include "tsCerrReport.h"
 #include "tsIP.h"
 
+#include "tsBeforeStandardHeaders.h"
+#if defined(TS_UNIX)
+    #include <unistd.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Initialize the IP libraries in the current process.

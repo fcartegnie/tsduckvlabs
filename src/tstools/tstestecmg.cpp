@@ -21,6 +21,11 @@
 #include "tsAsyncReport.h"
 #include "tsNullReport.h"
 #include "tsSingleDataStatistics.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <atomic>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 

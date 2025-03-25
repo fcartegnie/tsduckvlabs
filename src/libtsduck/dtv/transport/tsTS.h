@@ -17,6 +17,10 @@
 #include "tsBitRate.h"
 #include "tsNames.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <bitset>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! PID value (13 bits).

@@ -9,6 +9,10 @@
 #include "tsUChar.h"
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cwctype>
+#include <map>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // The macro MAP_SINGLETON defines a singleton class which inherits

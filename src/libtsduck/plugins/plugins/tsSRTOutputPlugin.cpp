@@ -9,6 +9,10 @@
 #include "tsSRTOutputPlugin.h"
 #include "tsPluginRepository.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 #if !defined(TS_NO_SRT)
 TS_REGISTER_OUTPUT_PLUGIN(u"srt", ts::SRTOutputPlugin);
 #endif

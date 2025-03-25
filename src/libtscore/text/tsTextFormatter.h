@@ -16,6 +16,12 @@
 #include "tsNullReport.h"
 #include "tsAlgorithm.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <ostream>
+#include <fstream>
+#include <sstream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Format and print a text document using various output types and indentation.

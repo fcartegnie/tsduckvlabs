@@ -11,6 +11,9 @@
 #include "tsUString.h"
 #include "tsMemory.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Default constructor.

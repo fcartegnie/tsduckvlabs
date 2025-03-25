@@ -11,6 +11,10 @@
 #include "tsIPUtils.h"
 #include "tsCOM.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // A function to wrap the entry point of an application.

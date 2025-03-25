@@ -8,6 +8,9 @@
 
 #include "tstsmuxOutputExecutor.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor and destructor.

@@ -14,6 +14,8 @@
 
 #if defined(TS_WINDOWS)
     #include "tsBeforeStandardHeaders.h"
+    #include <array>
+    #include <windows.h>
     #include <userenv.h>
     #include <memory.h>
     #include <io.h>

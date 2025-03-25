@@ -14,6 +14,10 @@
 #pragma once
 #include "tsAbstractDescriptor.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Representation of an ISDB target_region_descriptor.

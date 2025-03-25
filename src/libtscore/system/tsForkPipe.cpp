@@ -12,6 +12,13 @@
 #include "tsSysUtils.h"
 #include "tsIntegerUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#if defined(TS_UNIX)
+    #include <fcntl.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
 // Index of pipe file descriptors on UNIX.
 #define PIPE_READFD  0
 #define PIPE_WRITEFD 1

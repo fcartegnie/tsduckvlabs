@@ -12,11 +12,12 @@
 #include "tsSysInfo.h"
 #include "tsIntegerUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
 #if defined(TS_LINUX)
-    #include "tsBeforeStandardHeaders.h"
     #include <sys/prctl.h>
-    #include "tsAfterStandardHeaders.h"
 #endif
+#include "tsAfterStandardHeaders.h"
 
 #if defined(TS_NETBSD) && !defined(PTHREAD_STACK_MIN)
     #define PTHREAD_STACK_MIN (::sysconf(_SC_THREAD_STACK_MIN))

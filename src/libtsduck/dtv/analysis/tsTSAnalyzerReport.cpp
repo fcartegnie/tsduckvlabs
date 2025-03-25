@@ -11,6 +11,10 @@
 #include "tsDVB.h"
 #include "tsOUI.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <sstream>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Display layout

@@ -20,6 +20,11 @@
 #include "tsPDS.h"
 #include "tsCAS.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     class HFBand;

@@ -18,6 +18,10 @@
 #include "tsTSScrambling.h"
 #include "tsThread.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     //!

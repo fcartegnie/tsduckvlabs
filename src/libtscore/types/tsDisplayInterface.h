@@ -15,6 +15,10 @@
 #include "tsUString.h"
 #include "tsReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! An interface to be implemented by classes supporting display to a standard text stream.

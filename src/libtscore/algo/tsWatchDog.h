@@ -17,6 +17,10 @@
 #include "tsThread.h"
 #include "tsReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! General-purpose timeout watchdog.

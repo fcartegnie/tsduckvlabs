@@ -11,6 +11,9 @@
 #include "tsDirectShowUtils.h"
 #include "tsFatal.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
 
 //-----------------------------------------------------------------------------
 // Constructor / destructor.

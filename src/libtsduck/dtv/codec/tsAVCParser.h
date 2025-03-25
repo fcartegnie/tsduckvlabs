@@ -14,6 +14,10 @@
 #pragma once
 #include "tsPlatform.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Parser for Advanced Video Coding data.

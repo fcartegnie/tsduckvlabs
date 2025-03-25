@@ -9,6 +9,10 @@
 #include "tsAsyncReport.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Default constructor

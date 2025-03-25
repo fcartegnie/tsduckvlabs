@@ -15,6 +15,10 @@
 #include "tsUString.h"
 #include "tsException.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Definition of a character set for PSI/SI encoding.

@@ -15,6 +15,10 @@
 #pragma once
 #include "tsPlatform.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <vector>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Namespace for XML classes.

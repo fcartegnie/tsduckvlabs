@@ -21,6 +21,10 @@
 #include "tsMessageQueue.h"
 #include "tsThread.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! A DVB-ECMG client which acts as a DVB-SCS.

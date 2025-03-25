@@ -14,6 +14,11 @@
 #pragma once
 #include "tsMemory.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <list>
+#include <vector>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     class UString;

@@ -15,6 +15,10 @@
 #include "tsAbstractNumber.h"
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cmath>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Encapsulation of a double floating-point as an AbstractNumber.

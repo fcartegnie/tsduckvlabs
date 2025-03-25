@@ -18,6 +18,10 @@
 #include "tsReport.h"
 #include "tsxmlDocument.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Definition of a basic and non-secure implementation of a symmetric key table.

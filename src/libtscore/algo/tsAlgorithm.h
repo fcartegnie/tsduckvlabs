@@ -18,6 +18,11 @@
 #pragma once
 #include "tsPlatform.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Enumerate all 'k'-elements combinations of a 'n'-elements set.

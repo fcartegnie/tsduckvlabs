@@ -8,6 +8,13 @@
 
 #include "tsFatal.h"
 
+#include "tsBeforeStandardHeaders.h"
+#if defined(TS_WINDOWS)
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Handle a fatal error.

@@ -15,6 +15,9 @@
 #include "tsEIT.h"
 #include "tsTS.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor and destructor.

@@ -8,6 +8,16 @@
 
 #include "tsEnvironment.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include <cassert>
+#if defined(TS_WINDOWS)
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
 #if defined(TS_MAC) || defined(TS_BSD)
     extern char **environ; // not defined in public headers
 #endif

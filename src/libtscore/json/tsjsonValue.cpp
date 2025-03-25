@@ -10,6 +10,9 @@
 #include "tsjsonNull.h"
 #include "tsTextFormatter.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Default (empty) implementation of simple virtual methods

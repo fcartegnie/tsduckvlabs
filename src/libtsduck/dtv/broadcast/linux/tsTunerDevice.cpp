@@ -21,6 +21,11 @@
 #include "tsMemory.h"
 #include "tsTunerDeviceInfo.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <fcntl.h>
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 // We used to report "bit error rate", "signal/noise ratio", "signal strength",
 // "uncorrected blocks". But the corresponding ioctl commands (FE_READ_BER, FE_READ_SNR,
 // FE_READ_SIGNAL_STRENGTH, FE_READ_UNCORRECTED_BLOCKS) are marked as deprecated with

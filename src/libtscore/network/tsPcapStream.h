@@ -14,6 +14,10 @@
 #pragma once
 #include "tsPcapFilter.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Read a TCP/IP session from a pcap or pcapng file.

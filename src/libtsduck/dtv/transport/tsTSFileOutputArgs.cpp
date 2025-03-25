@@ -11,6 +11,9 @@
 #include "tsSysUtils.h"
 #include "tsErrCodeReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Default constructor.

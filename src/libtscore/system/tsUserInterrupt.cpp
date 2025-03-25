@@ -9,6 +9,10 @@
 #include "tsUserInterrupt.h"
 #include "tsSysUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 ts::UserInterrupt* volatile ts::UserInterrupt::_active_instance = nullptr;
 
 // On UNIX platforms, we use a semaphore (sem_t). On macOS, the address of the

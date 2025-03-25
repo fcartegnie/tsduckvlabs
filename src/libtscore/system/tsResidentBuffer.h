@@ -16,6 +16,13 @@
 #include "tsIntegerUtils.h"
 #include "tsSysInfo.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#if defined(TS_UNIX)
+    #include <sys/mman.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Implementation of memory buffer locked in physical memory.

@@ -16,6 +16,10 @@
 #include "tsTSPacketMetadata.h"
 #include "tsPCRAnalyzer.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Transport stream packet queue for inter-thread communication.

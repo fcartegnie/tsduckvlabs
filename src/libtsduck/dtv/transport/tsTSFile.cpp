@@ -11,17 +11,16 @@
 #include "tsNullReport.h"
 #include "tsSysUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <fcntl.h>
 #if defined(TS_WINDOWS)
-    #include "tsBeforeStandardHeaders.h"
     #include <io.h>
-    #include "tsAfterStandardHeaders.h"
 #else
-    #include "tsBeforeStandardHeaders.h"
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <unistd.h>
-    #include "tsAfterStandardHeaders.h"
 #endif
+#include "tsAfterStandardHeaders.h"
 
 
 //----------------------------------------------------------------------------

@@ -18,6 +18,11 @@
 #include "tsReport.h"
 #include "tsDirectShow.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include <deque>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     class SinkFilter;

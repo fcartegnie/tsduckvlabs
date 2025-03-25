@@ -15,6 +15,10 @@
 #include "tsObject.h"
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! A global repository of general-purpose base class for polymophic objects.

@@ -14,6 +14,10 @@
 #pragma once
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     // Incomplete declarations:

@@ -14,6 +14,11 @@
 #pragma once
 #include "tsPlatform.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+// #include <deque>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Template message queue for inter-thread communication.

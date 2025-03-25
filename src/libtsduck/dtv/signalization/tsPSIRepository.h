@@ -19,6 +19,10 @@
 #include "tsDescriptorContext.h"
 #include "tsLibTSDuckVersion.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     class DuckContext;

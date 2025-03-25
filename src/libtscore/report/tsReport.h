@@ -16,6 +16,10 @@
 #include "tsUString.h"
 #include "tsArgMix.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Base class for message reporting and monitoring.

@@ -15,6 +15,10 @@
 #pragma once
 #include "tsMemory.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cmath>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! This template function compares two floating point values for approximated equality.

@@ -10,6 +10,10 @@
 #include "tsFileUtils.h"
 #include "tsSysUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <fstream>
+#include "tsAfterStandardHeaders.h"
+
 // Used to return a constant reference.
 const ts::ConfigSection ts::ConfigFile::_empty;
 

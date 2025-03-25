@@ -15,6 +15,10 @@
 #include "tsDVBCharTable.h"
 #include "tsDVBCharset.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <bitset>
+#include "tsAfterStandardHeaders.h"
+
 TS_PUSH_WARNING()
 TS_GCC_NOWARNING(ctor-dtor-privacy) // private constructor here
 

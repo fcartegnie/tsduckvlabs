@@ -16,6 +16,11 @@
 #include "tsTime.h"
 #include "tsArgs.h"
 
+#if defined(TS_UNIX)
+    #include "tsBeforeStandardHeaders.h"
+    #include <unistd.h>
+    #include "tsAfterStandardHeaders.h"
+#endif
 
 //----------------------------------------------------------------------------
 // Constructor and destructors.

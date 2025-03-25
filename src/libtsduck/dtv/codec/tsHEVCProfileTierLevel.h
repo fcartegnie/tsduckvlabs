@@ -15,6 +15,10 @@
 #pragma once
 #include "tsAbstractVideoStructure.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <bitset>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! HEVC profile, tier and level structure.

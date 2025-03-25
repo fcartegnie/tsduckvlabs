@@ -18,6 +18,10 @@
 #include "tstsswitchEventDispatcher.h"
 #include "tsWatchDog.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <deque>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Input switch (tsswitch) namespace.

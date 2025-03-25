@@ -24,6 +24,26 @@
     #include "tsSysCtl.h"
 #endif
 
+#include "tsBeforeStandardHeaders.h"
+#if defined(TS_WINDOWS)
+    #include <array>
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
+
+#include "tsBeforeStandardHeaders.h"
+#if defined(TS_WINDOWS)
+    #include <array>
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
+
 TS_DEFINE_SINGLETON(ts::SysInfo);
 
 

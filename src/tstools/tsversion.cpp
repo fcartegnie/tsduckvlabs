@@ -27,6 +27,11 @@
 #if defined(TS_WINDOWS)
 #include "tsWinUtils.h"
 #endif
+
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 

@@ -8,6 +8,9 @@
 
 #include "tsPcapStream.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructors and destructors.

@@ -14,6 +14,11 @@
 #include "tsOutputPager.h"
 #include "tsDuckConfigFile.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 // Define this environment variable to debug options redefinition issues.
 #define TS_DEBUG_ENV u"TS_DEBUG_ARGS"
 

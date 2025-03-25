@@ -15,6 +15,9 @@
 #include "tsPCRAnalyzer.h"
 #include "tsNames.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Plugin definition

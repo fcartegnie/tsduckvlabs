@@ -15,6 +15,14 @@
 #pragma once
 #include "tsByteSwap.h"
 
+
+#include "tsBeforeStandardHeaders.h"
+#include <cstring>
+#if defined(TS_WINDOWS)
+    #include <windows.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
 //!
 //! Zeroing an plain memory variable.
 //! Do not use with instances of C++ classes.

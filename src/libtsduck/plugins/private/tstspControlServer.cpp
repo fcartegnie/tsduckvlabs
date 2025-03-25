@@ -13,6 +13,9 @@
 #include "tsTelnetConnection.h"
 #include "tsSysUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor and destructor.
