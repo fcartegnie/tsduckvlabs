@@ -14,6 +14,10 @@
 #pragma once
 #include "tsUChar.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Properties of a block cipher.

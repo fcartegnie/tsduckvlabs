@@ -13,6 +13,10 @@
 #include "tsSysUtils.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 // Stack size for the monitor thread
 #define MONITOR_STACK_SIZE (64 * 1024)
 

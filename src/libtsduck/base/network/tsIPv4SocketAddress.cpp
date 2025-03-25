@@ -9,6 +9,10 @@
 #include "tsIPv4SocketAddress.h"
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 // Wildcard socket address, unspecified address and port.
 const ts::IPv4SocketAddress ts::IPv4SocketAddress::AnySocketAddress;
 

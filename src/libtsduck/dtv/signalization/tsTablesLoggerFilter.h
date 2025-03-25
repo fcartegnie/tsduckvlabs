@@ -16,6 +16,10 @@
 #include "tsBinaryTable.h"
 #include "tsByteBlock.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! The default section filter for TablesLogger.

@@ -16,6 +16,13 @@
 #include "tsArgMix.h"
 #include "tsMemory.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include <fstream>
+#include <list>
+#include <vector>
+#include "tsAfterStandardHeaders.h"
+
 //!
 //! Do not declare legacy method as "deprecated".
 //!

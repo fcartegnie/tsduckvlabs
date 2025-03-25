@@ -19,6 +19,13 @@
 #include "tsSingleton.h"
 #include "tsEnumeration.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include <cmath>
+#include <iostream>
+#include <string>
+#include "tsAfterStandardHeaders.h"
+
 // The UTF-8 Byte Order Mark
 const char* const ts::UString::UTF8_BOM = "\xEF\xBB\xBF";
 

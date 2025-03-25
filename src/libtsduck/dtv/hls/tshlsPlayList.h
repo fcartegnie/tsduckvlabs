@@ -22,6 +22,10 @@
 #include "tsWebRequestArgs.h"
 #include "tsStringifyInterface.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <deque>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace hls {
         //!

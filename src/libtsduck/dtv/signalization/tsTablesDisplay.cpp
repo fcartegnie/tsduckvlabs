@@ -18,6 +18,9 @@
 #include "tsNames.h"
 #include "tsIntegerUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Define command line options in an Args.

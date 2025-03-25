@@ -17,6 +17,10 @@
 #include "tsCRC32.h"
 #include "tsCryptoAcceleration.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 // Check if Arm-64 CRC32 instructions can be used in asm() directives.
 #if defined(__ARM_FEATURE_CRC32) && !defined(TS_NO_ARM_CRC32_INSTRUCTIONS)
     #define TS_ARM_CRC32_INSTRUCTIONS 1

@@ -9,6 +9,9 @@
 #include "tsPCRRegulator.h"
 #include "tsNullReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor

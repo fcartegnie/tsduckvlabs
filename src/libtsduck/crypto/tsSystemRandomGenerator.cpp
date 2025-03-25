@@ -8,6 +8,12 @@
 
 #include "tsSystemRandomGenerator.h"
 
+#if defined(TS_UNIX)
+    #include "tsBeforeStandardHeaders.h"
+    #include <fcntl.h>
+    #include <unistd.h>
+    #include "tsAfterStandardHeaders.h"
+#endif
 
 //----------------------------------------------------------------------------
 // Constructors and destructors.

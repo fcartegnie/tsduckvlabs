@@ -10,6 +10,11 @@
 #include "tsUString.h"
 #include "tsMemory.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
+
 // Local host address
 const ts::IPv6Address ts::IPv6Address::AnyAddress;
 const ts::IPv6Address ts::IPv6Address::LocalHost(0, 0, 0, 0, 0, 0, 0, 1);

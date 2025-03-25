@@ -16,6 +16,10 @@
 #include "tsUString.h"
 #include "tsReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace tlv {
         //!

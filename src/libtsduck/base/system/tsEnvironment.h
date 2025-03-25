@@ -15,6 +15,10 @@
 #pragma once
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Environment variable containing the command search path.

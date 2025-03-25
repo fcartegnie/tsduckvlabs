@@ -14,6 +14,11 @@
 #include "tsOutputPager.h"
 #include "tsDuckConfigFile.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 // List of characters which are allowed thousands separators and decimal points in integer values
 const ts::UChar* const ts::Args::THOUSANDS_SEPARATORS = u", ";
 const ts::UChar* const ts::Args::DECIMAL_POINTS = u".";

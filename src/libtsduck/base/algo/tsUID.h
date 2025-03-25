@@ -14,6 +14,10 @@
 #pragma once
 #include "tsSingleton.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <atomic>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! A singleton which generates 64-bit UID, unique integer.

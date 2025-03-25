@@ -8,6 +8,10 @@
 
 #include "tsEnumeration.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
+
 // Values for "not found"
 const ts::Enumeration::int_t ts::Enumeration::UNKNOWN = std::numeric_limits<ts::Enumeration::int_t>::max();
 

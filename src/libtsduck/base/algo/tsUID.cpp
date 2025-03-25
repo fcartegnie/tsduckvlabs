@@ -19,6 +19,13 @@
 #include "tsUID.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#if defined(TS_UNIX)
+    #include <unistd.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
+
 // Define singleton instance
 TS_DEFINE_SINGLETON(ts::UID);
 

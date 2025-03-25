@@ -9,6 +9,9 @@
 #include "tsjsonRunningDocument.h"
 #include "tsjsonValue.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructors and destructors.

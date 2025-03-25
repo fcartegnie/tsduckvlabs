@@ -9,6 +9,10 @@
 #include "tsCerrReport.h"
 #include "tsEnvironment.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 // Define singleton instance
 TS_DEFINE_SINGLETON(ts::CerrReport);
 

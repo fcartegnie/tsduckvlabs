@@ -14,6 +14,11 @@
 #pragma once
 #include "tsStringifyInterface.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include <vector>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Full identification of a DVB transport stream.

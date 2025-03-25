@@ -19,6 +19,10 @@
 #include "tsSingleton.h"
 #include "tsVersionInfo.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     class DuckContext;

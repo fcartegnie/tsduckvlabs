@@ -13,6 +13,10 @@
 #include "tsNullReport.h"
 #include "tsException.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Default implementations of handlers.

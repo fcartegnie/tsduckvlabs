@@ -17,6 +17,10 @@
 #include "tsReport.h"
 #include "tsxml.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Monitoring thread for system resources used by the application.

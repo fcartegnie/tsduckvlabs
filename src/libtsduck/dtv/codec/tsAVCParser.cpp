@@ -9,6 +9,9 @@
 #define TS_AVCPARSER_CPP 1 // used in tsAVCParser.h
 #include "tsAVCParser.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor.

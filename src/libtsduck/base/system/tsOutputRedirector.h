@@ -14,6 +14,10 @@
 #pragma once
 #include "tsArgs.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! A class to redirect an output stream.

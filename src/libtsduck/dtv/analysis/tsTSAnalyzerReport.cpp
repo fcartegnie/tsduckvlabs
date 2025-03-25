@@ -11,6 +11,10 @@
 #include "tsjsonObject.h"
 #include "tsAlgorithm.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <sstream>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Display layout

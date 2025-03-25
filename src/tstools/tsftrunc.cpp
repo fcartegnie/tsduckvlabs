@@ -13,6 +13,11 @@
 #include "tsMain.h"
 #include "tsErrCodeReport.h"
 #include "tsTS.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 

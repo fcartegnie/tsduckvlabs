@@ -13,6 +13,10 @@
 #include "tsPluginRepository.h"
 #include "tsTSDumpArgs.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <sstream>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Plugin definition

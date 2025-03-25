@@ -21,6 +21,11 @@
     #include <signal.h>
     #include "tsAfterStandardHeaders.h"
 #endif
+#if defined(TS_WINDOWS)
+        #include "tsBeforeStandardHeaders.h"
+        #include <windows.h>
+        #include "tsAfterStandardHeaders.h"
+#endif
 
 namespace ts {
     //!

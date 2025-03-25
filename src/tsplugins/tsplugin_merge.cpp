@@ -24,6 +24,10 @@
 #include "tsThread.h"
 #include "tsFatal.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 #define DEFAULT_MAX_QUEUED_PACKETS  1000            // Default size in packet of the inter-thread queue.
 #define SERVER_THREAD_STACK_SIZE    (128 * 1024)    // Size in byte of the thread stack.
 

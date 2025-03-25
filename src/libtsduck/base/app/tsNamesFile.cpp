@@ -12,6 +12,12 @@
 #include "tsFatal.h"
 #include "tsSingleton.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include <istream>
+#include <ostream>
+#include <fstream>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Predefined names files.

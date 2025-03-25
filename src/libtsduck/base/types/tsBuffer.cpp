@@ -9,6 +9,10 @@
 #include "tsBuffer.h"
 #include "tsFatal.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Destructor

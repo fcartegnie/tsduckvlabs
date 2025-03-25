@@ -17,12 +17,13 @@
 #include "tsEnumeration.h"
 #include "tsStringifyInterface.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
 #if defined(TS_LINUX)
-    #include "tsBeforeStandardHeaders.h"
     #include <linux/dvb/frontend.h>
     #include <linux/version.h>
-    #include "tsAfterStandardHeaders.h"
 #endif
+#include "tsAfterStandardHeaders.h"
 
 namespace ts {
     //!

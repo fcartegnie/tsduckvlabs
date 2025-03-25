@@ -8,6 +8,10 @@
 
 #include "tsAbstractReadStreamInterface.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Destructor.

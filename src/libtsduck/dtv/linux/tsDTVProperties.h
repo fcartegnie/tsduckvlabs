@@ -22,6 +22,10 @@
 #include <linux/version.h>
 #include "tsAfterStandardHeaders.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 //!
 //! @hideinitializer
 //! On Linux systems, identify the Linux DVB API version in one value.

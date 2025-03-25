@@ -18,6 +18,11 @@
 #include "tsStandards.h"
 #include "tsPSI.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
 
     class HFBand;

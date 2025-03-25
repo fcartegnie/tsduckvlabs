@@ -15,6 +15,7 @@
 #include "tsSingleton.h"
 
 #include "tsBeforeStandardHeaders.h"
+#include <vector>
 #include <signal.h>
 #include "tsAfterStandardHeaders.h"
 

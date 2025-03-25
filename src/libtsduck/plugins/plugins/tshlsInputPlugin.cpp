@@ -10,6 +10,10 @@
 #include "tsPluginRepository.h"
 #include "tsFileUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 #if !defined(TS_UNIX) || !defined(TS_NO_CURL)
 TS_REGISTER_INPUT_PLUGIN(u"hls", ts::hls::InputPlugin);
 #endif

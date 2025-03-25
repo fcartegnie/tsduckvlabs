@@ -14,6 +14,11 @@
 #pragma once
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
+
 TS_PUSH_WARNING()
 TS_GCC_NOWARNING(shadow) // workaround for a bug in GCC 7.5
 

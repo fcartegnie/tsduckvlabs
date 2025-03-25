@@ -15,6 +15,10 @@
 #pragma once
 #include "tsAbstractVideoStructure.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! HEVC scaling list data structure.

@@ -12,6 +12,10 @@
 #include "tsSysUtils.h"
 #include "tsIPUtils.h" // Windows
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 const ts::IPv4Address ts::IPv4Address::LocalHost(127, 0, 0, 1);
 
 

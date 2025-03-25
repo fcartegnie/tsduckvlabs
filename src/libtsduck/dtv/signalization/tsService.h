@@ -16,6 +16,10 @@
 #include "tsStringifyInterface.h"
 #include "tsTS.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Describe a DVB or ATSC service.

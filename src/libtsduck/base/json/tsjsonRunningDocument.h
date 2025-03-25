@@ -15,6 +15,11 @@
 #include "tsjson.h"
 #include "tsTextFormatter.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <fstream>
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace json {
         //!

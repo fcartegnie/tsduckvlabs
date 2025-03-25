@@ -11,6 +11,9 @@
 #include "tsIPv4Address.h"
 #include "tsSingleton.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Initialize IP usage. Shall be called once at least.

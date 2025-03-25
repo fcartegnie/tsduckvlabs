@@ -14,6 +14,9 @@
 #if defined(TS_WINDOWS)
     #include "tsWinUtils.h"
     #include "tsBeforeStandardHeaders.h"
+    #include <array>
+    #include <fcntl.h>
+    #include <windows.h>
     #include <intrin.h>
     #include <io.h>
     #include <psapi.h>

@@ -17,6 +17,9 @@
 #include "tsT2MIPacket.h"
 #include "tsTSFile.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <deque>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Plugin definition

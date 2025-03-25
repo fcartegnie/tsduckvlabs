@@ -15,6 +15,10 @@
 #include "tsSingleton.h"
 #include "tsCryptoLibrary.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 // Private header, not accessible to applications.
 //! @cond nodoxygen
 

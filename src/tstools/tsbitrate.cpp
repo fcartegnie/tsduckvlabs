@@ -13,6 +13,11 @@
 #include "tsMain.h"
 #include "tsTSFile.h"
 #include "tsPCRAnalyzer.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 

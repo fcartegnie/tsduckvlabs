@@ -10,6 +10,10 @@
 #include "tsSingleton.h"
 #include "tsSysUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 ts::UserInterrupt* volatile ts::UserInterrupt::_active_instance = nullptr;
 
 // A local mutex to avoid multiple activations.

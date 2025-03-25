@@ -19,6 +19,13 @@
 #include "tsTime.h"
 #include "tsErrCodeReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#if defined(TS_UNIX)
+    #include <glob.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
+
 namespace ts {
     //!
     //! Executable file suffix.

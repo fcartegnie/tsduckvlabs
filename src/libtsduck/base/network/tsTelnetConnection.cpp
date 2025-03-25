@@ -9,6 +9,10 @@
 #include "tsTelnetConnection.h"
 #include "tsNullReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 // A telnet end-of-line sequence.
 const std::string ts::TelnetConnection::EOL("\r\n");
 

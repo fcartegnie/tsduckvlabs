@@ -16,6 +16,10 @@
 #include "tsjsonObject.h"
 #include "tsjsonArray.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 const ts::Enumeration ts::json::TypeEnum({
     {u"Null literal",  ts::json::Type::Null},
     {u"True literal",  ts::json::Type::True},

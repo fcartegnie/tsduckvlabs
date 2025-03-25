@@ -8,6 +8,9 @@
 
 #include "tsIPv4Packet.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructors and destructors.

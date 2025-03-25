@@ -16,6 +16,10 @@
 #include "tsEnumeration.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <atomic>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace xml {
         //!

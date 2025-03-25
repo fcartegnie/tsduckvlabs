@@ -18,6 +18,10 @@
 #include "tsUString.h"
 #include "tsIntegerUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! General-purpose memory buffer with bit access.

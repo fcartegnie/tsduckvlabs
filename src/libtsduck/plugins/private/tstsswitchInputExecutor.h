@@ -16,6 +16,10 @@
 #include "tsInputSwitcherArgs.h"
 #include "tsInputPlugin.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace tsswitch {
         //!

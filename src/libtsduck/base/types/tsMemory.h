@@ -15,6 +15,14 @@
 #pragma once
 #include "tsByteSwap.h"
 
+
+#include "tsBeforeStandardHeaders.h"
+#include <cstring>
+#if defined(TS_WINDOWS)
+    #include <windows.h>
+#endif
+#include "tsAfterStandardHeaders.h"
+
 // #if defined(_TSDUCKDLL_USE)
 //     #define TSDUCK_TEMPLATE_DLL TSDUCKDLL
 // #else

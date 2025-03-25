@@ -10,6 +10,10 @@
 #include "tsFileUtils.h"
 #include "tsErrCodeReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Set URL from a string.

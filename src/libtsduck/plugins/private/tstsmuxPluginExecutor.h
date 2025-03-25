@@ -18,6 +18,10 @@
 #include "tsTSPacket.h"
 #include "tsTSPacketMetadata.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace tsmux {
         //!

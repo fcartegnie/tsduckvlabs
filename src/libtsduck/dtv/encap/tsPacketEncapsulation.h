@@ -14,6 +14,11 @@
 #pragma once
 #include "tsTSPacket.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <deque>
+#include "tsAfterStandardHeaders.h"
+
+
 namespace ts {
     //!
     //! An efficient TSDuck-specific TS packets encapsulation in a PID.

@@ -10,6 +10,11 @@
 #include "tsFileUtils.h"
 #include "tsErrCodeReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include <cassert>
+#include <thread>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Poll files continuously until the listener asks to terminate.

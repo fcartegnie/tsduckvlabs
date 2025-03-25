@@ -14,6 +14,9 @@
 #include "tsFileUtils.h"
 #include "tsFatal.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Constructor.

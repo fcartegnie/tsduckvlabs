@@ -18,6 +18,10 @@
 #include "tsPluginEventHandlerRegistry.h"
 #include "tsPlugin.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <condition_variable>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace tsp {
         //!

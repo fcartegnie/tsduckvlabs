@@ -15,6 +15,11 @@
 #include "tsCRC32.h"
 #include "tsSysInfo.h"
 #include "tsSysUtils.h"
+
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 TS_MAIN(MainCode);
 
 

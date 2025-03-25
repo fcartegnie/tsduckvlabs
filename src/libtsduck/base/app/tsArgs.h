@@ -19,6 +19,10 @@
 #include "tsCompactBitSet.h"
 #include "tsIPv4SocketAddress.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <bitset>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! An encapsulation of command line syntax and analysis.

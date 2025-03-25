@@ -8,6 +8,9 @@
 
 #include "tsMediaTypeUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <cassert>
+#include "tsAfterStandardHeaders.h"
 
 //-----------------------------------------------------------------------------
 // General purpose function to delete a heap allocated AM_MEDIA_TYPE structure

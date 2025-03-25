@@ -14,6 +14,10 @@
 #pragma once
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     namespace hls {
         //!

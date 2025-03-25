@@ -14,6 +14,10 @@
 #include "tsAbstractDuplicateRemapPlugin.h"
 #include "tsPluginRepository.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <deque>
+#include "tsAfterStandardHeaders.h"
+
 #define DEF_MAX_BUFFERED 1024
 
 

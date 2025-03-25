@@ -19,6 +19,9 @@
 #include "tsBCD.h"
 #include "tsCRC32.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <climits>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Plugin definition

@@ -15,6 +15,10 @@
 #include "tsTS.h"
 #include "tsDescriptorList.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Association of a PID and an @e operator id (CAS-specific).

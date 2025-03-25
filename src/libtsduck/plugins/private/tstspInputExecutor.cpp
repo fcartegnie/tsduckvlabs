@@ -9,6 +9,10 @@
 #include "tstspInputExecutor.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 // Minimum number of PID's and PCR/DTS to analyze before getting a valid bitrate.
 #define MIN_ANALYZE_PID   1
 #define MIN_ANALYZE_PCR  32
