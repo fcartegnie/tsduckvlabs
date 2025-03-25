@@ -1159,6 +1159,19 @@ elseif(BSD)
     list(APPEND tsduck_hides_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/hides/bsd/tsHiDesDevice.cpp)
 endif()
 
+list(APPEND TSPLUGINS 
+    aes analyze bat bitrate_monitor boostpid cat clear continuity count craft
+    cutoff datainject decap descrambler dump duplicate dvb eit eitinject encap
+    feed filter fuzz history inject limit merge mpe mpeinject mux nit
+    nitscan pat pattern pcap pcradjust pcrbitrate pcrcopy pcredit pcrextract pcrverify
+    pes pidshift play pmt psimerge reduce regulate remap rmorphan rmsplice scrambler
+    sdt sections sifilter slice spliceinject splicemonitor stats stuffanalyze
+    svremove svrename svresync t2mi time timeref timeshift trigger tsrename until zap)
+
+if(NOT NOHIDES)
+    list(APPEND TSPLUGINS hides)
+endif()
+
 if(BUILD_SHARED_LIBS)
     add_library(tsduck SHARED ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES})
     target_compile_definitions(tsduck
@@ -1184,6 +1197,10 @@ if(BUILD_SHARED_LIBS)
 endif(BUILD_SHARED_LIBS)
 
 if(NOT BUILD_SHARED_LIBS)
+    list(TRANSFORM TSPLUGINS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins/tsplugin_ OUTPUT_VARIABLE tsplugin_static_SOURCES)
+    list(TRANSFORM tsplugin_static_SOURCES APPEND ".cpp")
+    list(APPEND tsduck_plugins_SOURCES ${tsplugin_static_SOURCES})
+    
     add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES})
     target_compile_definitions(tsducklib
         PUBLIC ${BITRATE_FORMAT_FLAG}
@@ -1204,19 +1221,6 @@ if(NOT BUILD_SHARED_LIBS)
         COMPONENT tsduck
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
-endif()
-
-list(APPEND TSPLUGINS 
-    aes analyze bat bitrate_monitor boostpid cat clear continuity count craft
-    cutoff datainject decap descrambler dump duplicate dvb eit eitinject encap
-    feed filter fuzz history inject limit merge mpe mpeinject mux nit
-    nitscan pat pattern pcap pcradjust pcrbitrate pcrcopy pcredit pcrextract pcrverify
-    pes pidshift play pmt psimerge reduce regulate remap rmorphan rmsplice scrambler
-    sdt sections sifilter slice spliceinject splicemonitor stats stuffanalyze
-    svremove svrename svresync t2mi time timeref timeshift trigger tsrename until zap)
-
-if(NOT NOHIDES)
-    list(APPEND TSPLUGINS hides)
 endif()
 
 
