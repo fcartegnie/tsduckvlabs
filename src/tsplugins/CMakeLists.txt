@@ -6,7 +6,7 @@ foreach(num ${TSPLUGINS})
     target_link_libraries(tsplugin_${num} tsduck)
     set_target_properties(tsplugin_${num} PROPERTIES 
         PREFIX "" # tsplugin_name instead of libtsplugin_name
-        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_LIBDIR}/tsduck
+        LIBRARY_OUTPUT_DIRECTORY "$<1:${CMAKE_INSTALL_LIBDIR}/tsduck>"
     )
     install(TARGETS tsplugin_${num}
         COMPONENT tsduck
