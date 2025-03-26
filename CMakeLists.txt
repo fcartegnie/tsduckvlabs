@@ -1190,8 +1190,6 @@ if(BUILD_SHARED_LIBS)
     target_include_directories(tsduck 
         PUBLIC ${tsduck_PUBLIC_INCLUDES}
         PRIVATE ${tsduck_PRIVATE_INCLUDES})
-    # to include tsduck.h, not included in local code
-    add_dependencies(tsduck tsduck_header)
     target_include_directories(tsduck 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
@@ -1233,8 +1231,6 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC ${tsduck_PUBLIC_INCLUDES}
         PRIVATE ${tsduck_PRIVATE_INCLUDES})
-    # to include tsduck.h, not included in local code
-    add_dependencies(tsducklib tsduck_header)
     target_include_directories(tsducklib 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
