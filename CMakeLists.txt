@@ -23,7 +23,7 @@ include(FeatureSummary)
 option(TSDUCK_TOOLS "Build tsduck tools" ON)
 
 option(NOPCSC "")
-option(NOGITHUB "")
+option(NOGITHUB "No version check, no download, no upgrade from GitHub." ON)
 option(NODTAPI "")
 option(NOHIDES "")
 option(NOVATEK "")
