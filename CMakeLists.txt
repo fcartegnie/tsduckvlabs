@@ -1228,10 +1228,12 @@ if(NOT BUILD_SHARED_LIBS)
         PUBLIC ${tsduck_PUBLIC_INCLUDES}
         PRIVATE ${tsduck_PRIVATE_INCLUDES})
     set_target_properties(allplugins PROPERTIES
+        PREFIX ""
+        SUFFIX ${CMAKE_CXX_OUTPUT_EXTENSION}
         ENABLE_EXPORTS TRUE
     )
     
-    add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES})
+    add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES}) # "$<TARGET_FILE:allplugins>")
     target_compile_definitions(tsducklib
         PUBLIC ${BITRATE_FORMAT_FLAG}
         PUBLIC TSDUCK_STATIC
@@ -1243,15 +1245,14 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-
     add_dependencies(tsducklib allplugins)
-    set(tsduck_libs "$<TARGET_FILE:allplugins>" tsducklib)
-    
-    target_link_libraries(tsducklib PUBLIC ${CMAKE_DL_LIBS} ${LIBTSDUCK_LINK_LIBRARIES})
+
+    target_link_libraries(tsducklib PUBLIC $<TARGET_OBJECTS:allplugins> ${CMAKE_DL_LIBS} ${LIBTSDUCK_LINK_LIBRARIES})
     install(TARGETS tsducklib
         COMPONENT tsduck
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
+        )
+    set(tsduck_libs tsducklib)
 endif()
 
 
