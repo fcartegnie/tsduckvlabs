@@ -14,7 +14,7 @@ add_executable(tslatencymonitor tslatencymonitor.cpp)
 target_compile_definitions(tslatencymonitor PRIVATE TS_WINVER_FILETYPE=VFT_APP)
 target_link_libraries(tslatencymonitor PRIVATE ${tsduck_libs})
 
-install(TARGETS tsxml tsp tsversion
+install(TARGETS tsxml tsp tsversion tslatencymonitor
     COMPONENT tsduck
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
