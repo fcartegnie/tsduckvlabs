@@ -1204,6 +1204,7 @@ if(BUILD_SHARED_LIBS)
         COMPONENT tsduck
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
+    set(tsduck_libs tsduck)
 endif(BUILD_SHARED_LIBS)
 
 if(NOT BUILD_SHARED_LIBS)
@@ -1242,7 +1243,9 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+
     add_dependencies(tsducklib allplugins)
+    set(tsduck_libs "$<TARGET_FILE:allplugins>" tsducklib)
     
     target_link_libraries(tsducklib PUBLIC ${CMAKE_DL_LIBS} ${LIBTSDUCK_LINK_LIBRARIES})
     install(TARGETS tsducklib
