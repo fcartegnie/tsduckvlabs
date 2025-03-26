@@ -1070,6 +1070,27 @@ set(tsduck_plugins_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/infra/tsPluginRepository.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/infra/tsPluginThread.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/infra/tsTSP.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tsRISTPluginData.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstslatencymonitorInputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxCore.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxInputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxOutputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxPluginExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspControlServer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspInputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspJointTermination.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspOutputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspPluginExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspProcessorExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchCommandListener.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchCore.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchEventDispatcher.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchInputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchOutputExecutor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchPluginExecutor.cpp
+)
+
+set(tsduck_plugins_plugins_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsAbstractDatagramInputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsAbstractDescrambler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsAbstractDuplicateRemapPlugin.cpp
@@ -1106,24 +1127,6 @@ set(tsduck_plugins_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsSRTOutputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsTablesPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsTeletextPlugin.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tsRISTPluginData.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstslatencymonitorInputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxCore.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxInputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxOutputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsmuxPluginExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspControlServer.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspInputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspJointTermination.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspOutputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspPluginExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstspProcessorExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchCommandListener.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchCore.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchEventDispatcher.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchInputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchOutputExecutor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/private/tstsswitchPluginExecutor.cpp
 )
 
 set(tsduck_vatek_SOURCES
@@ -1177,7 +1180,7 @@ if(NOT NOHIDES)
 endif()
 
 if(BUILD_SHARED_LIBS)
-    add_library(tsduck SHARED ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES})
+    add_library(tsduck SHARED ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES} ${tsduck_plugins_plugins_SOURCES})
     target_compile_definitions(tsduck
         PUBLIC ${BITRATE_FORMAT_FLAG}
         PUBLIC ${LIBTSDUCK_CXXFLAGS_INCLUDES}
@@ -1203,7 +1206,23 @@ endif(BUILD_SHARED_LIBS)
 if(NOT BUILD_SHARED_LIBS)
     list(TRANSFORM TSPLUGINS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins/tsplugin_ OUTPUT_VARIABLE tsplugin_static_SOURCES)
     list(TRANSFORM tsplugin_static_SOURCES APPEND ".cpp")
-    list(APPEND tsduck_plugins_SOURCES ${tsplugin_static_SOURCES})
+
+    list(APPEND tsplugin_static_SOURCES ${tsduck_plugins_plugins_SOURCES})
+
+    add_executable(allplugins ${tsplugin_static_SOURCES})
+    target_link_options(allplugins PRIVATE -r)
+    target_compile_definitions(allplugins
+        PUBLIC ${BITRATE_FORMAT_FLAG}
+        PUBLIC TSDUCK_STATIC
+        PUBLIC ${LIBTSDUCK_CXXFLAGS_INCLUDES}
+        PRIVATE TSDUCK_STATIC_LIBRARY)
+    target_include_directories(allplugins 
+        PUBLIC ${tsduck_PUBLIC_INCLUDES}
+        PRIVATE ${tsduck_PRIVATE_INCLUDES})
+    set_target_properties(allplugins PROPERTIES
+        SUFFIX .o
+        ENABLE_EXPORTS TRUE
+    )
     
     add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES})
     target_compile_definitions(tsducklib
