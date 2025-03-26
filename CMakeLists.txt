@@ -1212,8 +1212,12 @@ if(NOT BUILD_SHARED_LIBS)
 
     list(APPEND tsplugin_static_SOURCES ${tsduck_plugins_plugins_SOURCES})
 
+    # relocatable executable with exported symbols (no main)
     add_executable(allplugins ${tsplugin_static_SOURCES})
-    target_link_options(allplugins PRIVATE -r)
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "CLang")
+        # GCC and CLang partial linking
+        target_link_options(allplugins PRIVATE -r)
+    endif()
     target_compile_definitions(allplugins
         PUBLIC ${BITRATE_FORMAT_FLAG}
         PUBLIC TSDUCK_STATIC
@@ -1223,7 +1227,6 @@ if(NOT BUILD_SHARED_LIBS)
         PUBLIC ${tsduck_PUBLIC_INCLUDES}
         PRIVATE ${tsduck_PRIVATE_INCLUDES})
     set_target_properties(allplugins PROPERTIES
-        SUFFIX .o
         ENABLE_EXPORTS TRUE
     )
     
@@ -1239,6 +1242,7 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+    add_dependencies(tsducklib allplugins)
     
     target_link_libraries(tsducklib PUBLIC ${CMAKE_DL_LIBS} ${LIBTSDUCK_LINK_LIBRARIES})
     install(TARGETS tsducklib
