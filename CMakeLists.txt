@@ -433,7 +433,10 @@ else()
 endif()
 
 if(NOT WIN32)
-    find_package(OpenSSL QUIET REQUIRED)
+    if(NOT BUILD_SHARED_LIBS)
+        set(OPENSSL_USE_STATIC_LIBS TRUE)
+    endif()
+    find_package(OpenSSL REQUIRED)
     list(APPEND LIBTSDUCK_LINK_LIBRARIES OpenSSL::Crypto)
 endif()
 
