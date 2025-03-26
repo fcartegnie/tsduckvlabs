@@ -1238,8 +1238,8 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-
-    target_link_libraries(tsducklib PUBLIC ${LIBTSDUCK_LINK_LIBRARIES})
+    
+    target_link_libraries(tsducklib PUBLIC ${CMAKE_DL_LIBS} ${LIBTSDUCK_LINK_LIBRARIES})
     install(TARGETS tsducklib
         COMPONENT tsduck
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
