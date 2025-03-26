@@ -50,6 +50,11 @@ else()
     set(BITRATE_FORMAT_FLAG -DTS_BITRATE_FRACTION=1)
 endif()
 
+if(NOT BUILD_SHARED_LIBS AND NOT MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -static -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
+    set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -static -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
+endif()
+
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
