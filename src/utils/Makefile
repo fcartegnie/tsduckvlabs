@@ -32,6 +32,7 @@ ifeq ($(STATIC),)
     $(filter-out $(BINDIR)/tsprofiling,$(EXECS)): $(SHARED_LIBTSDUCK)
 else
     LDFLAGS_EXTRA = -static
+	LDLIBS_EXTRA += -lcrypto -lz -lzstd
     $(EXECS): $(STATIC_DEPS)
 endif
 

@@ -18,7 +18,7 @@
 #include "tsBeforeStandardHeaders.h"
 #include <iostream>
 #if !defined(TS_NO_EDITLINE)
-    #if defined(TS_OPENBSD)
+    #if defined(TS_OPENBSD) || defined(TS_LINUX)
         #include <readline/readline.h>
         #include <readline/history.h>
     #else

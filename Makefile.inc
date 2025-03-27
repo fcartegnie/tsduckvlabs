@@ -567,7 +567,7 @@ LDFLAGS_PTHREAD = $(if $(MACOS),,-pthread)
 
 # External libraries
 
-LDLIBS += -lpthread $(if $(MACOS)$(OPENBSD),,-lrt) -lm
+LDLIBS += -lpthread $(if $(MACOS)$(OPENBSD),,-lrt) -lm -lreadline -lhistory
 
 # Global compilation flags.
 # Additional flags can be passed on the "make" command line using xxFLAGS_EXTRA.
@@ -766,7 +766,7 @@ endif
 # when linking applications against the TSDuck static library.
 
 LIBTSDUCK_CXXFLAGS_INCLUDES +=
-LIBTSDUCK_LDLIBS += -lcrypto $(LDLIBS_PCSC) \
+LIBTSDUCK_LDLIBS += -lcrypto -lzstd -lz $(LDLIBS_PCSC) \
     $(if $(FREEBSD),-lprocstat) \
     $(if $(OPENBSD)$(NETBSD)$(DRAGONFLYBSD),-lkvm) \
     $(if $(LINUX),-latomic)
@@ -786,7 +786,7 @@ endif
 ifneq ($(NOEDITLINE),)
     LIBTSDUCK_CXXFLAGS_INCLUDES += -DTS_NO_EDITLINE=1
 else
-    LIBTSDUCK_LDLIBS += -ledit
+    LIBTSDUCK_LDLIBS += -lreadline -lhistory
 endif
 
 ifneq ($(NOCURL),)
