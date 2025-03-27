@@ -8,6 +8,7 @@
 
 #include "utestTSUnitThread.h"
 
+#include <iostream>
 
 //----------------------------------------------------------------------------
 // Constructors and destructors

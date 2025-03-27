@@ -19,6 +19,7 @@
 #include "tsSysUtils.h"
 #include "tsunit.h"
 
+#include <thread>
 
 //----------------------------------------------------------------------------
 // The test fixture

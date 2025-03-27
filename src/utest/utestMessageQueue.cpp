@@ -10,6 +10,9 @@
 //
 //----------------------------------------------------------------------------
 
+#include <list>
+#include <thread>
+
 #include "tsMessageQueue.h"
 #include "tsMessagePriorityQueue.h"
 #include "tsSysUtils.h"

@@ -16,6 +16,8 @@
 #include "utestTSUnitThread.h"
 #include "tsunit.h"
 
+#include <condition_variable>
+#include <thread>
 
 //----------------------------------------------------------------------------
 // The test fixture

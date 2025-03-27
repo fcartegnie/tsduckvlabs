@@ -13,6 +13,7 @@
 #include "tsEnumeration.h"
 #include "tsunit.h"
 
+#include <algorithm>
 
 //----------------------------------------------------------------------------
 // The test fixture

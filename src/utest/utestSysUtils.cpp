@@ -28,6 +28,7 @@
 #include "tsWinUtils.h"
 #endif
 
+#include <algorithm>
 
 //----------------------------------------------------------------------------
 // The test fixture

@@ -10,6 +10,8 @@
 //
 //----------------------------------------------------------------------------
 
+#include <iostream>
+
 #include "tsReportBuffer.h"
 #include "tsReportFile.h"
 #include "tsFileUtils.h"
