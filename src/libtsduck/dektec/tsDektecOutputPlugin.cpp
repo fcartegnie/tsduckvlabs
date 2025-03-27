@@ -25,6 +25,8 @@ bool tsDektecOutputPluginIsEmpty = true; // Avoid warning about empty module.
 #include "tsIntegerUtils.h"
 #include "tsFatal.h"
 
+#include <thread>
+
 TS_REGISTER_OUTPUT_PLUGIN(u"dektec", ts::DektecOutputPlugin);
 
 #define DEFAULT_PRELOAD_FIFO_PERCENTAGE 80

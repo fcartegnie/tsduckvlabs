@@ -9,6 +9,7 @@
 #include "tsDektecControl.h"
 #include "tsDektec.h"
 
+#include <thread>
 
 //----------------------------------------------------------------------------
 // Stubs when DTAPI is not supported

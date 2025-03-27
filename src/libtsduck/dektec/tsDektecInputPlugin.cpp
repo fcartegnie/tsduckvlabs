@@ -22,6 +22,8 @@ bool tsDektecInputPluginIsEmpty = true; // Avoid warning about empty module.
 #include "tsFatal.h"
 #include "tsLNB.h"
 
+#include <thread>
+
 TS_REGISTER_INPUT_PLUGIN(u"dektec", ts::DektecInputPlugin);
 
 // Consider that the first 5 receive() are "initialization". If a full input FIFO is
