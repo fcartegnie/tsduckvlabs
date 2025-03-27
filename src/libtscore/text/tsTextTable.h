@@ -15,6 +15,11 @@
 #include "tsUString.h"
 #include "tsStringifyInterface.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! This class produces a formatted table of text lines and columns.

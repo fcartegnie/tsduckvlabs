@@ -18,6 +18,10 @@
 #include "tsEditLine.h"
 #include "tsCerrReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! A basic command line interpreter.

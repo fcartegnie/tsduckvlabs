@@ -16,6 +16,11 @@
 #include "tsIntegerUtils.h"
 #include "tsEnumUtils.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include <set>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Flags to be used in the formating of names using class Names.

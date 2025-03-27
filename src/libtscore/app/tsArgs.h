@@ -21,6 +21,7 @@
 
 #include "tsBeforeStandardHeaders.h"
 #include <bitset>
+#include <map>
 #include "tsAfterStandardHeaders.h"
 
 namespace ts {

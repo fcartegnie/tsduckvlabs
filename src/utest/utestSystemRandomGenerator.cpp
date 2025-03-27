@@ -15,6 +15,7 @@
 #include "tsByteBlock.h"
 #include "tsunit.h"
 
+#include <algorithm>
 
 //----------------------------------------------------------------------------
 // The test fixture

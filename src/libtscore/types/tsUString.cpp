@@ -18,12 +18,12 @@
 #include "tsIntegerUtils.h"
 #include "tsNames.h"
 
-// #include "tsBeforeStandardHeaders.h"
+#include "tsBeforeStandardHeaders.h"
 // #include <algorithm>
 // #include <cmath>
-// #include <iostream>
+#include <iostream>
 // #include <string>
-// #include "tsAfterStandardHeaders.h"
+#include "tsAfterStandardHeaders.h"
 
 
 //----------------------------------------------------------------------------

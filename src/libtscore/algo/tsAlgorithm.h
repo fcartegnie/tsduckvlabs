@@ -21,6 +21,7 @@
 #include "tsBeforeStandardHeaders.h"
 #include <algorithm>
 #include <set>
+#include <vector>
 #include "tsAfterStandardHeaders.h"
 
 namespace ts {

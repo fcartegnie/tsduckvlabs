@@ -14,6 +14,10 @@
 #pragma once
 #include "tsxmlDocument.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts::xml {
     //!
     //! Representation of a "running" XML document which is displayed on the fly.

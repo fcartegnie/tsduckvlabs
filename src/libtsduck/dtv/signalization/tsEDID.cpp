@@ -8,6 +8,9 @@
 
 #include "tsEDID.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Build the EDID for an MPEG or DVB extension descriptor.

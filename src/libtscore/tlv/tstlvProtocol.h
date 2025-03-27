@@ -14,6 +14,10 @@
 #pragma once
 #include "tstlvMessage.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <map>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts::tlv {
 
     class MessageFactory;

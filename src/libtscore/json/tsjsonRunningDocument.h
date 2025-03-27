@@ -15,6 +15,10 @@
 #include "tsjson.h"
 #include "tsTextFormatter.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts::json {
     //!
     //! Representation of a "running" JSON document which is displayed on the fly.
