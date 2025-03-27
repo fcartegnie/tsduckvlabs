@@ -1270,5 +1270,6 @@ endif(BUILD_SHARED_LIBS)
 if(TSDUCK_TOOLS)
     add_subdirectory(src/tstools)
 endif(TSDUCK_TOOLS)
+add_subdirectory(src/utest)
 
 feature_summary(INCLUDE_QUIET_PACKAGES WHAT ALL)
