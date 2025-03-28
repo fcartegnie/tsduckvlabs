@@ -228,7 +228,7 @@ namespace ts {
         };
 
         // Internal command handler for predefined commands.
-        class PredefinedCommands : public CommandLineHandler
+        class TSDUCKDLL PredefinedCommands : public CommandLineHandler
         {
             TS_NOBUILD_NOCOPY(PredefinedCommands);
         public:
