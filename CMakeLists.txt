@@ -1120,16 +1120,16 @@ set(tsduck_plugins_plugins_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tshlsOutputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsHTTPInputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsHTTPOutputPlugin.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsInputPlugin.cpp
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsInputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsIPInputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsIPOutputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsIPPacketPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsMemoryInputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsMemoryOutputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsNullInputPlugin.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsOutputPlugin.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsPlugin.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsProcessorPlugin.cpp
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsOutputPlugin.cpp
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsPlugin.cpp
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsProcessorPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsPSIPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsPushInputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsRISTInputPlugin.cpp
@@ -1139,6 +1139,13 @@ set(tsduck_plugins_plugins_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsSRTOutputPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsTablesPlugin.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsTeletextPlugin.cpp
+)
+
+set(tsduck_plugins_static_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsInputPlugin.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsOutputPlugin.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsPlugin.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/plugins/plugins/tsProcessorPlugin.cpp
 )
 
 set(tsduck_vatek_SOURCES
@@ -1192,7 +1199,7 @@ if(NOT NOHIDES)
 endif()
 
 if(BUILD_SHARED_LIBS)
-    add_library(tsduck SHARED ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES} ${tsduck_plugins_plugins_SOURCES})
+    add_library(tsduck SHARED ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES} ${tsduck_plugins_static_SOURCES} ${tsduck_plugins_plugins_SOURCES})
     target_compile_definitions(tsduck
         PUBLIC ${BITRATE_FORMAT_FLAG}
         PUBLIC ${LIBTSDUCK_CXXFLAGS_INCLUDES}
@@ -1240,7 +1247,7 @@ if(NOT BUILD_SHARED_LIBS)
         ENABLE_EXPORTS TRUE
     )
     
-    add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES} ${tsduck_plugins_plugins_SOURCES}) # $<TARGET_OBJECTS:allplugins>)
+    add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES} ${tsduck_plugins_static_SOURCES}) # $<TARGET_OBJECTS:allplugins>)
     target_compile_definitions(tsducklib
         PUBLIC ${BITRATE_FORMAT_FLAG}
         PUBLIC TSDUCK_STATIC
