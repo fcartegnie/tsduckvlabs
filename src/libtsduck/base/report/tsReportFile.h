@@ -15,6 +15,11 @@
 #include "tsReport.h"
 #include "tsUString.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <iostream>
+#include "tsAfterStandardHeaders.h"
+
+
 namespace ts {
     //!
     //! A subclass of ts::Report which outputs messages in a text file.

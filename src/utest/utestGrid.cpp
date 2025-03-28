@@ -13,6 +13,7 @@
 #include "tsGrid.h"
 #include "tsunit.h"
 
+#include <sstream>
 
 //----------------------------------------------------------------------------
 // The test fixture

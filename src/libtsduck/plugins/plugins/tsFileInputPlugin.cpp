@@ -9,10 +9,6 @@
 #include "tsFileInputPlugin.h"
 #include "tsPluginRepository.h"
 
-#include "tsBeforeStandardHeaders.h"
-#include <algorithm>
-#include "tsAfterStandardHeaders.h"
-
 TS_REGISTER_INPUT_PLUGIN(u"file", ts::FileInputPlugin);
 
 

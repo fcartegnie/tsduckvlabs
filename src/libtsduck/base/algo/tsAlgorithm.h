@@ -21,6 +21,7 @@
 
 #include "tsBeforeStandardHeaders.h"
 #include <algorithm>
+#include <list>
 #include <set>
 #include <vector>
 #include "tsAfterStandardHeaders.h"

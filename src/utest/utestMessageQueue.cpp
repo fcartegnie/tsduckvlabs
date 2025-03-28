@@ -10,15 +10,14 @@
 //
 //----------------------------------------------------------------------------
 
-#include <list>
-#include <thread>
-
 #include "tsMessageQueue.h"
 #include "tsMessagePriorityQueue.h"
 #include "tsSysUtils.h"
 #include "tsTime.h"
 #include "tsunit.h"
 #include "utestTSUnitThread.h"
+
+#include <thread>
 
 
 //----------------------------------------------------------------------------

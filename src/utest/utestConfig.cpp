@@ -14,6 +14,7 @@
 #include "tsunit.h"
 
 #include <algorithm>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 // The test fixture

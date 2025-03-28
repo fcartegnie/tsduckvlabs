@@ -10,8 +10,6 @@
 //
 //----------------------------------------------------------------------------
 
-#include <list>
-
 #include "tsAlgorithm.h"
 #include "tsunit.h"
 #include <cstdarg>

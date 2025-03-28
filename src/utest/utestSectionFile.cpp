@@ -28,6 +28,7 @@
 #include "tables/psi_pmt_scte35_xml.h"
 #include "tables/psi_pmt_scte35_sections.h"
 
+#include <sstream>
 
 //----------------------------------------------------------------------------
 // The test fixture
