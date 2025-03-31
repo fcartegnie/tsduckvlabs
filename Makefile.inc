@@ -616,7 +616,7 @@ LOG = $(if $(VERBOSE)$(V),,@echo '  $(1)';)
 $(OBJDIR)/%.o: %.cpp
 	$(call LOG,[CXX] $<) mkdir -p $(OBJDIR); $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
 $(BINDIR)/%: $(OBJDIR)/%.o
-	$(call LOG,[LD] $@) $(CXX) $(LDFLAGS) $^ $(LDLIBS_EXTRA) $(LDLIBS) -o $@
+	$(call LOG,[LD] $@) $(CXX) $(LDFLAGS) $^ $(LDLIBS_EXTRA) $(LIBTSDUCK_LDLIBS) $(LDLIBS) -o $@
 $(BINDIR)/%$(SO_SUFFIX): $(OBJDIR)/%.o
 	$(call LOG,[LD] $@) $(CXX) $(SOFLAGS) $(LDFLAGS) $^ $(LDLIBS_EXTRA) $(LDLIBS) -shared -o $@
 
