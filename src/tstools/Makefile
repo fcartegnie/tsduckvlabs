@@ -31,7 +31,7 @@ else
 endif
 
 # Some executables depend on PCSC.
-$(BINDIR)/tssmartcard: LDLIBS_EXTRA = $(LDLIBS_PCSC)
+$(BINDIR)/tssmartcard: LDLIBS_EXTRA = $(LDLIBS_PCSC) $(LIBTSDUCK_LDLIBS)
 
 .PHONY: install install-tools
 install install-tools: $(EXECS) tsduck-completion.bash
