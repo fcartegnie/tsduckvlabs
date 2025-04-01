@@ -446,15 +446,17 @@ else()
 endif()
 
 if(NOT WIN32)
-    # if(NOT BUILD_SHARED_LIBS)
-    #     set(OPENSSL_USE_STATIC_LIBS TRUE)
-    # endif()
+    if(NOT BUILD_SHARED_LIBS)
+        set(OPENSSL_USE_STATIC_LIBS ON)
+    endif()
     find_package(OpenSSL REQUIRED)
-    list(APPEND LIBTSDUCK_LINK_LIBRARIES OpenSSL::Crypto)
     if(NOT BUILD_SHARED_LIBS)
         # UGLY for now as we seem to pull -lz and libz.a with OPENSSL_USE_STATIC_LIBS
-        list(APPEND LIBTSDUCK_LINK_LIBRARIES ${CMAKE_DL_LIBS})
+        # and libz.a is not relocatable in this plugin
+        list(APPEND LIBTSDUCK_LINK_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY} ${CMAKE_DL_LIBS})
         list(APPEND LIBTSDUCK_LINK_LIBRARIES z zstd)
+    else()
+        list(APPEND LIBTSDUCK_LINK_LIBRARIES OpenSSL::Crypto)
     endif()
 endif()
 
