@@ -51,7 +51,7 @@ else()
 endif()
 
 if(NOT BUILD_SHARED_LIBS)
-    if(NOT WIN32 OR MINGW)
+    if(LINUX OR BSD)
         set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack")
         set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,noexecstack")
     endif()
