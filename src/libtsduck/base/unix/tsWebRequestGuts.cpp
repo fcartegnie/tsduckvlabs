@@ -42,6 +42,10 @@
 #include "tsSysUtils.h"
 #include "tsURL.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
+
 
 //----------------------------------------------------------------------------
 // Stubs when libcurl is not available.
