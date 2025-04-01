@@ -33,6 +33,8 @@ option(NOSRT "")
 option(NORIST "")
 option(NODEPRECATE "")
 
+option(BUILD_TESTING "Build tests" OFF)
+
 set(BITRATE_FORMAT "float" CACHE STRING "bitrate representation (float fraction integer fixed decimals=xx)")
 if(BITRATE_FORMAT STREQUAL "fraction")
     set(BITRATE_FORMAT_FLAG -DTS_BITRATE_FRACTION=1)
@@ -1270,6 +1272,8 @@ endif(BUILD_SHARED_LIBS)
 if(TSDUCK_TOOLS)
     add_subdirectory(src/tstools)
 endif(TSDUCK_TOOLS)
-add_subdirectory(src/utest)
+if(BUILD_TESTING)
+    add_subdirectory(src/utest)
+endif()
 
 feature_summary(INCLUDE_QUIET_PACKAGES WHAT ALL)
