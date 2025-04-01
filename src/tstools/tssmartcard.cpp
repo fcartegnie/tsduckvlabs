@@ -12,6 +12,10 @@
 
 #include "tsMain.h"
 #include "tsPCSC.h"
+
+#include <array>
+#include <iostream>
+
 TS_MAIN(MainCode);
 
 // SCARD_ macros contains many "old style" casts.
