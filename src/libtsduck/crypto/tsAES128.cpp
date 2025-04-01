@@ -40,7 +40,7 @@ void ts::AES128::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& i
     ignore_iv = true;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("AES-128-ECB"), Algo);
 const EVP_CIPHER* ts::AES128::getAlgorithm() const
@@ -78,7 +78,7 @@ void ts::ECB<ts::AES128>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length
     ignore_iv = true;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 const EVP_CIPHER* ts::ECB<ts::AES128>::getAlgorithm() const
 {
@@ -115,7 +115,7 @@ void ts::CBC<ts::AES128>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length
     ignore_iv = false;
 }
 
-#else
+#elif !defined(TS_NO_OPENSSL)
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("AES-128-CBC"), AlgoCBC);
 const EVP_CIPHER* ts::CBC<ts::AES128>::getAlgorithm() const

@@ -21,6 +21,8 @@ ts::UString ts::GetCryptographicLibraryVersion()
 #if defined(TS_WINDOWS)
     // Don't know how to get the version of BCrypt library.
     return u"Microsoft BCrypt";
+#elif defined(TS_NO_OPENSSL)
+    return u"None";
 #elif defined(OPENSSL_FULL_VERSION_STRING)
     // OpenSSL v3
     return UString::Format(u"OpenSSL %s (%s)", OpenSSL_version(OPENSSL_FULL_VERSION_STRING), OpenSSL_version(OPENSSL_CPU_INFO));

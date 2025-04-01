@@ -36,7 +36,7 @@ namespace ts {
     protected:
 #if defined(TS_WINDOWS)
         virtual void getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length) const override;
-#else
+#elif !defined(TS_NO_OPENSSL)
         virtual const EVP_MD_CTX* referenceContext() const override;
 #endif
     };
