@@ -23,8 +23,10 @@ namespace ts {
     {
         TS_NOCOPY(SHA256);
     public:
-        SHA256() : Hash(u"SHA-256", HASH_SIZE) {}  //!< Constructor.
-        virtual ~SHA256() override;                //!< Destructor.
+        //!
+        //! Constructor.
+        //!
+        SHA256() : Hash(u"SHA-256", HASH_SIZE) {}
 
         //!
         //! SHA-256 hash size in bytes (256 bits).
@@ -34,7 +36,7 @@ namespace ts {
     protected:
 #if defined(TS_WINDOWS)
         virtual void getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length) const override;
-#elif !defined(TS_NO_OPENSSL)
+#else
         virtual const EVP_MD_CTX* referenceContext() const override;
 #endif
     };

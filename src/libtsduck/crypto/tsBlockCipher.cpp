@@ -33,15 +33,12 @@ ts::BlockCipher::~BlockCipher()
 {
     // Cleanup system-specific crypto library resources, if used.
 #if defined(TS_WINDOWS)
-
     if (_hkey != nullptr) {
         ::BCryptDestroyKey(_hkey);
         _hkey = nullptr;
     }
     _algo = nullptr;
-
-#elif !defined(TS_NO_OPENSSL)
-
+#else
     if (_encrypt != nullptr) {
         EVP_CIPHER_CTX_free(_encrypt);
         _encrypt = nullptr;
@@ -51,7 +48,6 @@ ts::BlockCipher::~BlockCipher()
         _decrypt = nullptr;
     }
     _algo = nullptr;
-
 #endif
 }
 
@@ -109,7 +105,7 @@ void ts::BlockCipher::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bo
     ignore_iv = false;
 }
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
 const EVP_CIPHER* ts::BlockCipher::getAlgorithm() const
 {
@@ -321,7 +317,7 @@ bool ts::BlockCipher::setKeyImpl()
     }
     return true;
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
     // Get a reference to algorithm EVP the first time.
     if (_algo == nullptr && (_algo = getAlgorithm()) == nullptr) {
@@ -347,11 +343,6 @@ bool ts::BlockCipher::setKeyImpl()
     }
 
     return true;
-
-#else
-
-    // No cryptographic library.
-    return false;
 
 #endif
 }
@@ -382,7 +373,7 @@ bool ts::BlockCipher::encryptImpl(const void* plain, size_t plain_length, void* 
     }
     return true;
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
     // Problem with OpenSSL: there is no way to limit the amount of written data during encryption or decryption.
     // The application shall provide a "large enough" output buffer. From OpenSSL man page for EVP_EncryptUpdate:
@@ -440,11 +431,6 @@ bool ts::BlockCipher::encryptImpl(const void* plain, size_t plain_length, void* 
     }
     return true;
 
-#else
-
-    // No cryptographic library.
-    return false;
-
 #endif
 }
 
@@ -474,7 +460,7 @@ bool ts::BlockCipher::decryptImpl(const void* cipher, size_t cipher_length, void
     }
     return true;
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
     // See comment in encryptImpl().
     if (plain_maxsize < cipher_length) {
@@ -521,11 +507,6 @@ bool ts::BlockCipher::decryptImpl(const void* cipher, size_t cipher_length, void
         *plain_length = size_t(output_len);
     }
     return true;
-
-#else
-
-    // No cryptographic library.
-    return false;
 
 #endif
 }

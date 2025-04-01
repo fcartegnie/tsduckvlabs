@@ -30,17 +30,6 @@ ts::TDES::TDES(const BlockCipherProperties& props) : BlockCipher(props)
     canProcessInPlace(true);
 }
 
-ts::TDES::~TDES()
-{
-}
-
-
-//----------------------------------------------------------------------------
-// Implementation using external cryptographic libraries.
-//----------------------------------------------------------------------------
-
-#if !defined(TS_NO_CRYPTO_LIBRARY)
-
 #if defined(TS_WINDOWS)
 
 TS_STATIC_INSTANCE(ts::FetchBCryptAlgorithm, (BCRYPT_3DES_ALGORITHM, BCRYPT_CHAIN_MODE_ECB), FetchECB);
@@ -51,7 +40,7 @@ void ts::TDES::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, bool& ign
     ignore_iv = true;
 }
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("DES-EDE3-ECB"), Algo);
 const EVP_CIPHER* ts::TDES::getAlgorithm() const
@@ -89,7 +78,7 @@ void ts::ECB<ts::TDES>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, 
     ignore_iv = true;
 }
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
 const EVP_CIPHER* ts::ECB<ts::TDES>::getAlgorithm() const
 {
@@ -126,7 +115,7 @@ void ts::CBC<ts::TDES>::getAlgorithm(::BCRYPT_ALG_HANDLE& algo, size_t& length, 
     ignore_iv = false;
 }
 
-#elif !defined(TS_NO_OPENSSL)
+#else
 
 TS_STATIC_INSTANCE(ts::FetchCipherAlgorithm, ("DES-EDE3-CBC"), AlgoCBC);
 const EVP_CIPHER* ts::CBC<ts::TDES>::getAlgorithm() const
@@ -135,5 +124,3 @@ const EVP_CIPHER* ts::CBC<ts::TDES>::getAlgorithm() const
 }
 
 #endif
-
-#endif // TS_NO_CRYPTO_LIBRARY

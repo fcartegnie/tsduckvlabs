@@ -12,6 +12,7 @@
 //----------------------------------------------------------------------------
 
 #pragma once
+#include "tsPlatform.h"
 
 // Some global constant private booleans which are defined when the accelerated
 // modules are compiled with accelerated instructions.
