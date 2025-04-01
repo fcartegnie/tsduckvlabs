@@ -51,8 +51,8 @@ else()
 endif()
 
 if(NOT BUILD_SHARED_LIBS AND (NOT WIN32 OR MINGW))
-    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -static -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
-    set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -static -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
+    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
+    set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
 endif()
 
 
@@ -413,10 +413,10 @@ endif()
 
 set(CURL_FOUND 0)
 if(NOT NOCURL)
-    if(NOT BUILD_SHARED_LIBS)
-        set(CURL_NO_CURL_CMAKE ON)
-        set(CURL_USE_STATIC_LIBS TRUE)
-    endif()
+    # if(NOT BUILD_SHARED_LIBS)
+    #     set(CURL_NO_CURL_CMAKE ON)
+    #     set(CURL_USE_STATIC_LIBS TRUE)
+    # endif()
     find_package(CURL QUIET)
 endif()
 if(NOT CURL_FOUND)
@@ -446,18 +446,20 @@ else()
 endif()
 
 if(NOT WIN32)
-    if(NOT BUILD_SHARED_LIBS)
-        set(OPENSSL_USE_STATIC_LIBS ON)
-    endif()
+    # if(NOT BUILD_SHARED_LIBS)
+    #     set(OPENSSL_USE_STATIC_LIBS ON)
+    # endif()
     find_package(OpenSSL REQUIRED)
-    if(NOT BUILD_SHARED_LIBS)
-        # UGLY for now as we seem to pull -lz and libz.a with OPENSSL_USE_STATIC_LIBS
-        # and libz.a is not relocatable in this plugin
-        list(APPEND LIBTSDUCK_LINK_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY} ${CMAKE_DL_LIBS})
-        list(APPEND LIBTSDUCK_LINK_LIBRARIES z zstd)
-    else()
+    # if(NOT BUILD_SHARED_LIBS)
+    #     # UGLY for now as we seem to pull -lz and libz.a with OPENSSL_USE_STATIC_LIBS
+    #     # and libz.a is not relocatable in this plugin
+    #     list(APPEND LIBTSDUCK_LINK_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY} ${CMAKE_DL_LIBS})
+    #     find_library(ZLIB_LIB z)
+    #     find_library(ZSTD_LIB zstd)
+    #     list(APPEND LIBTSDUCK_LINK_LIBRARIES ${ZLIB_LIB} ${ZSTD_LIB})
+    # else()
         list(APPEND LIBTSDUCK_LINK_LIBRARIES OpenSSL::Crypto)
-    endif()
+    # endif()
 endif()
 
 if(NODTAPI)
@@ -1233,32 +1235,7 @@ if(NOT BUILD_SHARED_LIBS)
     list(TRANSFORM TSPLUGINS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins/tsplugin_ OUTPUT_VARIABLE tsplugin_static_SOURCES)
     list(TRANSFORM tsplugin_static_SOURCES APPEND ".cpp")
 
-    # list(APPEND tsplugin_static_SOURCES ${tsduck_plugins_plugins_SOURCES})
-
-    # # relocatable executable with exported symbols (no main)
-    # add_library(allplugins STATIC ${tsplugin_static_SOURCES})
-    # # if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "CLang")
-    # #     # GCC and CLang partial linking
-    # #     target_link_options(allplugins PRIVATE -r)
-    # # endif()
-    # target_compile_definitions(allplugins
-    #     PUBLIC ${BITRATE_FORMAT_FLAG}
-    #     PUBLIC TSDUCK_STATIC
-    #     PUBLIC ${LIBTSDUCK_CXXFLAGS_INCLUDES}
-    #     PRIVATE TSDUCK_STATIC_LIBRARY)
-    # target_include_directories(allplugins 
-    #     PUBLIC ${tsduck_PUBLIC_INCLUDES}
-    #     PRIVATE ${tsduck_PRIVATE_INCLUDES})
-    # set_target_properties(allplugins PROPERTIES
-    #     # PREFIX ""
-    #     # SUFFIX ${CMAKE_CXX_OUTPUT_EXTENSION}
-    #     # ENABLE_EXPORTS TRUE
-    #     INTERFACE_POSITION_INDEPENDENT_CODE ON
-    # )
-    
-    # -Wl,--whole-archive libX.a -Wl,--no-whole-archive
     add_library(tsducklib STATIC ${tsduck_base_SOURCES} ${tsduck_dtv_SOURCES} ${tsduck_crypto_SOURCES} ${tsduck_vatek_SOURCES} ${tsduck_dektec_SOURCES} ${tsduck_hides_SOURCES} ${tsduck_plugins_SOURCES} ${tsduck_plugins_static_SOURCES} ${tsduck_plugins_plugins_SOURCES} ${tsplugin_static_SOURCES})
-    #  $<TARGET_OBJECTS:allplugins>) # $<TARGET_OBJECTS:allplugins>)
     target_compile_definitions(tsducklib
         PUBLIC ${BITRATE_FORMAT_FLAG}
         PUBLIC TSDUCK_STATIC
@@ -1270,10 +1247,8 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>
         PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-    # add_dependencies(tsducklib allplugins)
 
-    target_link_libraries(tsducklib PUBLIC ${CMAKE_DL_LIBS}) # "$<LINK_LIBRARY:WHOLE_ARCHIVE,allplugins>")
-    # set(tsduck_libs "$<TARGET_FILE:allplugins>" tsducklib)
+    target_link_libraries(tsducklib PUBLIC ${CMAKE_DL_LIBS})
     set(tsduck_libs "$<LINK_LIBRARY:WHOLE_ARCHIVE,tsducklib>")
 
     target_link_libraries(tsducklib PRIVATE ${LIBTSDUCK_LINK_LIBRARIES})
