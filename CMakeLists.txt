@@ -50,9 +50,15 @@ else()
     set(BITRATE_FORMAT_FLAG -DTS_BITRATE_FRACTION=1)
 endif()
 
-if(NOT BUILD_SHARED_LIBS AND (NOT WIN32 OR MINGW))
-    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
-    set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-rpath,'$$ORIGIN',-z,noexecstack")
+if(NOT BUILD_SHARED_LIBS)
+    if(NOT WIN32 OR MINGW)
+        set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack")
+        set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,noexecstack")
+    endif()
+    if(NOT WIN32)
+        set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,'$$ORIGIN'")
+        set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-rpath,'$$ORIGIN'")
+    endif()
 endif()
 
 
