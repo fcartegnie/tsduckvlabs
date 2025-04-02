@@ -14,6 +14,10 @@ bool tsDVBT2ParamsEvaluatorIsEmpty = true; // Avoid warning about empty module.
 
 #include "tsDVBT2ParamsEvaluator.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <array>
+#include "tsAfterStandardHeaders.h"
+
 namespace {
     template <typename V, typename... T>
     constexpr auto array_of(T&&... t) -> std::array < V, sizeof...(T) >
