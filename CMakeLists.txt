@@ -490,6 +490,10 @@ if(NOT NODTAPI)
         URL_HASH SHA512=${DTAPI_SHA512}
     )
     FetchContent_MakeAvailable(DTAPI)
+    if(WIN32)
+        # TODO: call scripts/install-wintools/install-dektec.ps1 to install the actual SDK
+        # It will probably not work in mingw-w64 as it's a C++ library compatible with the MSVC C++ runtime
+    endif()
     list(APPEND tsduck_PUBLIC_INCLUDES ${FETCHCONTENT_BASE_DIR}/dtapi-src/DTAPI/Include)
 else()
     list(APPEND LIBTSDUCK_CXXFLAGS_INCLUDES TS_NO_DTAPI=1)
