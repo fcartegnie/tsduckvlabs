@@ -13,7 +13,9 @@
 #include "tsPESPacket.h"
 #include "tsLogicalChannelNumbers.h"
 #include "tsCADescriptor.h"
+#if defined(TS_WITH_ISDB)
 #include "tsISDBAccessControlDescriptor.h"
+#endif
 #include "tsCAT.h"
 #include "tsSDT.h"
 #include "tsBAT.h"
@@ -26,7 +28,9 @@
 #include "tsTVCT.h"
 #include "tsRRT.h"
 #include "tsSTT.h"
+#if defined(TS_WITH_SAT)
 #include "tsSAT.h"
+#endif
 
 
 //----------------------------------------------------------------------------
@@ -726,6 +730,7 @@ void ts::SignalizationDemux::handleTable(SectionDemux&, const BinaryTable& table
             }
             break;
         }
+#if defined(TS_WITH_SAT)
         case TID_SAT: {
             const SAT sat(_duck, table);
             if (sat.isValid() && pid == PID_SAT) {
@@ -733,6 +738,7 @@ void ts::SignalizationDemux::handleTable(SectionDemux&, const BinaryTable& table
             }
             break;
         }
+#endif
         default: {
             // Unsupported table id or processed elsewhere (STT).
             break;
@@ -1079,6 +1085,7 @@ void ts::SignalizationDemux::handleVCT(const XVCT& vct, PID pid, void (Signaliza
 }
 
 
+#if defined(TS_WITH_SAT)
 //----------------------------------------------------------------------------
 // Process a SAT.
 //----------------------------------------------------------------------------
@@ -1090,6 +1097,7 @@ void ts::SignalizationDemux::handleSAT(const SAT& sat, PID pid)
         _handler->handleSAT(sat, pid);
     }
 }
+#endif
 
 
 //----------------------------------------------------------------------------
@@ -1111,12 +1119,14 @@ void ts::SignalizationDemux::handleDescriptors(const DescriptorList& dlist, PID 
                     getPIDContext(desc.ca_pid).setCAS(dlist.table(), desc.cas_id);
                 }
             }
+#if defined(TS_WITH_ISDB)
             else if (bool(_duck.standards() & Standards::ISDB) && did == DID_ISDB_CA) {
                 const ISDBAccessControlDescriptor desc(_duck, bindesc);
                 if (desc.isValid()) {
                     getPIDContext(desc.pid).setCAS(dlist.table(), desc.CA_system_id);
                 }
             }
+#endif
         }
     }
 }

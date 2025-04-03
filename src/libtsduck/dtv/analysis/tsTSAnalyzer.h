@@ -16,7 +16,9 @@
 #include "tsTSPacketMetadata.h"
 #include "tsSectionDemux.h"
 #include "tsPESDemux.h"
+#if defined(TS_HAS_T2MI)
 #include "tsT2MIDemux.h"
+#endif
 #include "tsISDB.h"
 #include "tsLogicalChannelNumbers.h"
 #include "tsPAT.h"
@@ -42,8 +44,10 @@ namespace ts {
         private TableHandlerInterface,
         private SectionHandlerInterface,
         private InvalidSectionHandlerInterface,
-        private PESHandlerInterface,
-        private T2MIHandlerInterface
+        private PESHandlerInterface
+#if defined(TS_HAS_T2MI)
+        ,private T2MIHandlerInterface
+#endif
     {
         TS_NOBUILD_NOCOPY(TSAnalyzer);
     public:
@@ -556,10 +560,12 @@ namespace ts {
         virtual void handleNewAC3Attributes(PESDemux&, const PESPacket&, const AC3Attributes&) override;
         virtual void handleInvalidPESPacket(PESDemux&, const DemuxedData&) override;
 
+#if defined(TS_HAS_T2MI)
         // Implementation of T2MIHandlerInterface
         virtual void handleT2MINewPID(T2MIDemux& demux, const PMT& pmt, PID pid, const T2MIDescriptor& desc) override;
         virtual void handleT2MIPacket(T2MIDemux& demux, const T2MIPacket& pkt) override;
         virtual void handleTSPacket(T2MIDemux& demux, const T2MIPacket& t2mi, const TSPacket& ts) override;
+#endif
 
         // TSAnalyzer private members (state data, used during analysis):
         bool         _modified = false;              // Internal data modified, need recomputeStatistics
@@ -571,7 +577,9 @@ namespace ts {
         uint64_t     _max_consecutive_suspects = 1;  // Max number of consecutive suspect packets before clearing suspect
         SectionDemux _demux {_duck, this, this};     // PSI tables analysis
         PESDemux     _pes_demux {_duck, this};       // Audio/video analysis
+#if defined(TS_HAS_T2MI)
         T2MIDemux    _t2mi_demux {_duck, this};      // T2-MI analysis
+#endif
         LogicalChannelNumbers _lcn {_duck};          // Accumulate LCN and visible flags
         DCT          _dct {};                        // Last ISDB CDT waiting to be analyzed, waiting for TS id
     };

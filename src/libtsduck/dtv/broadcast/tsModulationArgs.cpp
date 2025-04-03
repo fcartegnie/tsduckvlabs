@@ -15,11 +15,19 @@
 #include "tsNullReport.h"
 #include "tsDektec.h"
 #include "tsjsonObject.h"
+#if defined(TS_HAS_CABLE)
 #include "tsCableDeliverySystemDescriptor.h"
+#endif
+#if defined(TS_HAS_SAT)
 #include "tsSatelliteDeliverySystemDescriptor.h"
 #include "tsS2SatelliteDeliverySystemDescriptor.h"
+#endif
+#if defined(TS_HAS_TER)
 #include "tsTerrestrialDeliverySystemDescriptor.h"
+#endif
+#if defined(TS_WITH_ISDB)
 #include "tsISDBTerrestrialDeliverySystemDescriptor.h"
+#endif
 
 
 //----------------------------------------------------------------------------
@@ -606,6 +614,7 @@ bool ts::ModulationArgs::fromDeliveryDescriptors(DuckContext& duck, const Descri
 bool ts::ModulationArgs::fromDeliveryDescriptor(DuckContext& duck, const Descriptor& desc, uint16_t ts_id, DeliverySystem delsys)
 {
     switch (desc.tag()) {
+#if defined(TS_HAS_SAT)
         case DID_DVB_SAT_DELIVERY: {
             // DVB or ISDB satellite delivery network.
             // The descriptor can be used in either DVB or ISDB context.
@@ -648,6 +657,8 @@ bool ts::ModulationArgs::fromDeliveryDescriptor(DuckContext& duck, const Descrip
             }
             break;
         }
+#endif
+#if defined(TS_HAS_CABLE)
         case DID_DVB_CABLE_DELIVERY: {
             const CableDeliverySystemDescriptor dd(duck, desc);
             if (dd.isValid()) {
@@ -672,6 +683,8 @@ bool ts::ModulationArgs::fromDeliveryDescriptor(DuckContext& duck, const Descrip
             }
             break;
         }
+#endif
+#if defined(TS_HAS_TER)
         case DID_DVB_TERREST_DELIVERY: {
             const TerrestrialDeliverySystemDescriptor dd(duck, desc);
             if (dd.isValid()) {
@@ -688,6 +701,8 @@ bool ts::ModulationArgs::fromDeliveryDescriptor(DuckContext& duck, const Descrip
             }
             break;
         }
+#endif
+#if defined(TS_WITH_ISDB)
         case DID_ISDB_TERRES_DELIV:  {
             const ISDBTerrestrialDeliverySystemDescriptor dd(duck, desc);
             if (dd.isValid()) {
@@ -705,6 +720,7 @@ bool ts::ModulationArgs::fromDeliveryDescriptor(DuckContext& duck, const Descrip
             }
             break;
         }
+#endif
         default: {
             // Not a valid delivery descriptor.
             break;

@@ -707,7 +707,9 @@ namespace ts {
         void handleNIT(const NIT&, PID);
         void handleSDT(const SDT&, PID);
         void handleMGT(const MGT&, PID);
+#if defined(TS_WITH_SAT)
         void handleSAT(const SAT&, PID);
+#endif
 
         // Template common version for CVCT and TVCT.
         template<class XVCT> requires std::derived_from<XVCT, ts::VCT>

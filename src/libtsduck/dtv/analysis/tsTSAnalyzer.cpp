@@ -7,7 +7,9 @@
 //----------------------------------------------------------------------------
 
 #include "tsTSAnalyzer.h"
+#if defined(TS_HAS_T2MI)
 #include "tsT2MIPacket.h"
+#endif
 #include "tsDVB.h"
 #include "tsATSC.h"
 #include "tsTVCT.h"
@@ -102,7 +104,9 @@ void ts::TSAnalyzer::reset()
     _preceding_errors = 0;
     _preceding_suspects = 0;
     _pes_demux.reset();
+#if defined(TS_HAS_T2MI)
     _t2mi_demux.reset();
+#endif
     _lcn.clear();
     _dct.invalidate();
 
@@ -1339,6 +1343,7 @@ void ts::TSAnalyzer::handleNewHEVCAttributes(PESDemux&, const PESPacket& pkt, co
 }
 
 
+#if defined(TS_HAS_T2MI)
 //----------------------------------------------------------------------------
 // This hook is invoked when a new PID carrying T2-MI is available.
 // (Implementation of T2MIHandlerInterface).
@@ -1399,7 +1404,7 @@ void ts::TSAnalyzer::handleTSPacket(T2MIDemux& demux, const T2MIPacket& t2mi, co
     // Count demux'ed TS packets from this PLP.
     pc->t2mi_plp_ts[t2mi.plp()]++;
 }
-
+#endif
 
 //----------------------------------------------------------------------------
 // The following method feeds the analyzer with a TS packet.
@@ -1456,7 +1461,9 @@ void ts::TSAnalyzer::feedPacket(const TSPacket& pkt, const TSPacketMetadata& mda
     // Feed packets into the various demux
     _demux.feedPacket(pkt);
     _pes_demux.feedPacket(pkt);
+#if defined(TS_HAS_T2MI)
     _t2mi_demux.feedPacket(pkt);
+#endif
 
     // Get PID context
     PIDContextPtr ps(getPID(pkt.getPID()));

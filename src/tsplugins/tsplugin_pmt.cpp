@@ -18,9 +18,13 @@
 #include "tsPMT.h"
 #include "tsCADescriptor.h"
 #include "tsStreamIdentifierDescriptor.h"
+#if defined(TS_HAS_BROADCAST)
 #include "tsDataBroadcastIdDescriptor.h"
+#endif
 #include "tsRegistrationDescriptor.h"
+#if defined(TS_HAS_AC3)
 #include "tsDVBAC3Descriptor.h"
+#endif
 #include "tsDVBEnhancedAC3Descriptor.h"
 #include "tsCueIdentifierDescriptor.h"
 #include "tsAlgorithm.h"
@@ -385,6 +389,7 @@ bool ts::PMTPlugin::start()
         return false;
     }
 
+#if defined(TS_HAS_BROADCAST)
     // Get list of data_broadcast_id_descriptors to add
     opt_count = count(u"set-data-broadcast-id");
     for (size_t n = 0; n < opt_count; n++) {
@@ -397,6 +402,7 @@ bool ts::PMTPlugin::start()
             return false;
         }
     }
+#endif
 
     // Get list of components to move
     opt_count = count(u"move-pid");
@@ -588,6 +594,7 @@ void ts::PMTPlugin::modifyTable(BinaryTable& table, bool& is_target, bool& reins
     // Modify audio languages
     _languages.apply(duck, pmt);
 
+#if defined(TS_HAS_AC3)
     // Modify AC-3 signaling from ATSC to DVB method
     if (_ac3_atsc2dvb) {
         for (auto& smi : pmt.streams) {
@@ -613,6 +620,7 @@ void ts::PMTPlugin::modifyTable(BinaryTable& table, bool& is_target, bool& reins
             }
         }
     }
+#endif
 
     // Add stream_identifier_descriptor on all components.
     // Do this late to avoid clashing with descriptors we added.

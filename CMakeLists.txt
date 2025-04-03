@@ -41,6 +41,8 @@ option(NODEPRECATE "Do not flag legacy methods as deprecated")
 option(NOOPENSSL "No cryptographic support, remove dependency to openssl")
 option(NOZLIB "Don't use zlib, use embedded \"Small Deflate\" instead, remove dependency to zlib")
 
+option(NOVLC "Remove pieces of code unused in VLC" ON)
+
 option(BUILD_TESTING "Build tests" OFF)
 
 set(BITRATE_FORMAT "float" CACHE STRING "bitrate representation (float fraction integer fixed decimals=xx)")
@@ -153,6 +155,16 @@ file(GLOB tscore_private_SOURCES LIST_DIRECTORIES true
     "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/**/private/*\.cpp")
 list(APPEND tscore_SOURCES ${tscore_private_SOURCES})
 
+if(NOVLC)
+    list(REMOVE_ITEM tscore_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/crypto/tsKeyTable.cpp")
+    # list(FILTER tscore_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/json/")
+    # list(FILTER tscore_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/xml/")
+    list(FILTER tscore_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/network/tsPcap.*")
+    list(FILTER tscore_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/network/tsURL.*")
+    list(FILTER tscore_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/network/tsWeb.*")
+endif()
+
+
 file(GLOB TSPLUGINS LIST_DIRECTORIES false RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins "${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins/*\.cpp")
 
 # Add OS specific system files
@@ -190,6 +202,7 @@ else()
 endif()
 
 # Add OS specific network files
+if(NOT NOVLC)
 if(WIN32)
     file(GLOB tscore_network_SOURCES LIST_DIRECTORIES true 
         "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/network/windows/*\.cpp")
@@ -198,6 +211,7 @@ elseif(UNIX)
     file(GLOB tscore_network_SOURCES LIST_DIRECTORIES true 
         "${CMAKE_CURRENT_SOURCE_DIR}/src/libtscore/network/unix/*\.cpp")
     list(APPEND tscore_SOURCES ${tscore_network_SOURCES})
+endif()
 endif()
 
 file(GLOB_RECURSE tscore_PUBLIC_HEADERS LIST_DIRECTORIES true 
@@ -232,6 +246,7 @@ list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsd
 file(GLOB tsduck_transport_SOURCES LIST_DIRECTORIES true 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/transport/*\.cpp")
 list(APPEND tsduck_SOURCES ${tsduck_transport_SOURCES})
+if(NOT NOVLC)
 if(BSD)
     file(GLOB tsduck_broadcast_SOURCES LIST_DIRECTORIES true 
         "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/bsd/*\.cpp")
@@ -251,6 +266,7 @@ if(WIN32)
     file(GLOB tsduck_broadcast_SOURCES LIST_DIRECTORIES true 
         "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/windows/*\.cpp")
     list(APPEND tsduck_SOURCES ${tsduck_broadcast_SOURCES})
+endif()
 endif()
 
 if(NOT NOHIDES)
@@ -317,6 +333,8 @@ if(NOT NOPCSC)
 endif()
 if(NOT PCSCLITE_FOUND)
     list(APPEND LIBTSDUCK_CXXFLAGS_INCLUDES TS_NO_PCSC=1)
+    list(FILTER TSCORE_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/cas/tsPCSC.+")
+    list(FILTER tscore_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/cas/tsPCSC.+")
 else()
     list(APPEND LIBTSDUCK_LINK_LIBRARIES PkgConfig::PCSCLITE)
     list(APPEND LIBTSDUCK_LINK_LIBRARIES winscard)
@@ -456,7 +474,118 @@ endif()
 if(NOHIDES)
     list(REMOVE_ITEM TSPLUGINS "tsplugin_hides.cpp")
 endif()
+if(NOVLC)
+    # issues with DEFAULT_POLL_INTERVAL / DEFAULT_MIN_STABLE_DELAY dll export in gcc
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_eitinject.cpp")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_spliceinject.cpp")
+    # issue with DEFAULT_MIN_WAIT  dll export in gcc
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_regulate.cpp")
 
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_nitscan.cpp")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_pcap.cpp")
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/hls/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/hls/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+tshls.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+tshls.+")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+HTTP.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+HTTP.+")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+tsDirectShow.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+tsDirectShow.+")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+[tT]eletext.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+[tT]eletext.+")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/python/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/python/")
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_analyze.cpp")
+
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/.*tsTuner.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/.*tsTuner.+")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/tsTSScanner.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/tsTSScanner.+")
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/cas/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/cas/")
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/charset/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/charset/")
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/codec/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/codec/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/.+/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/.+/")
+
+    # list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsNetworkNameDescriptor.cpp")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_nit.cpp")
+
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsServiceDescriptor.cpp")
+    # list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsServiceListDescriptor.cpp")
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsStreamIdentifierDescriptor.cpp")
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsLocalTimeOffsetDescriptor.cpp")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_dvb.cpp")
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eacem/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eacem/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eutelsat/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eutelsat/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/isdb/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/isdb/")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_isdbinfo.cpp")
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/")
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/nordig/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/nordig/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/scte/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/scte/")
+    file(GLOB_RECURSE tsduck_DESCRIPTOR_SOURCES LIST_DIRECTORIES true "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/*/*Channel*.cpp")
+    # message(FATAL_ERROR "tsduck_DESCRIPTOR_SOURCES=${tsduck_DESCRIPTOR_SOURCES}")
+    list(APPEND tsduck_SOURCES ${tsduck_DESCRIPTOR_SOURCES})
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsCADescriptor.cpp")
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsISO639LanguageDescriptor.cpp")
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsRegistrationDescriptor.cpp") # needed by pmt
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/scte/tsCueIdentifierDescriptor.cpp") # needed by pmt
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsMetadataDescriptor.cpp") # needed by tests
+
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_splicemonitor.cpp")
+
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/mpe/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/mpe/")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_mpe.cpp")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_mpeinject.cpp")
+
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/t2mi/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/t2mi/")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_t2mi.cpp")
+
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/atsc/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/atsc/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/dvb/tsSAT.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/dvb/tsSAT.+")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/isdb/")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/isdb/")
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/scte/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/tables/scte/")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_eit.cpp")
+
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/dvbsimulcrypt/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/dvbsimulcrypt/")
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/encap/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/encap/")
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/epg/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/epg/")
+    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/transport/tsTSFuzzing.+")
+    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/transport/tsTSFuzzing.+")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_fuzz.cpp")
+
+    # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/timing/")
+    # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/timing/")
+endif()
+
+if(NOT NOVLC)
 set(TSDUCK_H_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include)
 file(MAKE_DIRECTORY ${TSDUCK_H_DIRECTORY})
 find_package(Python REQUIRED COMPONENTS Interpreter)
@@ -470,6 +599,7 @@ add_custom_target(tsduck_header
     DEPENDS ${TSDUCK_HEADERS}
     BYPRODUCTS ${TSDUCK_H_DIRECTORY}/tsduck.h
     COMMAND ${Python_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/build-tsduck-header.py tsduck ${TSDUCK_H_DIRECTORY}/tsduck.h)
+endif()
 
 
 include(GNUInstallDirs)
@@ -482,9 +612,11 @@ if(BUILD_SHARED_LIBS)
         PRIVATE _TSCOREDLL_IMPL
         PUBLIC _TSCOREDLL_USE)
     target_include_directories(tscore PRIVATE ${tscore_PRIVATE_INCLUDES})
+    if(NOT NOVLC)
     # to include tscore.h, not included in local code
     add_dependencies(tscore tscore_header)
     target_include_directories(tscore PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>)
+    endif()
     target_link_libraries(tscore PUBLIC ${LIBTSCORE_LINK_LIBRARIES})
     target_include_directories(tscore PUBLIC ${tscore_PUBLIC_INCLUDES})
 
@@ -498,9 +630,11 @@ if(BUILD_SHARED_LIBS)
     target_include_directories(tsduck 
         PUBLIC ${tsduck_PUBLIC_INCLUDES}
         PRIVATE ${tsduck_PRIVATE_INCLUDES})
+    if(NOT NOVLC)
     # to include tsduck.h, not included in local code
     add_dependencies(tsduck tsduck_header)
     target_include_directories(tsduck PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>)
+    endif()
     target_include_directories(tsduck PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
         
     target_link_libraries(tsduck PUBLIC tscore)
@@ -523,9 +657,11 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tscorelib 
         PUBLIC ${tscore_PUBLIC_INCLUDES}
         PRIVATE ${tscore_PRIVATE_INCLUDES})
+    if(NOT NOVLC)
     # to include tscore.h, not included in local code
     add_dependencies(tscorelib tscore_header)
     target_include_directories(tscorelib PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>)
+    endif()
     target_include_directories(tscorelib PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
     target_link_libraries(tscorelib PUBLIC ${LIBTSCORE_LINK_LIBRARIES})
 
@@ -541,9 +677,11 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib 
         PUBLIC ${tsduck_PUBLIC_INCLUDES}
         PRIVATE ${tsduck_PRIVATE_INCLUDES})
+    if(NOT NOVLC)
     # to include tsduck.h, not included in local code
     add_dependencies(tsducklib tsduck_header)
     target_include_directories(tsducklib PUBLIC $<BUILD_INTERFACE:${TSDUCK_H_DIRECTORY}>)
+    endif()
     target_include_directories(tsducklib PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
     target_link_libraries(tsducklib PUBLIC tscorelib)
     target_link_libraries(tsducklib PUBLIC ${LIBTSDUCK_LINK_LIBRARIES})
