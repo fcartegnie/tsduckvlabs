@@ -284,16 +284,16 @@ namespace ts {
 #define TS_BLOCK_CIPHER_DECLARE_PROPERTIES(Prefix)                  \
         /** Properties of this algorithm. */                        \
         /** @return A constant reference to the properties. */      \
-        static TSDUCKDLL_INLINE const BlockCipherProperties& PROPERTIES() \
+        static const BlockCipherProperties& PROPERTIES() \
         {                                                           \
             return Prefix##_PropertiesSingleton::Instance();        \
         }                                                           \
         /** @cond nodoxygen */                                      \
-        class Prefix##_PropertiesSingleton                          \
+        class TSDUCKDLL Prefix##_PropertiesSingleton                          \
         {                                                           \
             TS_NOCOPY(Prefix##_PropertiesSingleton);                \
         public:                                                     \
-            static TSDUCKDLL_INLINE const BlockCipherProperties& Instance(); \
+            static const BlockCipherProperties& Instance(); \
         private:                                                    \
             static const BlockCipherProperties* volatile _instance; \
             static std::once_flag _once_flag;                       \
