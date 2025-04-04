@@ -289,11 +289,11 @@ namespace ts {
             return Prefix##_PropertiesSingleton::Instance();        \
         }                                                           \
         /** @cond nodoxygen */                                      \
-        class TSDUCKDLL Prefix##_PropertiesSingleton                          \
+        class Prefix##_PropertiesSingleton                          \
         {                                                           \
             TS_NOCOPY(Prefix##_PropertiesSingleton);                \
         public:                                                     \
-            static const BlockCipherProperties& Instance(); \
+            static TSDUCKDLL_INLINE const BlockCipherProperties& Instance(); \
         private:                                                    \
             static const BlockCipherProperties* volatile _instance; \
             static std::once_flag _once_flag;                       \
