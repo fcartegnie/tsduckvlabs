@@ -7,7 +7,9 @@
 //----------------------------------------------------------------------------
 
 #include "tsVersionInfo.h"
+#if !defined(TS_NO_GITHUB)
 #include "tsGitHubRelease.h"
+#endif
 #include "tsNullReport.h"
 #include "tsErrCodeReport.h"
 #include "tsFileUtils.h"

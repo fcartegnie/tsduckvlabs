@@ -13,7 +13,9 @@
 
 #include "tsMain.h"
 #include "tsVersionInfo.h"
+#if !defined(TS_NO_GITHUB)
 #include "tsGitHubRelease.h"
+#endif
 #include "tsWebRequest.h"
 #include "tsSysUtils.h"
 #include "tsSysInfo.h"
