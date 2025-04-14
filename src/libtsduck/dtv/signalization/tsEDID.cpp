@@ -9,6 +9,7 @@
 #include "tsEDID.h"
 
 #include "tsBeforeStandardHeaders.h"
+#include <algorithm>
 #include <array>
 #include "tsAfterStandardHeaders.h"
 
