@@ -17,6 +17,10 @@
 #include "tsSection.h"
 #include "tsDescriptorList.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts {
     //!
     //! Define the scope of tables which can apply to actual or other TS.
