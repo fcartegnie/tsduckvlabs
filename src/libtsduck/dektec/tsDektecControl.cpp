@@ -9,6 +9,9 @@
 #include "tsDektecControl.h"
 #include "tsDektec.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <thread>
+#include "tsAfterStandardHeaders.h"
 
 //----------------------------------------------------------------------------
 // Stubs when DTAPI is not supported

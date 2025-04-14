@@ -17,6 +17,7 @@
 #include "tsArgMix.h"
 
 #include "tsBeforeStandardHeaders.h"
+#include <atomic>
 #include <set>
 #include "tsAfterStandardHeaders.h"
 

@@ -17,6 +17,10 @@
 #include "tsIntegerUtils.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <atomic>
+#include "tsAfterStandardHeaders.h"
+
 namespace ts::xml {
     //!
     //! Attribute of an XML element.

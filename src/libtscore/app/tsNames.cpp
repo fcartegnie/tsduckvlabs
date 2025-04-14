@@ -11,6 +11,10 @@
 #include "tsIntegerUtils.h"
 #include "tsCerrReport.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <algorithm>
+#include "tsAfterStandardHeaders.h"
+
 // Limit the number of inheritance levels to avoid infinite loop.
 #define MAX_INHERIT 16
 

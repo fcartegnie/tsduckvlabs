@@ -9,6 +9,10 @@
 #include "tsUID.h"
 #include "tsTime.h"
 
+#include "tsBeforeStandardHeaders.h"
+#include <atomic>
+#include "tsAfterStandardHeaders.h"
+
 #if defined(TS_WINDOWS)
     #define PROCESS_ID ::GetCurrentProcessId()
 #else

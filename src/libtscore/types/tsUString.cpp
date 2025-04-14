@@ -19,8 +19,8 @@
 #include "tsNames.h"
 
 #include "tsBeforeStandardHeaders.h"
-// #include <algorithm>
-// #include <cmath>
+#include <algorithm>
+#include <cmath>
 #include <iostream>
 // #include <string>
 #include "tsAfterStandardHeaders.h"
