@@ -524,6 +524,7 @@ if(NOVLC)
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsStreamIdentifierDescriptor.cpp")
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsLocalTimeOffsetDescriptor.cpp")
     list(REMOVE_ITEM TSPLUGINS "tsplugin_dvb.cpp")
+    list(REMOVE_ITEM TSPLUGINS "tsplugin_scrambler.cpp")
 
     list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eacem/")
     list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eacem/")
