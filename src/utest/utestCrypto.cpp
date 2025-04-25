@@ -46,6 +46,7 @@
 #include "crypto/tv_sha256.h"
 #include "crypto/tv_sha512.h"
 
+#include <cstdarg>
 
 //----------------------------------------------------------------------------
 // The test fixture
