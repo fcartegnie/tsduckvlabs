@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24) # LINK_LIBRARY:WHOLE_ARCHIVE
+cmake_minimum_required(VERSION 3.21) # proper support with the Android NDK
 
 file(STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/tsVersion.h TSVERSION_H REGEX "^#define TS_")
 set(TS_VERSION_MAJOR 0)
@@ -644,7 +644,7 @@ if(NOT BUILD_SHARED_LIBS)
     target_include_directories(tsducklib PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
     target_link_libraries(tsducklib PUBLIC ${LIBTSDUCK_LINK_LIBRARIES})
     
-    set(tsduck_libs "$<LINK_LIBRARY:WHOLE_ARCHIVE,tsducklib>")
+    set(tsduck_libs tsducklib)
 
     install(TARGETS tsducklib
         COMPONENT tsduck

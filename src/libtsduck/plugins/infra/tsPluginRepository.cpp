@@ -12,6 +12,8 @@
 #include "tsAlgorithm.h"
 #include "tsCerrReport.h"
 
+#include "../tsplugins/tsplugin_classes.h"
+
 TS_DEFINE_SINGLETON(ts::PluginRepository);
 
 // Options for --list-processor.
@@ -29,9 +31,23 @@ const ts::Enumeration ts::PluginRepository::ListProcessorEnum({
 //----------------------------------------------------------------------------
 // Constructors
 //----------------------------------------------------------------------------
+namespace {
+    ts::ProcessorPlugin* Register_PMT(ts::TSP* tsp)    { return new ts::PMTPlugin(tsp); } 
+    ts::ProcessorPlugin* Register_Merge(ts::TSP* tsp)  { return new ts::MergePlugin(tsp); } 
+    ts::ProcessorPlugin* Register_Stats(ts::TSP* tsp)  { return new ts::StatsPlugin(tsp); } 
+    ts::ProcessorPlugin* Register_Filter(ts::TSP* tsp) { return new ts::FilterPlugin(tsp); } 
+    ts::ProcessorPlugin* Register_PES(ts::TSP* tsp)    { return new ts::PESPlugin(tsp); } 
+}
 
 ts::PluginRepository::PluginRepository()
 {
+#ifdef TSDUCK_STATIC
+    static ts::PluginRepository::Register _R_PMT   (u"pmt",    &Register_PMT);
+    static ts::PluginRepository::Register _R_Merge (u"merge",  &Register_Merge);
+    static ts::PluginRepository::Register _R_Stats (u"stats",  &Register_Stats);
+    static ts::PluginRepository::Register _R_Filter(u"filter", &Register_Filter);
+    static ts::PluginRepository::Register _R_PES   (u"pes",    &Register_PES);
+#endif
 }
 
 
