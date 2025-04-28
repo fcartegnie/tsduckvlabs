@@ -156,6 +156,7 @@ list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsd
 # TODO add java support
 list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/java/")
 # Remove all OS specific system files
+list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.*/bsd/.*")
 list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.*/unix/.*")
 list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.*/linux/.*")
 list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.*/mac/.*")
