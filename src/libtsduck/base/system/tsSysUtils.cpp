@@ -164,7 +164,7 @@ fs::path ts::CallerLibraryFile()
 
     // Window implementation.
     // Get return address of current function (in caller code).
-#if defined(__clang__)
+#if defined(TS_GCC) || defined(TS_LLVM)
     void* const ret = __builtin_return_address(0);
 #else
     void* const ret = _ReturnAddress();
