@@ -329,7 +329,11 @@ ts::UString ts::VersionInfo::GetVersion(Format format, const UString& applicatio
         }
         case Format::HTTP: {
             // The version of the HTTP library.
+#if defined(TS_NO_GITHUB)
+            return u"No HTTP support";
+#else
             return WebRequest::GetLibraryVersion();
+#endif
         }
         case Format::SRT: {
             // The version of the SRT library.
