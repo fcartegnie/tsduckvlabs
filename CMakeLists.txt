@@ -145,7 +145,8 @@ file(GLOB_RECURSE TSDUCK_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/*.h)
 list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/.+/private")
 
 
-file(GLOB TSPLUGINS LIST_DIRECTORIES false RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins "${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins/*\.cpp")
+# file(GLOB TSPLUGINS LIST_DIRECTORIES false RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins "${CMAKE_CURRENT_SOURCE_DIR}/src/tsplugins/*\.cpp")
+list(APPEND TSPLUGINS tsplugin_pmt.cpp tsplugin_merge.cpp tsplugin_stats.cpp tsplugin_filter.cpp tsplugin_pes.cpp)
 
 
 file(GLOB_RECURSE tsduck_SOURCES LIST_DIRECTORIES true 
