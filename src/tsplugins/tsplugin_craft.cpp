@@ -112,8 +112,12 @@ namespace ts {
 // Plugin shared library interface
 //----------------------------------------------------------------------------
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_INPUT_PLUGIN(u"craft", ts::CraftInput);
+#endif
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"craft", ts::CraftPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

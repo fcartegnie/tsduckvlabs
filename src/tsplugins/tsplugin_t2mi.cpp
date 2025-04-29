@@ -73,7 +73,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"t2mi", ts::T2MIPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

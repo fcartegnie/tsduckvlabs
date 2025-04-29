@@ -108,7 +108,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"bitrate_monitor", ts::BitrateMonitorPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

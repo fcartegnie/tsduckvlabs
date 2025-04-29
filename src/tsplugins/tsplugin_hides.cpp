@@ -43,7 +43,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_OUTPUT_PLUGIN(u"hides", ts::HiDesOutputPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

@@ -61,7 +61,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_INPUT_PLUGIN(u"dvb", ts::DVBInputPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

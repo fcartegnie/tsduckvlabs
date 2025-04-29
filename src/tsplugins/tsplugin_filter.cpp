@@ -26,7 +26,9 @@
 // Plugin definition
 //----------------------------------------------------------------------------
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"filter", ts::FilterPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

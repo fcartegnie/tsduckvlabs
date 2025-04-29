@@ -80,7 +80,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"inject", ts::InjectPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

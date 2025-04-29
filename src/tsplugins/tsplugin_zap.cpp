@@ -132,7 +132,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"zap", ts::ZapPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

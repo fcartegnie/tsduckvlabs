@@ -104,7 +104,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"history", ts::HistoryPlugin);
+#endif
 
 void ts::HistoryPlugin::report(PacketCounter pkt, const UString& line)
 {

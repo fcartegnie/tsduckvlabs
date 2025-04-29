@@ -47,7 +47,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_PROCESSOR_PLUGIN(u"regulate", ts::RegulatePlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

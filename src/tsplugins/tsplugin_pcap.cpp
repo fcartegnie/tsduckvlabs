@@ -78,7 +78,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_INPUT_PLUGIN(u"pcap", ts::PcapInputPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------

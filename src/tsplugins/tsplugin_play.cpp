@@ -45,7 +45,9 @@ namespace ts {
     };
 }
 
+#ifndef TSDUCK_STATIC
 TS_REGISTER_OUTPUT_PLUGIN(u"play", ts::PlayPlugin);
+#endif
 
 
 //----------------------------------------------------------------------------
