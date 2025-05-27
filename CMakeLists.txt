@@ -294,9 +294,13 @@ list(APPEND tsduck_PUBLIC_INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck")
 # extra packages
 find_package(PkgConfig)
 
-if(WIN32 AND NOT MSVC)
-    # MSVC compatible compilers use "#pragma comment" to add libraries
-    list(APPEND LIBTSDUCK_LINK_LIBRARIES bcrypt ws2_32 iphlpapi wininet userenv winmm ksuser strmiids wmcodecdspuuid psapi shell32 quartz)
+if(WIN32)
+    if(MSVC)
+        # MSVC compatible compilers use "#pragma comment" to add libraries
+        list(APPEND LIBTSDUCK_LINK_LIBRARIES strmiids ksuser)
+    else()
+        list(APPEND LIBTSDUCK_LINK_LIBRARIES bcrypt ws2_32 iphlpapi wininet userenv winmm ksuser strmiids wmcodecdspuuid psapi shell32 quartz)
+    endif()
 endif()
 
 if(NODEPRECATE)
