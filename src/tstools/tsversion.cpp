@@ -25,10 +25,6 @@
 #include "tsWinUtils.h"
 #endif
 
-#include "tsBeforeStandardHeaders.h"
-#include <iostream>
-#include "tsAfterStandardHeaders.h"
-
 TS_MAIN(MainCode);
 
 
@@ -175,7 +171,7 @@ Options::Options(int argc, char *argv[]) :
             for (const auto& fname : names) {
                 const int value = support.value(fname);
                 if (value >= 0) {
-                    std::cout << fname << ": " << ts::UString::YesNo(value != 0) << std::endl;
+                    printf("%s: %s\n", fname.toUTF8().c_str(), value != 0 ? "yes" : "no");
                 }
             }
         }
@@ -636,15 +632,15 @@ int MainCode(int argc, char *argv[])
     if (opt.extensions) {
         // Display list of available extensions.
         // The returned string is either empty or ends with a new-line.
-        std::cout << ts::DuckExtensionRepository::Instance().listExtensions(opt);
+        printf("%s\n", ts::DuckExtensionRepository::Instance().listExtensions(opt).toUTF8().c_str());
     }
     else if (opt.integer) {
         // Display current version in integer format.
-        std::cout << ts::VersionInfo::GetVersion(ts::VersionInfo::Format::INTEGER) << std::endl;
+        printf("%s\n", ts::VersionInfo::GetVersion(ts::VersionInfo::Format::INTEGER).toUTF8().c_str());
     }
     else if (opt.current) {
         // Display current version.
-        std::cout << ts::VersionInfo::GetVersion(opt.verbose() ? ts::VersionInfo::Format::LONG : ts::VersionInfo::Format::SHORT) << std::endl;
+        printf("%s\n", ts::VersionInfo::GetVersion(opt.verbose() ? ts::VersionInfo::Format::LONG : ts::VersionInfo::Format::SHORT).toUTF8().c_str());
     }
 
 #if !defined(TS_NO_GITHUB)
