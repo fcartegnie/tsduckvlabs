@@ -60,7 +60,7 @@ namespace ts {
         //!
         //! Default minimum wait interval.
         //!
-        static constexpr cn::milliseconds DEFAULT_MIN_WAIT = cn::milliseconds(50);
+        static const cn::milliseconds DEFAULT_MIN_WAIT;
 
         //!
         //! Set the minimum wait interval.

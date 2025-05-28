@@ -13,6 +13,8 @@
 #include <thread>
 #include "tsAfterStandardHeaders.h"
 
+const cn::milliseconds ts::PCRRegulator::DEFAULT_MIN_WAIT = cn::milliseconds(50);
+
 //----------------------------------------------------------------------------
 // Constructor
 //----------------------------------------------------------------------------
