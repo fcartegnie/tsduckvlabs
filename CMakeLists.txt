@@ -476,7 +476,7 @@ if(NOVLC)
     list(REMOVE_ITEM TSPLUGINS "tsplugin_eitinject.cpp")
     list(REMOVE_ITEM TSPLUGINS "tsplugin_spliceinject.cpp")
     # issue with DEFAULT_MIN_WAIT  dll export in gcc
-    list(REMOVE_ITEM TSPLUGINS "tsplugin_regulate.cpp")
+    # list(REMOVE_ITEM TSPLUGINS "tsplugin_regulate.cpp")
 
     list(REMOVE_ITEM TSPLUGINS "tsplugin_nitscan.cpp")
     list(REMOVE_ITEM TSPLUGINS "tsplugin_pcap.cpp")
