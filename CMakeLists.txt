@@ -494,7 +494,7 @@ if(NOVLC)
 
     list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
     list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
-    list(REMOVE_ITEM TSPLUGINS "tsplugin_analyze.cpp")
+    # list(REMOVE_ITEM TSPLUGINS "tsplugin_analyze.cpp")
 
     # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/")
     # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/")
@@ -524,7 +524,7 @@ if(NOVLC)
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsDVBAC3Descriptor.cpp")
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/dvb/tsDVBEnhancedAC3Descriptor.cpp")
     list(REMOVE_ITEM TSPLUGINS "tsplugin_dvb.cpp")
-    list(REMOVE_ITEM TSPLUGINS "tsplugin_scrambler.cpp")
+    # list(REMOVE_ITEM TSPLUGINS "tsplugin_scrambler.cpp")
 
     list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eacem/")
     list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/eacem/")
