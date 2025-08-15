@@ -492,9 +492,9 @@ if(NOVLC)
     list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/python/")
     list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/python/")
 
-#    list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
-#    list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
-    # list(REMOVE_ITEM TSPLUGINS "tsplugin_analyze.cpp")
+list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
+list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/analysis/tsTSAnalyzer.+")
+list(REMOVE_ITEM TSPLUGINS "tsplugin_analyze.cpp")
 
     # list(FILTER tsduck_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/")
     # list(FILTER TSDUCK_HEADERS EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/broadcast/")
