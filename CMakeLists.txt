@@ -550,7 +550,8 @@ if(NOVLC)
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsISO639LanguageDescriptor.cpp")
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsRegistrationDescriptor.cpp") # needed by pmt
     list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/scte/tsCueIdentifierDescriptor.cpp") # needed by pmt
-    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsMetadataDescriptor.cpp") # needed by tests
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsMetadataDescriptor.cpp") # needed by pmt
+    list(APPEND tsduck_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/libtsduck/dtv/descriptors/mpeg/tsMetadataPointerDescriptor.cpp") # needed by pmt
 
     list(REMOVE_ITEM TSPLUGINS "tsplugin_splicemonitor.cpp")
 
